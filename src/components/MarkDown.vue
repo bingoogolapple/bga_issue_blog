@@ -11,22 +11,31 @@
 </template>
 
 <script>
+  import {activeIssue} from '../vuex/getters';
+
   export default {
     data: function () {
       return {
         renderedMarkdown: ''
       }
     },
-    ready: function () {
-      this.$http.post('https://api.github.com/markdown', {
-        "text": "> 水电费洛杉矶的开发了几十块拉倒房间里可视对讲访客来时点击访客来sdk里失联客机访客来涉及到法律会计师离开的房间了看时间的访客老师讲的\n\n ```java\n int a = 2;\n int b = 3;\n ```",
-        "mode": "gfm",
-        "context": "bingoogolapple/bingoogolapple.github.io"
-      }).then(function (response) {
-        this.renderedMarkdown = response.data;
-      }, function (response) {
-        console.log(response.data);
-      });
+    vuex: {
+      getters: {
+        activeIssue
+      }
+    },
+    watch: {
+      activeIssue: function (issue) {
+        this.$http.post('https://api.github.com/markdown', {
+          "text": issue.body,
+          "mode": "gfm",
+          "context": "bingoogolapple/bingoogolapple.github.io"
+        }).then(function (response) {
+          this.renderedMarkdown = response.data;
+        }, function (response) {
+          console.log(response.data);
+        });
+      }
     }
   }
 </script>

@@ -1,27 +1,20 @@
 <template>
   <div id="toolbar">
     <i class="glyphicon logo"><img src="../assets/logo.png" width="30" height="30"></i>
-    <i @click="newNote" class="glyphicon glyphicon-plus"></i>
-    <i @click="toggleFavorite" class="glyphicon glyphicon-star" :class="{starred: activeNote.favorite}"></i>
-    <i @click="deleteNote" class="glyphicon glyphicon-remove"></i>
+    <i>B</i>
+    <i>G</i>
+    <i>A</i>
+    <i>&nbsp;</i>
+    <i>&nbsp;</i>
+    <i>&nbsp;</i>
+    <i>B</i>
+    <i>L</i>
+    <i>O</i>
+    <i>G</i>
   </div>
 </template>
 
 <script>
-  import { newNote, deleteNote, toggleFavorite } from '../vuex/actions';
-  import { activeNote } from '../vuex/getters';
-  export default {
-    vuex: {
-      getters: {
-        activeNote
-      },
-      actions: {
-        newNote,
-        deleteNote,
-        toggleFavorite
-      }
-    }
-  }
 </script>
 
 <style lang="scss" scoped>
@@ -29,8 +22,8 @@
     float: left;
     width: 80px;
     height: 100%;
-    background-color: #30414D;
-    color: #767676;
+    background-color: #343f4b;
+    color: #748392;
     padding: 35px 25px 25px 25px;
     .starred {
       color: #F7AE4F;
@@ -38,7 +31,6 @@
     i{
       font-size: 30px;
       margin-bottom: 35px;
-      cursor: pointer;
       opacity: 0.8;
       transition: opacity 0.5s ease;
       &:hover{

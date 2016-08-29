@@ -1,10 +1,11 @@
 <template>
   <div id="notes-list">
     <div id="list-header">
-      <h2>Labels</h2>
+      <h2>Issues</h2>
+
       <div class="btn-group btn-group-justified" role="group">
         <div class="input-group search">
-          <input type="text" class="form-control" v-model="search" placeholder="Search for label...">
+          <input type="text" class="form-control" v-model="search" placeholder="Search for issue...">
           <span class="input-group-addon">
             <i class="glyphicon glyphicon-search"></i>
           </span>
@@ -15,13 +16,13 @@
     <!-- 渲染Label列表 -->
     <div class="container">
       <div class="list-group">
-        <a v-for="label in labels | filterBy search"
+        <a v-for="issue in issues | filterBy search"
            class="list-group-item"
            href="#"
-           :class="{active: activeLabel === label}"
-           @click="setActiveLabel(label)">
+           :class="{active: activeIssue === issue}"
+           @click="setActiveIssue(issue)">
           <h4 class="list-group-item-heading">
-            {{label.name.trim().substring(0,18)}}
+            {{issue.title.trim().substring(0,18)}}
           </h4>
         </a>
       </div>
@@ -30,8 +31,8 @@
 </template>
 
 <script>
-  import {setLabels, updateActiveLabel} from '../vuex/actions';
-  import {labels, activeLabel} from '../vuex/getters';
+  import {setIssues, updateActiveIssue} from '../vuex/actions';
+  import {issues, activeIssue, activeLabel} from '../vuex/getters';
   export default {
     data() {
       return {
@@ -40,24 +41,27 @@
     },
     vuex: {
       getters: {
-        labels,
+        issues,
+        activeIssue,
         activeLabel
       },
       actions: {
-        setLabels,
-        updateActiveLabel
+        setIssues,
+        updateActiveIssue
       }
     },
-    ready: function () {
-      this.$http.get('https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/labels?sort=alphabetically').then(function (response) {
-        this.setLabels(response.json())
-      }, function (response) {
-        console.log(response.data);
-      });
+    watch: {
+      activeLabel: function (label) {
+        this.$http.get('https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/issues?labels=' + label.name).then(function (response) {
+          this.setIssues(response.json())
+        }, function (response) {
+          console.log(response.data);
+        });
+      }
     },
     methods: {
-      setActiveLabel: function (label) {
-        this.updateActiveLabel(label)
+      setActiveIssue: function (issue) {
+        this.updateActiveIssue(issue)
       }
     }
   }
@@ -85,8 +89,7 @@
       }
     }
     .container {
-      height: calc(100% - 204px);
-      max-height: calc(100% - 204px);
+      max-height: 100%;
       overflow: auto;
       width: 100%;
       padding: 0;

@@ -2,6 +2,7 @@
   <div id="app" class="app">
     <toolbar></toolbar>
     <labels-list></labels-list>
+    <issues-list></issues-list>
     <markdown></markdown>
     <notes-list></notes-list>
   </div>
@@ -25,6 +26,7 @@
 <script>
   import Toolbar from './components/Toolbar'
   import LabelsList from './components/LabelsList.vue'
+  import IssuesList from './components/IssuesList.vue'
   import Markdown from './components/Markdown.vue'
   import store from './vuex/store'
   import {initStore} from './vuex/actions'
@@ -32,6 +34,7 @@
     components: {
       Toolbar,
       LabelsList,
+      IssuesList,
       Markdown
     },
     store,
