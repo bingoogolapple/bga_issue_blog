@@ -9,8 +9,15 @@ const initNote = {
   favorite: false
 }
 
+const initLabel = {
+  "url": "https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/labels/C",
+  "name": "C",
+  "color": "d4c5f9"
+}
+
 // 模拟初始化数据
 const initData = {
+  labels: [initLabel],
   show: 'all',
   notes: [initNote],
   activeNote: initNote
@@ -32,3 +39,7 @@ export const editNote = makeAction('EDIT_NOTE')
 
 // 更新列表展示
 export const updateShow = makeAction('SET_SHOW_ALL')
+
+
+// 更新Label列表展示
+export const setLabels = makeAction('SET_LABELS')

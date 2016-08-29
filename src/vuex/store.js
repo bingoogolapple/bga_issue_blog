@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 // 需要维护的状态
 const state = {
+  labels: [],
   notes: [],
   activeNote: {},
   show: ''
@@ -13,6 +14,7 @@ const state = {
 const mutations = {
   // 初始化 state
   INIT_STORE(state, data) {
+    state.labels = data.labels;
     state.notes = data.notes
     state.show = data.show
     state.activeNote = data.activeNote
@@ -61,6 +63,9 @@ const mutations = {
   // 设置当前激活的笔记
   SET_ACTIVE_NOTE(state, note) {
     state.activeNote = note
+  },
+  SET_LABELS(state, labels) {
+    state.labels = labels
   }
 }
 

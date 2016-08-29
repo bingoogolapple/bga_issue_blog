@@ -1,8 +1,9 @@
 <template>
   <div id="app" class="app">
     <toolbar></toolbar>
+    <labels-list></labels-list>
+    <markdown></markdown>
     <notes-list></notes-list>
-    <editor></editor>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
   html, #app {
     height: 100%
   }
+
   body {
     margin: 0;
     padding: 0;
@@ -22,15 +24,15 @@
 
 <script>
   import Toolbar from './components/Toolbar'
-  import NotesList from './components/NotesList'
-  import Editor from './components/Editor'
+  import LabelsList from './components/LabelsList.vue'
+  import Markdown from './components/Markdown.vue'
   import store from './vuex/store'
-  import { initStore } from './vuex/actions'
+  import {initStore} from './vuex/actions'
   export default {
     components: {
       Toolbar,
-      NotesList,
-      Editor
+      LabelsList,
+      Markdown
     },
     store,
     vuex: {

@@ -1,3 +1,8 @@
+export const labels = (state) => {
+  return state.labels
+}
+
+
 // 获取 noteList,这里将会根据 state.show 的状态做数据过滤
 export const filteredNotes = (state) => {
   if (state.show === 'all') {
