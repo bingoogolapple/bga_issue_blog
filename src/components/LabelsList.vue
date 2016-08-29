@@ -15,7 +15,7 @@
     <!-- 渲染Label列表 -->
     <div class="container">
       <div class="list-group">
-        <a v-for="label in labels | filterBy search"
+        <a v-for="label in labels | filterBy search | orderBy 'name'"
            class="list-group-item"
            href="#"
            :class="{active: activeLabel === label}"
@@ -35,7 +35,7 @@
   export default {
     data() {
       return {
-        search: ''
+        search: '',
       }
     },
     vuex: {
@@ -49,7 +49,7 @@
       }
     },
     ready: function () {
-      this.$http.get('https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/labels?sort=alphabetically').then(function (response) {
+      this.$http.get('https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/labels?sort=count-desc').then(function (response) {
         this.setLabels(response.json())
       }, function (response) {
         console.log(response.data);
@@ -79,6 +79,8 @@
         font-size: 22px;
         padding-bottom: 8px;
         color: #009de7;
+        border-bottom: 1px dotted #009de7;
+        border-bottom-width: 2px;
       }
       .search {
         margin-top: 10px;

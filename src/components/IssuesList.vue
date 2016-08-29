@@ -83,6 +83,8 @@
         font-size: 22px;
         padding-bottom: 8px;
         color: #009de7;
+        border-bottom: 1px dotted #009de7;
+        border-bottom-width: 2px;
       }
       .search {
         margin-top: 10px;
