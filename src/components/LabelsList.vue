@@ -15,7 +15,7 @@
     <!-- 渲染Label列表 -->
     <div class="container">
       <div class="list-group">
-        <a v-for="label in labels | filterBy search | orderBy 'name'"
+        <a v-for="label in labels | filterBy search"
            class="list-group-item"
            href="#"
            :class="{active: activeLabel === label}"
