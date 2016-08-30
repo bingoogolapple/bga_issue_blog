@@ -16,9 +16,15 @@
     props: ['comment'],
     watch: {
       comment: function (comment) {
-        if (comment.body) {
+        this.fetchMarkdown()
+      }
+    },
+    methods: {
+      fetchMarkdown: function () {
+        this.renderedMarkdown = ''
+        if (this.comment.body) {
           this.$http.post('https://api.github.com/markdown', {
-            "text": comment.body,
+            "text": this.comment.body,
             "mode": "gfm",
             "context": "bingoogolapple/bingoogolapple.github.io"
           }).then(function (response) {
@@ -26,10 +32,11 @@
           }, function (response) {
             console.log(response.data)
           })
-        } else {
-          this.renderedMarkdown = ''
         }
       }
+    },
+    ready: function () {
+      this.fetchMarkdown()
     }
   }
 </script>
