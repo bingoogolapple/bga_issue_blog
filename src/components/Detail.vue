@@ -1,8 +1,8 @@
 <template>
   <div id="detail">
     <div class="panel-heading">
-      <a v-for="label in activeIssue.labels" href="#" @click="updateActiveLabel(label)">
-        <span class="label label-default" :style="background-color:#{{label.color}}">{{label.name}}</span>
+      <a v-for="tag in activeIssue.labels" href="#" @click="updateActiveLabel(tag)">
+        <span class="label label-default" :style="{ backgroundColor: '#' + tag.color }">{{tag.name}}</span>
       </a>
     </div>
     <div class="panel panel-default">
@@ -18,6 +18,11 @@
   import {activeIssue} from '../vuex/getters'
 
   export default{
+    data: function () {
+      return {
+        testColor: 'FF0000'
+      }
+    },
     vuex: {
       getters: {
         activeIssue
@@ -32,11 +37,12 @@
 <style lang="scss" scoped>
   #detail {
     float: left;
-    width: 450px;
+    width: calc(100% - 580px);
+    overflow: auto;
     height: 100%;
     .panel-heading {
-      height: 30px;
-      overflow-x: auto;
+      height: 40px;
+      overflow: auto;
       a {
         &:hover, &:focus {
           text-decoration: none;
@@ -44,8 +50,8 @@
       }
     }
     .panel {
-      height: calc(100% - 30px);
-      overflow-y: auto;
+      height: calc(100% - 40px);
+      overflow: auto;
     }
   }
 </style>

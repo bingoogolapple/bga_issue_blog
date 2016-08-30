@@ -1,7 +1,11 @@
 <template>
-  <article class="markdown-body">
-    {{{renderedMarkdown}}}
-  </article>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <article class="markdown-body">
+        {{{renderedMarkdown}}}
+      </article>
+    </div>
+  </div>
 </template>
 
 <script>
