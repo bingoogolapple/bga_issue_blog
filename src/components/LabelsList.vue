@@ -18,8 +18,8 @@
         <a v-for="label in labels | filterBy search"
            class="list-group-item"
            href="#"
-           :class="{active: activeLabel === label}"
-           @click="setActiveLabel(label)">
+           :class="{active: activeLabel.name === label.name}"
+           @click="updateActiveLabel(label)">
           <h4 class="list-group-item-heading">
             {{label.name.trim().substring(0,18)}}
           </h4>
@@ -54,11 +54,6 @@
       }, function (response) {
         console.log(response.data)
       })
-    },
-    methods: {
-      setActiveLabel: function (label) {
-        this.updateActiveLabel(label)
-      }
     }
   }
 </script>
@@ -87,9 +82,8 @@
       }
     }
     .container {
-      height: calc(100% - 204px);
-      max-height: calc(100% - 204px);
-      overflow: auto;
+      height: calc(100% - 138px);
+      overflow-y: auto;
       width: 100%;
       padding: 0;
       .list-group-item {

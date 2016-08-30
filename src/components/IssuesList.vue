@@ -91,8 +91,8 @@
       }
     }
     .container {
-      max-height: 100%;
-      overflow: auto;
+      height: calc(100% - 138px);
+      overflow-y: auto;
       width: 100%;
       padding: 0;
       .list-group-item {

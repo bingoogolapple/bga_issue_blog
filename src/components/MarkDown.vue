@@ -1,13 +1,7 @@
 <template>
-  <div id="markdown">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <article class="markdown-body">
-          {{{renderedMarkdown}}}
-        </article>
-      </div>
-    </div>
-  </div>
+  <article class="markdown-body">
+    {{{renderedMarkdown}}}
+  </article>
 </template>
 
 <script>
@@ -44,14 +38,6 @@
 </script>
 
 <style scoped>
-  #markdown {
-    height: 100%;
-  }
-
-  .panel {
-    overflow-y: auto;
-    max-height: 100%;
-  }
 
   @font-face {
     font-family: octicons-link;

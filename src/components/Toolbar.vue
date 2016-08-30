@@ -1,8 +1,8 @@
 <template>
   <div id="toolbar">
-    <i class="glyphicon logo"><img src="../assets/logo.png" width="30" height="30"></i>
-    <i @click="openGithub"><img src="../assets/github.png" width="30" height="30"></i>
-    <i @click="openWeibo"><img src="../assets/weibo.png" width="30" height="30"></i>
+    <i class="glyphicon logo"><img src="../assets/logo.png"></i>
+    <i @click="openGithub"><img src="../assets/github.png"></i>
+    <i @click="openWeibo"><img src="../assets/weibo.png"></i>
   </div>
 </template>
 
@@ -27,9 +27,6 @@
     background-color: #343f4b;
     color: #748392;
     padding: 35px 25px 25px 25px;
-    .starred {
-      color: #F7AE4F;
-    }
     i {
       font-size: 30px;
       margin-bottom: 35px;
@@ -39,6 +36,14 @@
       &:hover {
         opacity: 1;
       }
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    i:first-child {
+      cursor: default;
+      opacity: 1;
     }
   }
 </style>

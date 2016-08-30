@@ -1,24 +1,15 @@
 <template>
-  <div id="app" class="app">
+  <div class="app">
     <toolbar></toolbar>
     <labels-list></labels-list>
     <issues-list></issues-list>
-    <markdown></markdown>
+    <detail></detail>
   </div>
 </template>
 
 <style>
-  html, #app {
-    height: 100%
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    border: 0;
+  html, body, .app {
     height: 100%;
-    max-height: 100%;
-    position: relative
   }
 </style>
 
@@ -26,7 +17,8 @@
   import Toolbar from './components/Toolbar'
   import LabelsList from './components/LabelsList.vue'
   import IssuesList from './components/IssuesList.vue'
-  import Markdown from './components/Markdown.vue'
+  import Detail from './components/Detail.vue'
+
   import store from './vuex/store'
   import {initStore} from './vuex/actions'
   export default {
@@ -34,7 +26,7 @@
       Toolbar,
       LabelsList,
       IssuesList,
-      Markdown
+      Detail
     },
     store,
     vuex: {
