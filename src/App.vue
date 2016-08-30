@@ -3,7 +3,7 @@
     <toolbar></toolbar>
     <labels-list></labels-list>
     <issues-list></issues-list>
-    <detail></detail>
+    <issue></issue>
   </div>
 </template>
 
@@ -17,7 +17,7 @@
   import Toolbar from './components/Toolbar'
   import LabelsList from './components/LabelsList.vue'
   import IssuesList from './components/IssuesList.vue'
-  import Detail from './components/Detail.vue'
+  import Issue from './components/Issue.vue'
 
   import store from './vuex/store'
   import {initStore} from './vuex/actions'
@@ -26,7 +26,7 @@
       Toolbar,
       LabelsList,
       IssuesList,
-      Detail
+      Issue
     },
     store,
     vuex: {

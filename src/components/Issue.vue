@@ -7,15 +7,15 @@
     </div>
     <div class="panel panel-default">
       <div class="panel-body">
-        <markdown :comment="activeIssue"></markdown>
-        <markdown v-for="comment in comments" :comment="comment"></markdown>
+        <comment :comment="activeIssue"></comment>
+        <comment v-for="comment in comments" :comment="comment"></comment>
       </div>
     </div>
 
   </div>
 </template>
 <script>
-  import Markdown from './Markdown.vue'
+  import Comment from './Comment.vue'
   import {updateActiveLabel, setComments} from '../vuex/actions'
   import {activeIssue, comments} from '../vuex/getters'
 
@@ -41,7 +41,7 @@
         }
       }
     },
-    components: {Markdown}
+    components: {Comment}
   }
 </script>
 <style lang="scss" scoped>
