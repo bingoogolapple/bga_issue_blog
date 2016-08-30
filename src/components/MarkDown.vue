@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import {activeIssue} from '../vuex/getters';
+  import {activeIssue} from '../vuex/getters'
 
   export default {
     data: function () {
@@ -26,15 +26,18 @@
     },
     watch: {
       activeIssue: function (issue) {
-        this.$http.post('https://api.github.com/markdown', {
-          "text": issue.body,
-          "mode": "gfm",
-          "context": "bingoogolapple/bingoogolapple.github.io"
-        }).then(function (response) {
-          this.renderedMarkdown = response.data;
-        }, function (response) {
-          console.log(response.data);
-        });
+        this.renderedMarkdown = ''
+        if (issue.body) {
+          this.$http.post('https://api.github.com/markdown', {
+            "text": issue.body,
+            "mode": "gfm",
+            "context": "bingoogolapple/bingoogolapple.github.io"
+          }).then(function (response) {
+            this.renderedMarkdown = response.data
+          }, function (response) {
+            console.log(response.data)
+          })
+        }
       }
     }
   }

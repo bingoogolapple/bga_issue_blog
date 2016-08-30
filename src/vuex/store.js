@@ -24,9 +24,11 @@ const mutations = {
   },
   SET_ACTIVE_LABEL(state, label) {
     state.activeLabel = label
+    state.issues = []
+    state.activeIssue = state.issues[0] || {}
   },
   SET_ISSUES(state, issues) {
-    state.issues = issues;
+    state.issues = issues
     state.activeIssue = state.issues[0] || {}
   },
   SET_ACTIVE_ISSUE(state, issue) {

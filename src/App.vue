@@ -4,7 +4,6 @@
     <labels-list></labels-list>
     <issues-list></issues-list>
     <markdown></markdown>
-    <notes-list></notes-list>
   </div>
 </template>
 

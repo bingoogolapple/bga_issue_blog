@@ -1,5 +1,5 @@
 <template>
-  <div id="notes-list">
+  <div id="labels-list">
     <div id="list-header">
       <h2>Labels</h2>
       <div class="btn-group btn-group-justified" role="group">
@@ -30,8 +30,8 @@
 </template>
 
 <script>
-  import {setLabels, updateActiveLabel} from '../vuex/actions';
-  import {labels, activeLabel} from '../vuex/getters';
+  import {setLabels, updateActiveLabel} from '../vuex/actions'
+  import {labels, activeLabel} from '../vuex/getters'
   export default {
     data() {
       return {
@@ -52,8 +52,8 @@
       this.$http.get('https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/labels?sort=count-desc').then(function (response) {
         this.setLabels(response.json())
       }, function (response) {
-        console.log(response.data);
-      });
+        console.log(response.data)
+      })
     },
     methods: {
       setActiveLabel: function (label) {
@@ -64,7 +64,7 @@
 </script>
 
 <style lang="scss" scoped>
-  #notes-list {
+  #labels-list {
     float: left;
     width: 250px;
     height: 100%;

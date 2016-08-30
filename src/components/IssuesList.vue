@@ -1,5 +1,5 @@
 <template>
-  <div id="notes-list">
+  <div id="issues-list">
     <div id="list-header">
       <h2>Issues</h2>
 
@@ -31,8 +31,8 @@
 </template>
 
 <script>
-  import {setIssues, updateActiveIssue} from '../vuex/actions';
-  import {issues, activeIssue, activeLabel} from '../vuex/getters';
+  import {setIssues, updateActiveIssue} from '../vuex/actions'
+  import {issues, activeIssue, activeLabel} from '../vuex/getters'
   export default {
     data() {
       return {
@@ -55,8 +55,8 @@
         this.$http.get('https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/issues?labels=' + label.name).then(function (response) {
           this.setIssues(response.json())
         }, function (response) {
-          console.log(response.data);
-        });
+          console.log(response.data)
+        })
       }
     },
     methods: {
@@ -68,7 +68,7 @@
 </script>
 
 <style lang="scss" scoped>
-  #notes-list {
+  #issues-list {
     float: left;
     width: 250px;
     height: 100%;
