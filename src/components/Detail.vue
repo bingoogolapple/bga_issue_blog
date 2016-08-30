@@ -7,28 +7,38 @@
     </div>
     <div class="panel panel-default">
       <div class="panel-body">
-        <markdown></markdown>
+        <markdown :comment="activeIssue"></markdown>
+        <markdown v-for="comment in comments" :comment="comment"></markdown>
       </div>
     </div>
+
   </div>
 </template>
 <script>
   import Markdown from './Markdown.vue'
-  import {updateActiveLabel} from '../vuex/actions'
-  import {activeIssue} from '../vuex/getters'
+  import {updateActiveLabel, setComments} from '../vuex/actions'
+  import {activeIssue, comments} from '../vuex/getters'
 
   export default{
-    data: function () {
-      return {
-        testColor: 'FF0000'
-      }
-    },
     vuex: {
       getters: {
-        activeIssue
+        activeIssue,
+        comments
       },
       actions: {
-        updateActiveLabel
+        updateActiveLabel,
+        setComments
+      }
+    },
+    watch: {
+      activeIssue: function (issue) {
+        if (issue.comments > 0) {
+          this.$http.get(issue.comments_url).then(function (response) {
+            this.setComments(response.json())
+          }, function (response) {
+            console.log(response.data)
+          })
+        }
       }
     },
     components: {Markdown}

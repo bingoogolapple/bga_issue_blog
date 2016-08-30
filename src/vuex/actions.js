@@ -7,7 +7,8 @@ const initData = {
   labels: [],
   activeLabel: {},
   issues: [],
-  activeIssue: {}
+  activeIssue: {},
+  comments: []
 }
 
 export const initStore = ({dispatch}) => {
@@ -25,3 +26,6 @@ export const setIssues = makeAction('SET_ISSUES')
 
 // 更新当前activeIssue
 export const updateActiveIssue = makeAction('SET_ACTIVE_ISSUE')
+
+// 更新当前comments
+export const setComments = makeAction('SET_COMMENTS')

@@ -13,3 +13,7 @@ export const issues = (state) => {
 export const activeIssue = (state) => {
   return state.activeIssue
 }
+
+export const comments = (state) => {
+  return state.comments
+}
