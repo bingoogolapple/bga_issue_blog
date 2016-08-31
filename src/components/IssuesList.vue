@@ -29,7 +29,7 @@
 
 <script>
   import {setIssues, updateActiveIssue} from '../vuex/actions'
-  import {issues, activeIssue, activeLabel} from '../vuex/getters'
+  import {issues, activeIssue, activeLabel, gitHubUsername} from '../vuex/getters'
 
   export default {
     data() {
@@ -41,7 +41,8 @@
       getters: {
         issues,
         activeIssue,
-        activeLabel
+        activeLabel,
+        gitHubUsername
       },
       actions: {
         setIssues,
@@ -50,7 +51,7 @@
     },
     watch: {
       activeLabel: function (label) {
-        this.$http.get('https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/issues?labels=' + label.name).then(function (response) {
+        this.$http.get("https://api.github.com/repos/" + this.gitHubUsername + "/" + this.gitHubUsername + ".github.io/issues?labels=" + label.name).then(function (response) {
           this.setIssues(response.json())
         }, function (response) {
           console.log(response.data)

@@ -1,19 +1,27 @@
 <template>
   <div id="toolbar">
     <i class="glyphicon logo"><img src="../assets/logo.png"></i>
-    <i @click="openGithub"><img src="../assets/github.png"></i>
-    <i @click="openWeibo"><img src="../assets/weibo.png"></i>
+    <i @click="openGitHub"><img src="../assets/github.png"></i>
+    <i @click="openWeiBo"><img src="../assets/weibo.png"></i>
   </div>
 </template>
 
 <script>
+  import {gitHubUsername, weiBoUsername} from '../vuex/getters'
+
   export default {
+    vuex: {
+      getters: {
+        gitHubUsername,
+        weiBoUsername
+      }
+    },
     methods: {
-      openGithub: function () {
-        window.open("https://github.com/bingoogolapple")
+      openGitHub: function () {
+        window.open("https://github.com/" + this.gitHubUsername)
       },
-      openWeibo: function () {
-        window.open("http://weibo.com/bingoogol")
+      openWeiBo: function () {
+        window.open("http://weibo.com/" + this.weiBoUsername)
       }
     }
   }
@@ -29,7 +37,7 @@
     padding: 35px 25px 25px 25px;
     i {
       font-size: 30px;
-      margin-bottom: 35px;
+      margin-bottom: 50px;
       opacity: 0.8;
       cursor: pointer;
       transition: opacity 0.5s ease;

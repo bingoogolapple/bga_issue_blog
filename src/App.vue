@@ -20,7 +20,7 @@
   import Issue from './components/Issue.vue'
 
   import store from './vuex/store'
-  import {initStore} from './vuex/actions'
+
   export default {
     components: {
       Toolbar,
@@ -28,14 +28,6 @@
       IssuesList,
       Issue
     },
-    store,
-    vuex: {
-      actions: {
-        initStore
-      }
-    },
-    ready() {
-      this.initStore()
-    }
+    store
   }
 </script>

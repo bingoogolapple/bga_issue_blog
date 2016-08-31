@@ -2,19 +2,6 @@ function makeAction(type) {
   return ({dispatch}, ...args) => dispatch(type, ...args)
 }
 
-// 模拟初始化数据
-const initData = {
-  labels: [],
-  activeLabel: {},
-  issues: [],
-  activeIssue: {},
-  comments: []
-}
-
-export const initStore = ({dispatch}) => {
-  dispatch('INIT_STORE', initData)
-}
-
 // 更新Label列表展示
 export const setLabels = makeAction('SET_LABELS')
 

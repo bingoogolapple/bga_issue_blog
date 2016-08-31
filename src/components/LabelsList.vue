@@ -29,7 +29,7 @@
 
 <script>
   import {setLabels, updateActiveLabel} from '../vuex/actions'
-  import {labels, activeLabel} from '../vuex/getters'
+  import {labels, activeLabel, gitHubUsername} from '../vuex/getters'
 
   export default {
     data() {
@@ -40,7 +40,8 @@
     vuex: {
       getters: {
         labels,
-        activeLabel
+        activeLabel,
+        gitHubUsername
       },
       actions: {
         setLabels,
@@ -48,7 +49,7 @@
       }
     },
     ready: function () {
-      this.$http.get('https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/labels?sort=count-desc').then(function (response) {
+      this.$http.get("https://api.github.com/repos/" + this.gitHubUsername + "/" + this.gitHubUsername + ".github.io/labels?sort=count-desc").then(function (response) {
         this.setLabels(response.json())
       }, function (response) {
         console.log(response.data)

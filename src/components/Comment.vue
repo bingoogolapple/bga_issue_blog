@@ -7,7 +7,14 @@
 </template>
 
 <script>
+  import {gitHubUsername} from '../vuex/getters'
+
   export default {
+    vuex: {
+      getters: {
+        gitHubUsername
+      }
+    },
     data: function () {
       return {
         renderedMarkdown: ''
@@ -26,7 +33,7 @@
           this.$http.post('https://api.github.com/markdown', {
             "text": this.comment.body,
             "mode": "gfm",
-            "context": "bingoogolapple/bingoogolapple.github.io"
+            "context": this.gitHubUsername + "/" + this.gitHubUsername + ".github.io"
           }).then(function (response) {
             this.renderedMarkdown = response.data
           }, function (response) {

@@ -9,17 +9,12 @@ const state = {
   activeLabel: {},
   issues: [],
   activeIssue: {},
-  comments: []
+  comments: [],
+  gitHubUsername: 'bingoogolapple',
+  weiBoUsername: 'bingoogol'
 }
 
 const mutations = {
-  INIT_STORE(state, data) {
-    state.labels = data.labels;
-    state.activeLabel = data.activeLabel
-    state.issues = data.issues
-    state.activeIssue = data.activeIssue
-    state.comments = data.comments
-  },
   SET_LABELS(state, labels) {
     state.labels = labels
     state.activeLabel = state.labels[0] || {}
