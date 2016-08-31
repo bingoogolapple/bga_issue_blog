@@ -1,13 +1,13 @@
 :running:BGAIssueBlog-Web:running:
 ============
 
-通过抓取 GitHub 上的 Issues，并结合 GitHub Pages 来搭建 [个人博客站点](www.bingoogolapple.cn)，我目前主要从事 Android 开发，个人前端技术还很渣，希望各位前端大牛多多指教，先谢谢了:smile:
+通过抓取 GitHub 上的 Issues，并结合 GitHub Pages 来搭建 [个人博客站点](http://www.bingoogolapple.cn)，我目前主要从事 Android 开发，个人前端技术还很渣，希望各位前端大牛多多指教，先谢谢了:smile:
 
 ![blog](https://cloud.githubusercontent.com/assets/8949716/18125163/ad400c3e-6fa7-11e6-833b-ac1d1dbc224f.png)
 
 ## 项目背景
 
-刚接触 GitHub 的时候就开始在仓库 [bingoogolapple.github.io](https://github.com/bingoogolapple/bingoogolapple.github.io) 里创建 [Issues](https://github.com/bingoogolapple/bingoogolapple.github.io/issues) 来记录学习笔记，那时候我还不知道有 GitHub Pages，后来了解到了可以通过 GitHub Pages 来搭建 [个人博客站点](www.bingoogolapple.cn)，但是如果涉及到在文章里嵌套图片的话还是比较麻烦的（有人写了工具用七牛云来作为图床）
+刚接触 GitHub 的时候就开始在仓库 [bingoogolapple.github.io](https://github.com/bingoogolapple/bingoogolapple.github.io) 里创建 [Issues](https://github.com/bingoogolapple/bingoogolapple.github.io/issues) 来记录学习笔记，那时候我还不知道有 GitHub Pages，后来了解到了可以通过 GitHub Pages 来搭建 [个人博客站点](http://www.bingoogolapple.cn)，但是如果涉及到在文章里嵌套图片的话还是比较麻烦的（有人写了工具用七牛云来作为图床）
 
 通过 Issues 记录学习笔记的优点：
 
