@@ -1,17 +1,14 @@
 <template>
-  <div id="detail">
+  <div id="issue" class="panel panel-default">
     <div class="panel-heading">
       <a v-for="tag in activeIssue.labels" href="#" @click="updateActiveLabel(tag)">
         <span class="label label-default" :style="{ backgroundColor: '#' + tag.color }">{{tag.name}}</span>
       </a>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <comment :comment="activeIssue"></comment>
-        <comment v-for="comment in comments" :comment="comment"></comment>
-      </div>
+    <div class="panel-body">
+      <comment :comment="activeIssue"></comment>
+      <comment v-for="comment in comments" :comment="comment"></comment>
     </div>
-
   </div>
 </template>
 <script>
@@ -45,23 +42,18 @@
   }
 </script>
 <style lang="scss" scoped>
-  #detail {
+  #issue {
+    margin: 0px;
     float: left;
-    width: calc(100% - 580px);
-    overflow: auto;
+    width: calc(100% - 590px);
+    overflow-y: auto;
     height: 100%;
     .panel-heading {
-      height: 40px;
-      overflow: auto;
       a {
         &:hover, &:focus {
           text-decoration: none;
         }
       }
-    }
-    .panel {
-      height: calc(100% - 40px);
-      overflow: auto;
     }
   }
 </style>

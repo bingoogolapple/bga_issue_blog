@@ -21,11 +21,11 @@
 
 <style lang="scss" scoped>
   #toolbar {
+    margin: 0px;
     float: left;
     width: 80px;
     height: 100%;
     background-color: #343f4b;
-    color: #748392;
     padding: 35px 25px 25px 25px;
     i {
       font-size: 30px;
@@ -36,14 +36,14 @@
       &:hover {
         opacity: 1;
       }
+      &:first-child {
+        cursor: default;
+        opacity: 1;
+      }
       img {
         width: 30px;
         height: 30px;
       }
-    }
-    i:first-child {
-      cursor: default;
-      opacity: 1;
     }
   }
 </style>

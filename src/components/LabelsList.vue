@@ -1,6 +1,6 @@
 <template>
-  <div id="labels-list">
-    <div id="list-header">
+  <div id="labels-list" class="panel panel-default">
+    <div class="panel-heading">
       <h2>Labels</h2>
       <div class="btn-group btn-group-justified" role="group">
         <div class="input-group search">
@@ -11,9 +11,7 @@
         </div>
       </div>
     </div>
-
-    <!-- 渲染Label列表 -->
-    <div class="container">
+    <div class="panel-body">
       <div class="list-group">
         <a v-for="label in labels | filterBy search"
            class="list-group-item"
@@ -32,6 +30,7 @@
 <script>
   import {setLabels, updateActiveLabel} from '../vuex/actions'
   import {labels, activeLabel} from '../vuex/getters'
+
   export default {
     data() {
       return {
@@ -60,42 +59,44 @@
 
 <style lang="scss" scoped>
   #labels-list {
+    margin: 0px;
     float: left;
-    width: 250px;
+    width: 240px;
     height: 100%;
     background-color: #F5F5F5;
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
-    #list-header {
+    .panel-heading {
       padding: 5px 25px 25px 25px;
       h2 {
         font-weight: 300;
         text-align: center;
         font-size: 22px;
         padding-bottom: 8px;
-        color: #009de7;
-        border-bottom: 1px dotted #009de7;
+        color: #5079B4;
+        border-bottom: 1px dotted #5079B4;
         border-bottom-width: 2px;
       }
       .search {
         margin-top: 10px;
       }
     }
-    .container {
-      height: calc(100% - 138px);
-      overflow-y: auto;
-      width: 100%;
-      padding: 0;
-      .list-group-item {
-        border: 0;
-        border-radius: 0;
-        .list-group-item-heading {
-          font-weight: 300;
-          font-size: 15px;
+    .panel-body {
+      height: calc(100% - 140px);
+      padding: 0px;
+      margin: 0px;
+      .list-group {
+        margin: 0px;
+        height: 100%;
+        overflow-y: auto;
+        .list-group-item {
+          border: 0;
+          border-radius: 0;
+          .list-group-item-heading {
+            font-weight: 300;
+            font-size: 15px;
+          }
         }
-      }
-      .active {
-        background-color: #2a3541;
       }
     }
   }
