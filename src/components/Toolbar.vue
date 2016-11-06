@@ -3,6 +3,7 @@
     <i class="glyphicon logo"><img src="../assets/logo.png"></i>
     <i @click="openGitHub"><img src="../assets/github.png"></i>
     <i @click="openWeiBo"><img src="../assets/weibo.png"></i>
+    <i @click="openGitBook"><img src="../assets/git.png"></i>
   </div>
 </template>
 
@@ -22,6 +23,9 @@
       },
       openWeiBo: function () {
         window.open("http://weibo.com/" + this.weiBoUsername)
+      },
+      openGitBook: function () {
+        window.open("https://bingoogolapple.gitbooks.io/bgalearningnotes-git/content")
       }
     }
   }
