@@ -13,7 +13,7 @@
     </div>
     <div class="panel-body">
       <div class="list-group">
-        <a v-for="issue in issues | filterBy search"
+        <a v-for="issue in filteredIssues"
            class="list-group-item"
            href="#"
            :class="{active: activeIssue === issue}"
@@ -61,6 +61,14 @@
     methods: {
       setActiveIssue: function (issue) {
         this.updateActiveIssue(issue)
+      }
+    },
+    computed: {
+      filteredIssues: function () {
+        var self = this
+        return self.issues.filter(function (issue) {
+          return issue.title.toLowerCase().indexOf(self.search.toLowerCase()) != -1 || issue.body.toLowerCase().indexOf(self.search.toLowerCase()) != -1
+        })
       }
     }
   }

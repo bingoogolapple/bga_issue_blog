@@ -1,8 +1,6 @@
 <template>
   <div class="panel panel-default">
-    <div class="panel-body">
-      {{{renderedMarkdown}}}
-    </div>
+    <div class="panel-body" v-html="renderedMarkdown"></div>
   </div>
 </template>
 
@@ -42,8 +40,10 @@
         }
       }
     },
-    ready: function () {
-      this.fetchMarkdown()
+    mounted: function () {
+      this.$nextTick(function () {
+        this.fetchMarkdown()
+      })
     }
   }
 </script>

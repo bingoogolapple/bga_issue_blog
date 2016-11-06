@@ -8,17 +8,14 @@ Vue.use(VueResource)
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  hashbang: false
+  routes: [
+    { path: '/index', component: App },
+    { path: '*', redirect: '/index' }
+  ]
 })
 
-router.map({
-  '/index': {
-    component: App
-  }
+new Vue({
+  el: '#app',
+  router: router,
+  render: h => h('router-view')
 })
-
-router.redirect({
-  '*': '/index'
-})
-
-router.start(App, '#app')

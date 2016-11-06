@@ -13,7 +13,7 @@
     </div>
     <div class="panel-body">
       <div class="list-group">
-        <a v-for="label in labels | filterBy search"
+        <a v-for="label in filteredLabels"
            class="list-group-item"
            href="#"
            :class="{active: activeLabel.name === label.name}"
@@ -48,11 +48,21 @@
         updateActiveLabel
       }
     },
-    ready: function () {
-      this.$http.get("https://api.github.com/repos/" + this.gitHubUsername + "/" + this.gitHubUsername + ".github.io/labels?sort=count-desc").then(function (response) {
-        this.setLabels(response.json())
-      }, function (response) {
-        console.log(response.data)
+    computed: {
+      filteredLabels: function () {
+        var self = this
+        return self.labels.filter(function (label) {
+          return label.name.toLowerCase().indexOf(self.search.toLowerCase()) != -1
+        })
+      }
+    },
+    mounted: function () {
+      this.$nextTick(function () {
+        this.$http.get("https://api.github.com/repos/" + this.gitHubUsername + "/" + this.gitHubUsername + ".github.io/labels?sort=count-desc").then(function (response) {
+          this.setLabels(response.json())
+        }, function (response) {
+          console.log(response.data)
+        })
       })
     }
   }
