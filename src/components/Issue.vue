@@ -21,7 +21,7 @@
         if (issue.comments > 0) {
           this.$http.get(issue.comments_url).then(response => {
             this.setComments(response.data)
-          }, response => {
+          }).catch(response => {
             console.log(response.data)
           })
         }

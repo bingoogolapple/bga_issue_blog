@@ -1,15 +1,14 @@
+import axios from 'axios'
 import Vue from 'vue'
 import App from './App'
 
 import VueRouter from 'vue-router'
-import VueResource from 'vue-resource'
 import lodash from 'lodash'
 import store from './store'
 
-Vue.use(VueResource)
 Vue.use(VueRouter)
-
 Vue.prototype._ = lodash
+Vue.prototype.$http = axios
 
 const router = new VueRouter({
   routes: [

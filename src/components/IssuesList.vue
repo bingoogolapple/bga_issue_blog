@@ -41,7 +41,7 @@
         console.log('activeLabel 改变了')
         this.$http.get('https://api.github.com/repos/' + this.gitHubUsername + '/' + this.gitHubUsername + '.github.io/issues?labels=' + label.name).then(response => {
           this.setIssues(response.data)
-        }, response => {
+        }).catch(response => {
           console.log(response.data)
         })
       }

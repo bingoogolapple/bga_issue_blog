@@ -58,7 +58,7 @@
       this.$nextTick(function () {
         this.$http.get('https://api.github.com/repos/' + this.gitHubUsername + '/' + this.gitHubUsername + '.github.io/labels?sort=count-desc').then(response => {
           this.setLabels(response.data)
-        }, response => {
+        }).catch(response => {
           console.log(response.data)
         })
       })

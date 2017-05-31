@@ -32,10 +32,10 @@
             'text': this.comment.body,
             'mode': 'gfm',
             'context': this.gitHubUsername + '/' + this.gitHubUsername + '.github.io'
-          }).then(function (response) {
+          }).then(response => {
             console.log('renderedMarkdown', response.data)
             this.renderedMarkdown = response.data
-          }, function (response) {
+          }).catch(response => {
             console.log(response.data)
           })
         }
