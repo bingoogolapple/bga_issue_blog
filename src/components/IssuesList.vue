@@ -28,47 +28,44 @@
 </template>
 
 <script>
-  import {setIssues, updateActiveIssue} from '../vuex/actions'
-  import {issues, activeIssue, activeLabel, gitHubUsername} from '../vuex/getters'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
-    data() {
+    data () {
       return {
         search: ''
       }
     },
-    vuex: {
-      getters: {
-        issues,
-        activeIssue,
-        activeLabel,
-        gitHubUsername
-      },
-      actions: {
-        setIssues,
-        updateActiveIssue
-      }
-    },
     watch: {
       activeLabel: function (label) {
-        this.$http.get("https://api.github.com/repos/" + this.gitHubUsername + "/" + this.gitHubUsername + ".github.io/issues?labels=" + label.name).then(function (response) {
-          this.setIssues(response.json())
-        }, function (response) {
+        console.log('activeLabel 改变了')
+        this.$http.get('https://api.github.com/repos/' + this.gitHubUsername + '/' + this.gitHubUsername + '.github.io/issues?labels=' + label.name).then(response => {
+          this.setIssues(response.data)
+        }, response => {
           console.log(response.data)
         })
       }
     },
-    methods: {
-      setActiveIssue: function (issue) {
-        this.updateActiveIssue(issue)
+    computed: {
+      ...mapGetters([
+        'issues',
+        'activeIssue',
+        'activeLabel',
+        'gitHubUsername'
+      ]),
+      filteredIssues: function () {
+        return this._.filter(this.issues, issue => {
+          return this._.toLower(issue.name).indexOf(this._.toLower(this.search)) !== -1
+        })
       }
     },
-    computed: {
-      filteredIssues: function () {
-        var self = this
-        return self.issues.filter(function (issue) {
-          return issue.title.toLowerCase().indexOf(self.search.toLowerCase()) != -1 || issue.body.toLowerCase().indexOf(self.search.toLowerCase()) != -1
-        })
+    methods: {
+      ...mapActions([
+        'setIssues',
+        'updateActiveIssue'
+      ]),
+      setActiveIssue: function (issue) {
+        this.updateActiveIssue(issue)
       }
     }
   }

@@ -28,39 +28,37 @@
 </template>
 
 <script>
-  import {setLabels, updateActiveLabel} from '../vuex/actions'
-  import {labels, activeLabel, gitHubUsername} from '../vuex/getters'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
-    data() {
+    data () {
       return {
-        search: '',
-      }
-    },
-    vuex: {
-      getters: {
-        labels,
-        activeLabel,
-        gitHubUsername
-      },
-      actions: {
-        setLabels,
-        updateActiveLabel
+        search: ''
       }
     },
     computed: {
+      ...mapGetters([
+        'labels',
+        'activeLabel',
+        'gitHubUsername'
+      ]),
       filteredLabels: function () {
-        var self = this
-        return self.labels.filter(function (label) {
-          return label.name.toLowerCase().indexOf(self.search.toLowerCase()) != -1
+        return this._.filter(this.labels, label => {
+          return this._.toLower(label.name).indexOf(this._.toLower(this.search)) !== -1
         })
       }
     },
+    methods: {
+      ...mapActions([
+        'setLabels',
+        'updateActiveLabel'
+      ])
+    },
     mounted: function () {
       this.$nextTick(function () {
-        this.$http.get("https://api.github.com/repos/" + this.gitHubUsername + "/" + this.gitHubUsername + ".github.io/labels?sort=count-desc").then(function (response) {
-          this.setLabels(response.json())
-        }, function (response) {
+        this.$http.get('https://api.github.com/repos/' + this.gitHubUsername + '/' + this.gitHubUsername + '.github.io/labels?sort=count-desc').then(response => {
+          this.setLabels(response.data)
+        }, response => {
           console.log(response.data)
         })
       })

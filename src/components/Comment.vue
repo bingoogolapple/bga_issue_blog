@@ -5,14 +5,9 @@
 </template>
 
 <script>
-  import {gitHubUsername} from '../vuex/getters'
+  import { mapGetters } from 'vuex'
 
   export default {
-    vuex: {
-      getters: {
-        gitHubUsername
-      }
-    },
     data: function () {
       return {
         renderedMarkdown: ''
@@ -24,15 +19,21 @@
         this.fetchMarkdown()
       }
     },
+    computed: {
+      ...mapGetters([
+        'gitHubUsername'
+      ])
+    },
     methods: {
       fetchMarkdown: function () {
         this.renderedMarkdown = ''
         if (this.comment.body) {
           this.$http.post('https://api.github.com/markdown', {
-            "text": this.comment.body,
-            "mode": "gfm",
-            "context": this.gitHubUsername + "/" + this.gitHubUsername + ".github.io"
+            'text': this.comment.body,
+            'mode': 'gfm',
+            'context': this.gitHubUsername + '/' + this.gitHubUsername + '.github.io'
           }).then(function (response) {
+            console.log('renderedMarkdown', response.data)
             this.renderedMarkdown = response.data
           }, function (response) {
             console.log(response.data)

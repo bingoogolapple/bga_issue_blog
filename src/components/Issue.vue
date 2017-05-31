@@ -12,33 +12,34 @@
   </div>
 </template>
 <script>
+  import { mapGetters, mapActions } from 'vuex'
   import Comment from './Comment.vue'
-  import {updateActiveLabel, setComments} from '../vuex/actions'
-  import {activeIssue, comments} from '../vuex/getters'
 
   export default{
-    vuex: {
-      getters: {
-        activeIssue,
-        comments
-      },
-      actions: {
-        updateActiveLabel,
-        setComments
-      }
-    },
     watch: {
       activeIssue: function (issue) {
         if (issue.comments > 0) {
-          this.$http.get(issue.comments_url).then(function (response) {
-            this.setComments(response.json())
-          }, function (response) {
+          this.$http.get(issue.comments_url).then(response => {
+            this.setComments(response.data)
+          }, response => {
             console.log(response.data)
           })
         }
       }
     },
-    components: {Comment}
+    components: {Comment},
+    computed: {
+      ...mapGetters([
+        'activeIssue',
+        'comments'
+      ])
+    },
+    methods: {
+      ...mapActions([
+        'updateActiveLabel',
+        'setComments'
+      ])
+    }
   }
 </script>
 <style lang="scss" scoped>

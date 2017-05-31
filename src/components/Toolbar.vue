@@ -8,24 +8,24 @@
 </template>
 
 <script>
-  import {gitHubUsername, weiBoUsername} from '../vuex/getters'
+  import { mapGetters } from 'vuex'
 
   export default {
-    vuex: {
-      getters: {
-        gitHubUsername,
-        weiBoUsername
-      }
+    computed: {
+      ...mapGetters([
+        'gitHubUsername',
+        'weiBoUsername'
+      ])
     },
     methods: {
       openGitHub: function () {
-        window.open("https://github.com/" + this.gitHubUsername)
+        window.open('https://github.com/' + this.gitHubUsername)
       },
       openWeiBo: function () {
-        window.open("http://weibo.com/" + this.weiBoUsername)
+        window.open('http://weibo.com/' + this.weiBoUsername)
       },
       openGitBook: function () {
-        window.open("https://bingoogolapple.gitbooks.io/bgalearningnotes-git/content")
+        window.open('https://bingoogolapple.gitbooks.io/bgalearningnotes-git/content')
       }
     }
   }

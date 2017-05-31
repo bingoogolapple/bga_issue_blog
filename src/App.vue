@@ -19,15 +19,12 @@
   import IssuesList from './components/IssuesList.vue'
   import Issue from './components/Issue.vue'
 
-  import store from './vuex/store'
-
   export default {
     components: {
       Toolbar,
       LabelsList,
       IssuesList,
       Issue
-    },
-    store
+    }
   }
 </script>

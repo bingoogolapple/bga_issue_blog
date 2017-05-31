@@ -3,9 +3,13 @@ import App from './App'
 
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import lodash from 'lodash'
+import store from './store'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
+
+Vue.prototype._ = lodash
 
 const router = new VueRouter({
   routes: [
@@ -14,8 +18,10 @@ const router = new VueRouter({
   ]
 })
 
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router: router,
+  router,
+  store,
   render: h => h('router-view')
 })
