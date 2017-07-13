@@ -16,6 +16,9 @@ const getters = {
   },
   gitHubUsername: (state) => {
     return state.gitHubUsername
+  },
+  context: (state) => {
+    return `${state.gitHubUsername}/${state.gitHubUsername}.github.io`
   }
 }
 

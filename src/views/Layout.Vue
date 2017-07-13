@@ -1,17 +1,17 @@
 <template>
   <div>
-    <toolbar/>
+    <labels-list/>
     <router-view/>
   </div>
 </template>
 <style lang="scss" scoped>
 </style>
 <script>
-  import Toolbar from './components/Toolbar'
+  import LabelsList from '../components/LabelsList.vue'
 
   export default {
     components: {
-      Toolbar
+      LabelsList
     }
   }
 </script>

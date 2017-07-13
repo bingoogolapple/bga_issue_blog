@@ -1,10 +1,13 @@
 <template>
-  <div id="toolbar">
-    <i class="glyphicon logo"><img src="../assets/logo.png"></i>
-    <i @click="openGitHub"><img src="../assets/github.png"></i>
-    <i @click="openWeiBo"><img src="../assets/weibo.png"></i>
-    <i @click="openGitBook"><img src="../assets/git.png"></i>
-  </div>
+  <el-row class="toolbar" type="flex" justify="space-around">
+    <el-col :span="3"><i @click="home()"><img src="../assets/logo.png"></i></el-col>
+    <el-col :span="3"><i @click="openGitHub"><img src="../assets/github.png"></i></el-col>
+    <el-col :span="3"><i @click="openWeiBo"><img src="../assets/weibo.png"></i></el-col>
+    <el-col :span="3"><i @click="openGitBook"><img src="../assets/git.png"></i></el-col>
+    <el-col :span="3" style="padding-top: 10px;color: white;">
+      <router-link to="/AboutMe">About Me</router-link>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -18,6 +21,9 @@
       ])
     },
     methods: {
+      home () {
+        this.$router.push('/')
+      },
       openGitHub: function () {
         window.open('https://github.com/' + this.gitHubUsername)
       },
@@ -32,30 +38,18 @@
 </script>
 
 <style lang="scss" scoped>
-  #toolbar {
-    margin: 0px;
-    float: left;
-    width: 80px;
-    height: 100%;
+  .toolbar {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    height: 50px;
     background-color: #343f4b;
-    padding: 35px 25px 25px 25px;
-    i {
-      font-size: 30px;
-      margin-bottom: 50px;
-      opacity: 0.8;
+    img {
+      margin-top: 10px;
+      width: 30px;
+      height: 30px;
       cursor: pointer;
-      transition: opacity 0.5s ease;
-      &:hover {
-        opacity: 1;
-      }
-      &:first-child {
-        cursor: default;
-        opacity: 1;
-      }
-      img {
-        width: 30px;
-        height: 30px;
-      }
     }
   }
 </style>
