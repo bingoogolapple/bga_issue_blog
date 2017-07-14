@@ -6,6 +6,7 @@ import lodash from 'lodash'
 import moment from 'moment'
 import marked from 'marked'
 import highlight from 'highlight.js'
+import 'highlight.js/styles/github.css'
 
 import App from './App'
 import store from './store'
