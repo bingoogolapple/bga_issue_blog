@@ -3,7 +3,7 @@
     <div slot="header">
       {{$moment(comment.created_at).format('YYYY-MM-DD HH:mm')}}
     </div>
-    <div v-html="renderedMarkdown"></div>
+    <article class="markdown-body" v-html="renderedMarkdown"/>
   </el-card>
 </template>
 
