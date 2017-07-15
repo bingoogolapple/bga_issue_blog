@@ -112,8 +112,6 @@
         }).then(response => {
           this.totalNum = response.data.total_count
           this.issues = response.data.items
-        }).catch(response => {
-          console.log(response.data)
         })
       }
     },

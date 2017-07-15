@@ -16,11 +16,16 @@
     },
     props: ['comment'],
     methods: {
-      renderMarkdown: function () {
+      renderMarkdown () {
         this.renderedMarkdown = ''
         if (this.comment.body) {
           this.renderedMarkdown = this.$marked(this.comment.body)
         }
+      },
+      test () {
+        this.$gitHubApi.test(this).then(response => {
+          console.error(response.data)
+        })
       }
     },
     mounted: function () {

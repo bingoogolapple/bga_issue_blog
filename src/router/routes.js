@@ -10,8 +10,12 @@ export default [
   {
     name: 'AboutMe',
     path: '/AboutMe',
-    meta: {requiresAuth: false},
     component: resolve => require.ensure([], () => resolve(require('@/views/AboutMe.vue')), 'AboutMe')
+  },
+  {
+    name: 'GitHub',
+    path: '/GitHub',
+    component: resolve => require.ensure([], () => resolve(require('@/views/GitHub.vue')), 'GitHub')
   },
   {
     path: '/',

@@ -5,6 +5,9 @@
     <el-col :span="3"><i @click="openWeiBo"><img src="../assets/weibo.png"></i></el-col>
     <el-col :span="3"><i @click="openGitBook"><img src="../assets/git.png"></i></el-col>
     <el-col :span="3" style="padding-top: 10px;color: white;">
+      <router-link to="/GitHub">GitHub</router-link>
+    </el-col>
+    <el-col :span="3" style="padding-top: 10px;color: white;">
       <router-link to="/AboutMe">About Me</router-link>
     </el-col>
   </el-row>

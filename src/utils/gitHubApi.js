@@ -22,5 +22,11 @@ module.exports = {
   },
   getReadme (vue) {
     return vue.$http.get(`https://raw.githubusercontent.com/${vue.$store.getters.context}/master/README.md`)
+  },
+  getGitHubUser (vue) {
+    return vue.$http.get(`https://api.github.com/users/${vue.$store.getters.gitHubUsername}`)
+  },
+  getRepos (vue, data) {
+    return vue.$http.get(`https://api.github.com/users/${vue.$store.getters.gitHubUsername}/repos?sort=stargazers_count&order=desc&page=1&per_page=100`)
   }
 }

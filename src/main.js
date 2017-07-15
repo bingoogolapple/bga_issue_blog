@@ -7,6 +7,8 @@ import {
   Card,
   Loading,
   Message,
+  Table,
+  TableColumn,
   Row,
   Col
 } from 'element-ui'
@@ -18,6 +20,8 @@ Vue.use(Card)
 Vue.use(Loading)
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(Table)
+Vue.use(TableColumn)
 Vue.component(Message.name, Message)
 Vue.prototype.$message = Message
 
