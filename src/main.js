@@ -1,7 +1,26 @@
 import Vue from 'vue'
 import axios from 'axios'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import {
+  Pagination,
+  Input,
+  Tag,
+  Card,
+  Loading,
+  Message,
+  Row,
+  Col
+} from 'element-ui'
+
+Vue.use(Pagination)
+Vue.use(Input)
+Vue.use(Tag)
+Vue.use(Card)
+Vue.use(Loading)
+Vue.use(Row)
+Vue.use(Col)
+Vue.component(Message.name, Message)
+Vue.prototype.$message = Message
+
 import lodash from 'lodash'
 import moment from 'moment'
 import marked from 'marked'
@@ -17,7 +36,6 @@ import './css/main.css'
 import {gitHubApi, isGetLabelsUrl} from './utils'
 import {showMessage, successMessage, errorMessage, warningMessage, infoMessage} from './utils/toastUtil'
 
-Vue.use(ElementUI)
 Vue.prototype._ = lodash
 moment.locale('zh-cn')
 Vue.prototype.$moment = moment
@@ -60,7 +78,7 @@ let loadingInstance
 axios.interceptors.request.use((config) => {
   let isGetLabels = config && config.url === `https://api.github.com/repos/${vm.$store.getters.context}/labels`
   if (!isGetLabels) {
-    loadingInstance = ElementUI.Loading.service({
+    loadingInstance = Loading.service({
       text: '拼命加载中...'
     })
   }
