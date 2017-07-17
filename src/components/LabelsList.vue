@@ -1,30 +1,36 @@
 <template>
-  <el-card class="label-list">
-    <ul>
-      <li v-for="label in labels">
-        <el-tag v-if="activeLabel != null && activeLabel.name === label.name" :closable="true"
-                @close="setActiveLabel(null)" class="m5" :color="'#' + label.color">{{label.name}}
-        </el-tag>
-        <span v-else class="tag" @click="setActiveLabel(label)">
-          <el-tag class="m5" :color="'#' + label.color">{{label.name}}</el-tag>
-        </span>
-      </li>
-    </ul>
-  </el-card>
+  <ul class="label-list">
+    <li>
+      <span v-if="activeLabel == null">
+        <el-tag :color="'#3593f2'" style="color: #ffffff;">ALL</el-tag>
+      </span>
+      <span v-else @click="setActiveLabel(null)">
+        <el-tag :color="'#f2f5f8'">ALL</el-tag>
+      </span>
+    </li>
+    <li v-for="label in labels">
+      <span v-if="activeLabel != null && activeLabel.name === label.name">
+        <el-tag :color="'#' + label.color" style="color: #ffffff;">{{label.name}}</el-tag>
+      </span>
+      <span v-else @click="setActiveLabel(label)">
+        <el-tag :color="'#f2f5f8'">{{label.name}}</el-tag>
+      </span>
+    </li>
+  </ul>
 </template>
 <style lang="scss" scoped>
   .label-list {
-    position: fixed;
-    left: 0px;
-    top: 50px;
-    bottom: 0px;
-    width: 150px;
-    border-radius: 0px;
-    font-size: 1.4em;
+    padding: 18px 36px;
+    display: block;
+    list-style: none;
     li {
-      list-style-type: none;
+      float: left;
+      margin: 12px;
+      cursor: pointer;
       span {
-        font-size: 18px;
+        color: #849aa4;
+        height: 30px;
+        line-height: 30px;
       }
     }
   }
@@ -48,15 +54,6 @@
         this.updateActiveLabel(label)
         this.$router.replace('/')
       }
-    },
-    mounted: function () {
-      this.$nextTick(function () {
-        this.$gitHubApi.getLabels(this).then(response => {
-          this.setLabels(response.data)
-        }).catch(response => {
-          console.log(response.data)
-        })
-      })
     }
   }
 </script>

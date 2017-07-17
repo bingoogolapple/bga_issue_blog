@@ -12,8 +12,16 @@ a {
   color: inherit;
 }
 
+.fl {
+  float: left;
+}
+
 .fr {
   float: right;
+}
+
+.cl {
+  clear: both;
 }
 
 .m5 {

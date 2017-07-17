@@ -1,14 +1,26 @@
 /**
  * Created by bingoogolapple on 2017/5/31.
  */
+import { makeAction } from '../util'
+
+const SET_GITHUB_USER = 'SET_GITHUB_USER'
+
 const state = {
   gitHubUsername: 'bingoogolapple',
-  weiBoUsername: 'bingoogol'
+  weiBoUsername: 'bingoogol',
+  gitHubUser: null
 }
 
-const mutations = {}
+const mutations = {
+  [SET_GITHUB_USER] (state, gitHubUser) {
+    state.gitHubUser = gitHubUser
+    console.log('gitHubUser', gitHubUser)
+  }
+}
 
-const actions = {}
+const actions = {
+  setGitHubUser: makeAction(SET_GITHUB_USER)
+}
 
 const getters = {
   weiBoUsername: (state) => {
@@ -19,6 +31,9 @@ const getters = {
   },
   context: (state) => {
     return `${state.gitHubUsername}/${state.gitHubUsername}.github.io`
+  },
+  gitHubUser: (state) => {
+    return state.gitHubUser
   }
 }
 

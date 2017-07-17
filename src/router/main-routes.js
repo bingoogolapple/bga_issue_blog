@@ -4,12 +4,12 @@
 export default [
   {
     path: '',
-    name: 'Home',
-    component: resolve => require(['@/views/Home.vue'], resolve)
+    name: 'BlogList',
+    component: resolve => require(['@/views/BlogList.vue'], resolve)
   },
   {
-    path: '/Detail/:number',
-    name: 'Detail',
-    component: resolve => require(['@/views/Detail.vue'], resolve)
+    path: '/BlogDetail/:number',
+    name: 'BlogDetail',
+    component: resolve => require(['@/views/BlogDetail.vue'], resolve)
   }
 ]

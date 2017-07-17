@@ -19,7 +19,7 @@ export default [
   },
   {
     path: '/',
-    component: resolve => require.ensure([], () => resolve(require('@/views/Layout.vue')), 'Layout'),
+    component: resolve => require.ensure([], () => resolve(require('@/views/Blog.vue')), 'Blog'),
     children: mainRoutes
   },
   {

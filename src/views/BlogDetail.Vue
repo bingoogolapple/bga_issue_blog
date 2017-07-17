@@ -1,5 +1,5 @@
 <template>
-  <el-card class="detail" v-if="issue">
+  <el-card class="blog-detail-container" v-if="issue">
     <div slot="header">
       <span class="mr20">{{issue.title.trim()}}</span>
       <span class="m5 tag" v-for="tag in issue.labels" @click="setActiveLabel(tag)">
@@ -13,14 +13,10 @@
   </el-card>
 </template>
 <style lang="scss" scoped>
-  .detail {
-    position: fixed;
-    left: 150px;
-    top: 50px;
-    right: 0px;
-    bottom: 0px;
+  .blog-detail-container {
     overflow: scroll;
     border-radius: 0px;
+    height: 100%;
   }
 </style>
 <script>

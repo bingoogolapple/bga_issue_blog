@@ -1,17 +1,12 @@
 <template>
-  <el-card class="about-me">
-    <div v-html="renderedMarkdown"/>
-  </el-card>
+  <div class="about-me">
+    <article class="markdown-body" v-html="renderedMarkdown"/>
+  </div>
 </template>
 <style lang="scss" scoped>
   .about-me {
-    position: fixed;
-    left: 0px;
-    top: 50px;
-    right: 0px;
-    bottom: 0px;
+    padding: 30px;
     overflow: scroll;
-    border-radius: 0px;
   }
 </style>
 <script>

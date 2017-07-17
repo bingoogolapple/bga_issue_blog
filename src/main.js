@@ -37,7 +37,7 @@ import store from './store'
 import router from './router'
 import './css/main.css'
 
-import {gitHubApi, isGetLabelsUrl} from './utils'
+import {gitHubApi, isGetUserInfo} from './utils'
 import {showMessage, successMessage, errorMessage, warningMessage, infoMessage} from './utils/toastUtil'
 
 Vue.prototype._ = lodash
@@ -51,6 +51,7 @@ Vue.prototype.$errorMessage = errorMessage
 Vue.prototype.$warningMessage = warningMessage
 Vue.prototype.$gitHubApi = gitHubApi
 Vue.prototype.$infoMessage = infoMessage
+Vue.prototype.$isGetUserInfo = isGetUserInfo
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -80,8 +81,8 @@ let loadingInstance
 
 // request拦截器
 axios.interceptors.request.use((config) => {
-  let isGetLabels = config && config.url === `https://api.github.com/repos/${vm.$store.getters.context}/labels`
-  if (!isGetLabels) {
+  let isGetUserInfo = vm.$isGetUserInfo(vm, config)
+  if (!isGetUserInfo) {
     loadingInstance = Loading.service({
       text: '拼命加载中...'
     })
@@ -93,8 +94,8 @@ axios.interceptors.request.use((config) => {
 
 // response拦截器
 axios.interceptors.response.use((response) => {
-  let isGetLabels = isGetLabelsUrl(vm, response.config)
-  if (isGetLabels) {
+  let isGetUserInfo = vm.$isGetUserInfo(vm, response.config)
+  if (isGetUserInfo) {
     return response
   } else {
     setTimeout(() => {
@@ -103,8 +104,8 @@ axios.interceptors.response.use((response) => {
     return response
   }
 }, (error) => {
-  let isGetLabels = isGetLabelsUrl(vm, error.config)
-  if (!isGetLabels) {
+  let isGetUserInfo = vm.$isGetUserInfo(vm, error.config)
+  if (!isGetUserInfo) {
     loadingInstance.close()
     console.error('response', JSON.stringify(error))
 

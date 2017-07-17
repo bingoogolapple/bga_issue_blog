@@ -3,7 +3,7 @@
 
 通过抓取 GitHub 上的 Issues，并结合 GitHub Pages 来搭建 [个人博客站点](http://www.bingoogolapple.cn)，我目前主要从事 Android 开发，个人前端技术还很渣，希望各位前端大牛多多指教，先谢谢了:smile:
 
-![blog](https://user-images.githubusercontent.com/8949716/28194662-65e7bf60-6878-11e7-8e59-3d416d77d4e8.png)
+![blog](https://user-images.githubusercontent.com/8949716/28286569-33630702-6b6b-11e7-9758-41139e93d859.png)
 
 ## 项目背景
 
@@ -14,7 +14,7 @@
 - [x] 在线编辑和预览，随时添加和提交（不用担心电脑坏了导致笔记丢失）
 - [x] 当笔记里到嵌套图片时，支持粘贴屏幕截图和拖拽添加图片
 - [x] 带有搜索和排序功能
-- [x] 可通过 Labe 来对 Issues 进行分类
+- [x] 可通过 Label 来对 Issues 进行分类
 - [x] 可以把每一个 Comment 作为一个小的知识点不停的追加到 Issue 里
 - [x] 结合 GitHub Pages 绑定域名来搭建个人博客站点
 

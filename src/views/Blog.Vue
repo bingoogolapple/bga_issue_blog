@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div class="blog-container">
     <labels-list/>
-    <router-view/>
+    <router-view class="cl"/>
   </div>
 </template>
 <style lang="scss" scoped>
+  .blog-container {
+  }
 </style>
 <script>
   import LabelsList from '../components/LabelsList.vue'

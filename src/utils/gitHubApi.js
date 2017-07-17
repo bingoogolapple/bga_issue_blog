@@ -3,6 +3,15 @@
  */
 
 module.exports = {
+  getLabels (vue) {
+    return vue.$http.get(`https://api.github.com/repos/${vue.$store.getters.context}/labels`)
+  },
+  getGitHubUser (vue) {
+    return vue.$http.get(`https://api.github.com/users/${vue.$store.getters.gitHubUsername}`)
+  },
+  getUserInfo (vue) {
+    return vue.$http.all([this.getGitHubUser(vue), this.getLabels(vue)])
+  },
   getIssues (vue, data) {
     let label = ''
     if (data.label && data.label.trim().length > 0) {
@@ -17,14 +26,8 @@ module.exports = {
   getComments (vue, url) {
     return vue.$http.get(url)
   },
-  getLabels (vue) {
-    return vue.$http.get(`https://api.github.com/repos/${vue.$store.getters.context}/labels`)
-  },
   getReadme (vue) {
     return vue.$http.get(`https://raw.githubusercontent.com/${vue.$store.getters.context}/master/README.md`)
-  },
-  getGitHubUser (vue) {
-    return vue.$http.get(`https://api.github.com/users/${vue.$store.getters.gitHubUsername}`)
   },
   getRepos (vue, data) {
     return vue.$http.get(`https://api.github.com/users/${vue.$store.getters.gitHubUsername}/repos?sort=stargazers_count&order=desc&page=1&per_page=100`)
