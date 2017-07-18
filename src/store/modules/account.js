@@ -14,7 +14,6 @@ const state = {
 const mutations = {
   [SET_GITHUB_USER] (state, gitHubUser) {
     state.gitHubUser = gitHubUser
-    console.log('gitHubUser', gitHubUser)
   }
 }
 
