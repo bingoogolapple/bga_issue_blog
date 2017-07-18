@@ -3,7 +3,9 @@
 
 通过抓取 GitHub 上的 Issues，并结合 GitHub Pages 来搭建 [个人博客站点](http://www.bingoogolapple.cn)，我目前主要从事 Android 开发，个人前端技术还很渣，希望各位前端大牛多多指教，先谢谢了:smile:
 
-![blog](https://user-images.githubusercontent.com/8949716/28286569-33630702-6b6b-11e7-9758-41139e93d859.png)
+![image](https://user-images.githubusercontent.com/8949716/28313463-815b9dd8-6be9-11e7-9edc-d11989dda0e3.png)
+![image](https://user-images.githubusercontent.com/8949716/28313570-ef41e780-6be9-11e7-9609-b84a48029758.png)
+![image](https://user-images.githubusercontent.com/8949716/28313649-3a6a637c-6bea-11e7-9a2f-364def9d37a5.png)
 
 ## 项目背景
 

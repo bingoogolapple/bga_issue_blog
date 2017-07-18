@@ -48,7 +48,7 @@
   }
 
   .markdown-body {
-    padding: 10px;
+    padding: 15px;
   }
 </style>
 <script>

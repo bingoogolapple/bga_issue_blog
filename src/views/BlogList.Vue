@@ -1,33 +1,35 @@
 <template>
   <div class="blog-list-container">
-    <div>
+    <div class="table-header">
       <span>名称</span>
       <span class="fr">创建时间</span>
     </div>
-    <ul>
-      <li v-for="issue in issues">
-        <router-link class="mr20" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
-          {{issue.title.trim().substring(0, 35)}}
-        </router-link>
-        <span class="tag" v-for="tag in issue.labels" @click="setActiveLabel(tag)">
+    <div class="scrollable-container">
+      <ul class="issue-list">
+        <li v-for="issue in issues">
+          <router-link class="mr20" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
+            {{issue.title.trim().substring(0, 35)}}
+          </router-link>
+          <span class="tag" v-for="tag in issue.labels" @click="setActiveLabel(tag)">
           <el-tag :color="'#' + tag.color">{{tag.name}}</el-tag>
         </span>
-        <span class="fr time">
+          <span class="fr time">
           {{$moment(issue.created_at).format('YYYY-MM-DD HH:mm')}}
         </span>
-      </li>
-    </ul>
-    <div class="bottom-bar">
-      <input type="text" class="fl query" v-model="keyword" placeholder="Search issues" @keyup.enter="searchIssues()"/>
-      <!--<el-input class="fl query" v-model="keyword" placeholder="Search issues" @keyup.enter.native="searchIssues()"/>-->
-      <el-pagination
-        class="mt20 fr"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-size="pageSize"
-        layout="total, prev, pager, next"
-        :total="totalNum">
-      </el-pagination>
+        </li>
+      </ul>
+      <div class="bottom-bar">
+        <input type="text" class="fl query" v-model="keyword" placeholder="Search issues" @keyup.enter="searchIssues()"/>
+        <!--<el-input class="fl query" v-model="keyword" placeholder="Search issues" @keyup.enter.native="searchIssues()"/>-->
+        <el-pagination
+          class="mt20 fr"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-size="pageSize"
+          layout="total, prev, pager, next"
+          :total="totalNum">
+        </el-pagination>
+      </div>
     </div>
   </div>
 </template>
@@ -38,44 +40,52 @@
   $bottom-bar-height: 70px;
 
   .blog-list-container {
-    div:first-child {
+    height: 100%;
+  }
+
+  .issue-list {
+    li {
+      list-style-type: none;
       height: $item-height;
-      background-color: #f9fafc;
-      font-size: 12px;
-      color: #a3b4bc;
-      line-height: $item-height;
-      :first-child {
-        padding-left: $title-pdding-left;
-      }
-      :last-child {
+      border-bottom: solid 1px #eeeeee;
+      padding-left: $title-pdding-left;
+      .time {
+        height: $item-height;
+        line-height: $item-height;
+        font-size: 15px;
+        color: #4b595f;
+        cursor: default;
         width: $time-width;
       }
-    }
-    ul {
-      li {
-        list-style-type: none;
+      a {
         height: $item-height;
-        border-bottom: solid 1px #eeeeee;
-        padding-left: $title-pdding-left;
-        .time {
-          height: $item-height;
-          line-height: $item-height;
-          font-size: 15px;
-          color: #4b595f;
-          cursor: default;
-          width: $time-width;
-        }
-        a {
-          height: $item-height;
-          line-height: $item-height;
-          font-size: 15px;
-          color: #4b595f;
-        }
-        a:hover {
-          color: #3593f2;
-        }
+        line-height: $item-height;
+        font-size: 15px;
+        color: #4b595f;
+      }
+      a:hover {
+        color: #3593f2;
       }
     }
+  }
+
+  .table-header {
+    height: $item-height;
+    background-color: #f9fafc;
+    font-size: 12px;
+    color: #a3b4bc;
+    line-height: $item-height;
+    :first-child {
+      padding-left: $title-pdding-left;
+    }
+    :last-child {
+      width: $time-width;
+    }
+  }
+
+  .scrollable-container {
+    overflow: scroll;
+    height: calc(100% - 196px);
   }
 
   .bottom-bar {
@@ -94,8 +104,8 @@
     border: solid 1px #eeeeee;
     font-size: 14px;
     color: #849aa4;
-    width: 400px;
-    background: url("../assets/enter-icon.svg") no-repeat 420px center;
+    width: 250px;
+    background: url("../assets/enter-icon.svg") no-repeat 270px center;
     background-color: #f9fafc;
     outline: none;
   }

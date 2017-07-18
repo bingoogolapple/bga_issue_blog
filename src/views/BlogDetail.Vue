@@ -13,6 +13,7 @@
     <div class="comment-container">
       <comment :comment="issue"/>
       <comment v-for="comment in comments" :comment="comment"/>
+      <div v-if="issue" @click="remark" class="remark">评论</div>
     </div>
   </div>
 </template>
@@ -53,8 +54,20 @@
     }
     .comment-container {
       overflow: scroll;
-      height: 100%;
+      height: calc(100% - 250px);
       padding: 0px 50px 30px 50px;
+    }
+
+    .remark {
+      cursor: pointer;
+      margin-top: 30px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      border-radius: 4px;
+      background-color: #eff7ff;
+      font-size: 16px;
+      color: #3593f2;
     }
   }
 </style>
@@ -94,6 +107,9 @@
       },
       back () {
         this.$router.go(-1)
+      },
+      remark () {
+        window.open(this.issue.html_url)
       }
     },
     created () {
