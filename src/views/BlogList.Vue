@@ -6,10 +6,10 @@
     </div>
     <ul>
       <li v-for="issue in issues">
-        <router-link class="title" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
+        <router-link class="mr20" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
           {{issue.title.trim().substring(0, 35)}}
         </router-link>
-        <span class="m5 tag" v-for="tag in issue.labels" @click="setActiveLabel(tag)">
+        <span class="tag" v-for="tag in issue.labels" @click="setActiveLabel(tag)">
           <el-tag :color="'#' + tag.color">{{tag.name}}</el-tag>
         </span>
         <span class="fr time">

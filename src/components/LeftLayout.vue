@@ -143,11 +143,6 @@
       openGitBook () {
         window.open('https://bingoogolapple.gitbooks.io/bgalearningnotes-git/content')
       }
-    },
-    mounted: function () {
-      this.$nextTick(function () {
-        console.log(this.$route)
-      })
     }
   }
 </script>
