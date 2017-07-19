@@ -1,11 +1,13 @@
 :running:BGAIssueBlog-Web:running:
 ============
 
-通过抓取 GitHub 上的 Issues，并结合 GitHub Pages 来搭建 [个人博客站点](http://www.bingoogolapple.cn)，我目前主要从事 Android 开发，个人前端技术还很渣，希望各位前端大牛多多指教，先谢谢了:smile:
+## 目录
 
-![image](https://user-images.githubusercontent.com/8949716/28348568-4eb844b2-6c70-11e7-872b-e74ca05d61a6.png)
-![image](https://user-images.githubusercontent.com/8949716/28348615-90efe83a-6c70-11e7-9f0f-70e9eeeb838a.png)
-![image](https://user-images.githubusercontent.com/8949716/28348632-a3ee0a84-6c70-11e7-93ad-415daad61597.png)
+* [项目背景](#项目背景)
+* [效果图](#效果图)
+* [使用方法](#使用方法)
+* [关于我](#关于我)
+* [打赏支持](#打赏支持)
 
 ## 项目背景
 
@@ -20,7 +22,20 @@
 - [x] 可以把每一个 Comment 作为一个小的知识点不停的追加到 Issue 里
 - [x] 结合 GitHub Pages 绑定域名来搭建个人博客站点
 
-从上个东家离职后在家休息了一个月，这段时间学习了一些前端的东西，当我看了 [learn-vuex-by-building-notes-app](https://coligo.io/learn-vuex-by-building-notes-app) 这篇文章后，就萌生了用 vue + vuex + vue-router + vue-resource 抓取 GitHub 上的 Issues，并结合 GitHub Pages 来搭建个人博客站点的念头
+## 效果图
+
+> 列表界面
+
+![image](https://user-images.githubusercontent.com/8949716/28362584-76cac940-6caf-11e7-8ef9-2a443cd41b54.png)
+
+> 详情界面
+
+![image](https://user-images.githubusercontent.com/8949716/28362628-b6f99ee2-6caf-11e7-9594-36ee2bdb8ef9.png)
+![image](https://user-images.githubusercontent.com/8949716/28362604-90364ec2-6caf-11e7-9fe9-3d056eed5eb6.png)
+
+> 关于我界面
+
+![image](https://user-images.githubusercontent.com/8949716/28362621-a1dc6e36-6caf-11e7-9171-f340cea9d235.png)
 
 ## 使用方法
 
@@ -90,9 +105,9 @@ www.bingoogolapple.cn
 
 如果觉得 BGA 系列开源库对您有用，请随意打赏。
 
-<p align="center">
+<center>
   <img src="http://7xk9dj.com1.z0.glb.clouddn.com/bga_pay.png" width="450">
-</p>
+</center>
 
 ## License
 

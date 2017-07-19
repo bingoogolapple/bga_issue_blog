@@ -10,7 +10,7 @@
           <router-link class="mr30" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
             {{issue.title.trim().substring(0, 35)}}
           </router-link>
-          <span class="tag" v-for="label in issue.labels" @click="setActiveLabel(label)"
+          <span class="tag tag-small" v-for="label in issue.labels" @click="setActiveLabel(label)"
                 :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
           <span class="time">
           {{$moment(issue.created_at).format('YYYY-MM-DD HH:mm')}}
@@ -110,11 +110,14 @@
     padding: 15px 30px 15px 15px;
     border: solid 1px #eeeeee;
     font-size: 14px;
-    color: #849aa4;
+    color: #4b595f;
     width: 250px;
     background: url("../assets/enter-icon.svg") no-repeat 270px center;
     background-color: #f9fafc;
     outline: none;
+  }
+  .query::placeholder {
+    color: #849aa4;
   }
 </style>
 <script>

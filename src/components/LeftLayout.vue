@@ -12,6 +12,11 @@
       <router-link :class="isBlog ? 'selected-menu':''" tag="li" to="/Blog">个人博客</router-link>
       <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" to="/AboutMe">关于我</router-link>
     </ul>
+    <div v-if="showQQGroup" class="qq-group">
+      <span>BGA 系列</span>
+      <span>开源库 QQ 群</span>
+      <img src="../assets/qq-group.png">
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -25,6 +30,7 @@
     width: 199px;
     background-color: #ffffff;
     border-right: 1px solid #eeeeee;
+    overflow: scroll;
   }
 
   .avatar {
@@ -39,7 +45,10 @@
   .login-name {
     text-align: center;
     margin: 14px auto;
+    margin-bottom: 12px;
     font-size: 14px;
+    height: 16px;
+    line-height: 16px;
     color: #4b595f;
   }
 
@@ -47,12 +56,15 @@
     text-align: center;
     margin: 0px auto;
     font-size: 13px;
+    height: 18px;
+    line-height: 18px;
     color: #849aa4;
   }
 
   .other-site {
     list-style: none;
     margin-top: 20px;
+    margin-bottom: 87px;
     li {
       float: left;
       cursor: pointer;
@@ -71,8 +83,11 @@
   }
 
   .left-menu {
+    // 上面总的高度为 280px，下面 QQ 群的 margin + 高度为 260px，自身 margin-bottom 为 50px
+    height: calc(100% - 280px - 260px - 50px);
+    margin-bottom: 50px;
+    min-height: 150px;
     list-style: none;
-    margin-top: 87px;
     color: #4b595f;
     li {
       width: 199px;
@@ -88,10 +103,10 @@
         float: left;
         display: table;
       }
-    }
-    li:hover {
-      &:before {
-        background-color: $indicator-color;
+      &:hover {
+        &:before {
+          background-color: $indicator-color;
+        }
       }
     }
     :first-child {
@@ -106,6 +121,31 @@
       background-color: $indicator-color;
     }
   }
+
+  .qq-group {
+    margin-top: 60px;
+    margin-left: 55px;
+    margin-bottom: 60px;
+    height: 140px;
+    width: 90px;
+    span {
+      display: block;
+      width: 100%;
+      height: 15px;
+      line-height: 15px;
+      font-size: 12px;
+      text-align: center;
+      color: #849aa4;
+      margin-bottom: 10px;
+    }
+    span:first-child {
+      color: #4b595f;
+    }
+    img {
+      width: 90px;
+      height: 90px;
+    }
+  }
 </style>
 <script>
   import { mapGetters } from 'vuex'
@@ -115,7 +155,8 @@
       ...mapGetters([
         'gitHubUser',
         'gitHubUsername',
-        'weiBoUsername'
+        'weiBoUsername',
+        'showQQGroup'
       ]),
       isBlog () {
         return this.$route.name && this.$route.name.startsWith('Blog')

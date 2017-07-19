@@ -8,7 +8,8 @@ const SET_GITHUB_USER = 'SET_GITHUB_USER'
 const state = {
   gitHubUsername: 'bingoogolapple',
   weiBoUsername: 'bingoogol',
-  gitHubUser: null
+  gitHubUser: null,
+  showQQGroup: true
 }
 
 const mutations = {
@@ -33,6 +34,9 @@ const getters = {
   },
   gitHubUser: (state) => {
     return state.gitHubUser
+  },
+  showQQGroup: (state) => {
+    return state.showQQGroup
   }
 }
 

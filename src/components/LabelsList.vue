@@ -13,12 +13,12 @@
 </template>
 <style lang="scss" scoped>
   .label-list {
-    padding: 30px 26px 15px 50px;
+    padding: 30px 26px 10px 50px;
     display: inline-block;
     list-style: none;
     li {
       float: left;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       margin-right: 10px;
     }
   }

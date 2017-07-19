@@ -2,7 +2,7 @@
   <div v-if="issue" class="blog-detail-container">
     <div class="title-container">
       <span class="title">{{issue.title.trim()}}</span>
-      <span class="tag" v-for="label in issue.labels" @click="setActiveLabel(label)"
+      <span class="tag tag-small" v-for="label in issue.labels" @click="setActiveLabel(label)"
             :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
       <span class="back" @click="back">
         <img src="../assets/back-icon.svg"
@@ -39,7 +39,7 @@
       margin-right: 30px;
     }
     .tag {
-      margin-top: 25px;
+      margin-top: 28px;
     }
     .back {
       float: right;
@@ -65,14 +65,19 @@
 
   .remark {
     cursor: pointer;
+    user-select: none;
     margin: 30px 0px;
     height: 50px;
     line-height: 50px;
     text-align: center;
     border-radius: 4px;
-    background-color: #eff7ff;
     font-size: 16px;
+    background-color: #eff7ff;
     color: #3593f2;
+    &:hover {
+      background-color: #3593f2;
+      color: #ffffff;
+    }
   }
 </style>
 <script>

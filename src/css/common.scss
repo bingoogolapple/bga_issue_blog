@@ -1,4 +1,4 @@
-$label-list-height: 135px;
+$label-list-height: 140px;
 
 @mixin heightBox($other-height){
   height: calc(100% - #{$other-height});
