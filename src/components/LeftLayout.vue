@@ -9,12 +9,8 @@
       <li @click="openGitBook"><img src="../assets/git.png"></li>
     </ul>
     <ul class="left-menu">
-      <li :class="isBlog ? 'selected-menu':''">
-        <router-link to="/Blog">个人博客</router-link>
-      </li>
-      <li :class="isAboutMe ? 'selected-menu':''">
-        <router-link to="/AboutMe">关于我</router-link>
-      </li>
+      <router-link :class="isBlog ? 'selected-menu':''" tag="li" to="/Blog">个人博客</router-link>
+      <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" to="/AboutMe">关于我</router-link>
     </ul>
   </div>
 </template>
