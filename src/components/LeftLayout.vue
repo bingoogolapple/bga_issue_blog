@@ -10,11 +10,9 @@
     </ul>
     <ul class="left-menu">
       <li :class="isBlog ? 'selected-menu':''">
-        <span></span>
         <router-link to="/Blog">个人博客</router-link>
       </li>
       <li :class="isAboutMe ? 'selected-menu':''">
-        <span></span>
         <router-link to="/AboutMe">关于我</router-link>
       </li>
     </ul>
@@ -86,29 +84,29 @@
       line-height: 60px;
       cursor: pointer;
       font-size: 16px;
-      span {
-        display: block;
-        float: left;
+      &:before {
         width: 4px;
         height: 100%;
+        content: '';
         margin-right: 46px;
+        float: left;
+        display: table;
+      }
+    }
+    li:hover {
+      &:before {
+        background-color: $indicator-color;
       }
     }
     :first-child {
       margin-bottom: 30px;
     }
-    li:hover {
-      span {
-        background-color: $indicator-color;
-      }
-    }
   }
 
   .selected-menu {
     background-color: #e5f1fc;
-    font-size: 16px;
     color: $indicator-color;
-    span {
+    &:before {
       background-color: $indicator-color;
     }
   }

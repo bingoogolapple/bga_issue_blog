@@ -12,15 +12,6 @@ a {
   color: inherit;
 }
 
-clearfix:before, .clearfix:after {
-  content: "";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-  overflow: hidden;
-}
-
 .fl {
   float: left;
 }
