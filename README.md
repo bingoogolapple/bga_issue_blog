@@ -54,14 +54,21 @@ npm run dev
 > 3.个人配置 - 修改 GitHub 账号和微博账号
 
 ```
-修改「BGAIssueBlog-Web/src/vuex/store.js」文件里「state」常量里 key 为「gitHubUsername」和「weiBoUsername」对应的值
+修改「BGAIssueBlog-Web/src/store/account.js」文件中「state」里 key 为「gitHubUsername」和「weiBoUsername」对应的值
 ```
-> 4.个人配置 - 修改网站图标
+> 4.个人配置 - 修改 QQ 群
+
+```
+1.如果想显示自己的 QQ 群图片的话，替换「BGAIssueBlog-Web/src/assets/qq-group.png」
+
+2.如果不想显示自己的 QQ 群图片的话，修改「BGAIssueBlog-Web/src/store/account.js」文件中「state」里 key 为「showQQGroup」对应的值为 false
+```
+> 5.个人配置 - 修改网站图标
 
 ```
 修改「BGAIssueBlog-Web/static/img/favicon.ico」文件
 ```
-> 5.个人配置 - 修改网站标题
+> 6.个人配置 - 修改网站标题
 
 ```
 修改「BGAIssueBlog-Web/index.html」文件里「<title>」标签里的内容
