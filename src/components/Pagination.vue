@@ -1,51 +1,71 @@
 <template>
-  <ul class="paginataion-container">
-    <span>共110条</span>
-    <img class="left-page"/>
-    <input type="text" class="current-page" v-model="currentPage" @keyup.enter="changeCurrentPage()"/>
-    <span class="page-count">&nbsp;/&nbsp;{{pageCount}}</span>
-    <img class="right-page"/>
-  </ul>
+  <div class="paginataion-container">
+    <span class="total-num">共&nbsp;{{totalNum}}&nbsp;条</span>
+    <img :class="lastCurrentPage === 1 ? 'pre-page-disabled' : 'pre-page'" @click="selectPage(parseInt(page) - 1)"/>
+    <input ref="currentPageInput" type="number" class="current-page" v-model="page"
+           @keyup.enter="handleCurrentPageChanged()"/>
+    <span class="page-count">/&nbsp;&nbsp;&nbsp;{{pageCount}}</span>
+    <img :class="lastCurrentPage === pageCount ? 'next-page-disabled' : 'next-page'" @click="selectPage(parseInt(page) + 1)"/>
+  </div>
 </template>
 <style lang="scss" scoped>
   .paginataion-container {
-    width: 365px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
     height: 38px;
-    background-color: rgba(0,0,0, 0.1);
     img {
       width: 38px;
       height: 38px;
-      content: url("../assets/left-page-normal.png");
     }
   }
+
   .total-num {
     height: 20px;
     line-height: 20px;
-    margin: 9px;
     font-size: 14px;
     color: #4b595f;
   }
-  .left-page {
-    margin-right: 45px;
+
+  .pre-page {
+    content: url("../assets/pre-page-normal.png");
+    &:hover {
+      content: url("../assets/pre-page-hover.png");
+    }
   }
+
+  .pre-page-disabled {
+    content: url("../assets/pre-page-normal.png");
+  }
+
   .current-page {
     width: 48px;
-    height: 26px;
+    height: 24px;
+    line-height: 24px;
     border: solid 1px #ebeef0;
     font-size: 14px;
     text-align: center;
-    margin-top: 6px;
     color: #03a9f4;
+    outline: none;
   }
+
   .page-count {
     height: 16px;
     line-height: 16px;
-    margin-top: 11px;
     font-size: 14px;
     color: #4b595f;
-    margin-right: 45px;
   }
-  .right-page {
+
+  .next-page {
+    content: url("../assets/next-page-normal.png");
+    &:hover {
+      content: url("../assets/next-page-hover.png");
+    }
+  }
+
+  .next-page-disabled {
+    content: url("../assets/next-page-normal.png");
   }
 </style>
 <script>
@@ -53,12 +73,15 @@
     props: {
       totalNum: {
         type: Number,
-        required: true,
-        default: 0
+        required: false,
+        default: 0,
+        validator (val) {
+          return val >= 0
+        }
       },
       currentPage: {
         type: Number,
-        required: true,
+        required: false,
         default: 1
       },
       pageSize: {
@@ -66,21 +89,54 @@
         required: false,
         default: 10,
         validator (val) {
-          return val >= 3
+          return val >= 5
         }
       }
     },
-    data: function () {
+    data () {
       return {
-        pageCount: 1
+        lastCurrentPage: 1,
+        page: 1
       }
     },
-    methods: {},
+    computed: {
+      pageCount () {
+        if (this.totalNum === 0) {
+          return 1
+        }
+        return parseInt((this.totalNum - 1) / this.pageSize) + 1
+      }
+    },
+    methods: {
+      selectPage (newCurrentPage) {
+        this.page = newCurrentPage
+        this.handleCurrentPageChanged()
+      },
+      handleCurrentPageChanged () {
+        let newCurrentPage = parseInt(this.page)
+        if (newCurrentPage <= 0) {
+          this.page = newCurrentPage = 1
+        }
+        if (newCurrentPage > this.pageCount) {
+          this.page = newCurrentPage = this.pageCount
+        }
+        if (newCurrentPage !== this.lastCurrentPage) {
+          this.lastCurrentPage = newCurrentPage
+          this.$emit('currentPageChanged', parseInt(newCurrentPage))
+        }
+      }
+    },
+    watch: {
+      currentPage (val) {
+        this.lastCurrentPage = this.currentPage
+        this.page = this.currentPage
+        console.log('currentPage changed')
+      }
+    },
     mounted: function () {
       this.$nextTick(function () {
-        console.log('currentPage', this.currentPage)
-        console.log('pageSize', this.pageSize)
-        console.log('totalNum', this.totalNum)
+        this.lastCurrentPage = this.currentPage
+        this.page = this.currentPage
       })
     }
   }

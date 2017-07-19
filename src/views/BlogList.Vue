@@ -6,11 +6,11 @@
     </div>
     <div class="scrollable-container">
       <ul class="issue-list">
-        <li v-for="issue in issues">
+        <li v-for="issue in issues" :key="issue.id">
           <router-link class="mr30" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
             {{issue.title.trim().substring(0, 35)}}
           </router-link>
-          <span class="tag tag-small" v-for="label in issue.labels" @click="setActiveLabel(label)"
+          <span class="tag tag-small" v-for="label in issue.labels" :key="label.id" @click="setActiveLabel(label)"
                 :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
           <span class="time">
           {{$moment(issue.created_at).format('YYYY-MM-DD HH:mm')}}
@@ -18,26 +18,25 @@
         </li>
       </ul>
       <div class="bottom-bar">
-        <input type="text" class="fl query" v-model="keyword" placeholder="Search issues" @keyup.enter="searchIssues()"/>
-        <pagination class="pagination" :totalNum="totalNum" :currentPage="currentPage" :pageSize="pageSize" @current-change="handleCurrentChange"/>
+        <input type="text" class="fl query" v-model="keyword" placeholder="Search issues"
+               @keyup.enter="searchIssues()"/>
+        <pagination class="pagination" :totalNum="totalNum" :currentPage="currentPage" :pageSize="pageSize"
+                    @currentPageChanged="handleCurrentPageChanged"/>
       </div>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
   @import "../css/common";
-  $table-header-height: 70px;
+
+  $table-header-height: 50px;
   $item-height: 69px;
   $time-width: 240px;
   $title-pdding-left: 67px;
   $bottom-bar-height: 70px;
 
-  @mixin heightBox($other-height){
-    height: calc(100% - #{$other-height});
-  }
-
   .blog-list-container {
-    @include heightBox($label-list-height);
+    @include excludeLabelListHeightBox();
   }
 
   .issue-list {
@@ -87,9 +86,8 @@
   }
 
   .bottom-bar {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
     height: $bottom-bar-height;
-    margin-top: 80px;
+    margin-top: 50px;
     padding: 0px 40px;
   }
 
@@ -102,11 +100,12 @@
     font-size: 14px;
     color: #4b595f;
     margin-right: 20px;
-    width: calc(100% - 80px - 365px - 20px - 2px);
-    /*background: url("../assets/enter-icon.svg") no-repeat 270px center;*/
-    background-color: #f9fafc;
+    width: calc(100% - 50px - 300px - 20px - 2px);
     outline: none;
+    background: url("../assets/enter-icon.svg") no-repeat calc(100% - 10px) center;
+    background-color: #f9fafc;
   }
+
   .query::placeholder {
     color: #849aa4;
   }
@@ -156,7 +155,7 @@
         this.currentPage = 1
         this.getIssues()
       },
-      handleCurrentChange (val) {
+      handleCurrentPageChanged (val) {
         this.currentPage = val
         this.getIssues()
       },

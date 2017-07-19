@@ -6,7 +6,7 @@
     <ul class="other-site">
       <li @click="openWeiBo"><img src="../assets/weibo.png"></li>
       <li @click="openGitHub"><img src="../assets/github.png"></li>
-      <li @click="openGitBook"><img src="../assets/git.png"></li>
+      <li v-if="gitBookUrl" @click="openGitBook"><img src="../assets/git.png"></li>
     </ul>
     <ul class="left-menu">
       <router-link :class="isBlog ? 'selected-menu':''" tag="li" to="/Blog">个人博客</router-link>
@@ -30,14 +30,13 @@
     width: 199px;
     background-color: #ffffff;
     border-right: 1px solid #eeeeee;
-    overflow: scroll;
   }
 
   .avatar {
     width: 70px;
     height: 70px;
     border-radius: 35px;
-    margin-top: 60px;
+    margin-top: 50px;
     margin-left: 65px;
     cursor: pointer;
   }
@@ -64,28 +63,26 @@
   .other-site {
     list-style: none;
     margin-top: 20px;
-    margin-bottom: 87px;
+    margin-bottom: 67px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
     li {
-      float: left;
       cursor: pointer;
+      margin-right: 20px;
       img {
         width: 20px;
         height: 20px;
       }
     }
-    li:first-child {
-      margin-right: 20px;
-      margin-left: 50px;
-    }
     li:last-child {
-      margin-left: 20px;
+      margin-right: 0px;
     }
   }
 
   .left-menu {
-    // 上面总的高度为 280px，下面 QQ 群的 margin + 高度为 260px，自身 margin-bottom 为 50px
-    height: calc(100% - 280px - 260px - 50px);
-    margin-bottom: 50px;
+    // 上面总的高度为 290px，下面 QQ 群的 margin + 高度为 240px
+    height: calc(100% - 290px - 240px);
     min-height: 150px;
     list-style: none;
     color: #4b595f;
@@ -123,9 +120,9 @@
   }
 
   .qq-group {
-    margin-top: 60px;
+    margin-top: 50px;
     margin-left: 55px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     height: 140px;
     width: 90px;
     span {
@@ -156,7 +153,8 @@
         'gitHubUser',
         'gitHubUsername',
         'weiBoUsername',
-        'showQQGroup'
+        'showQQGroup',
+        'gitBookUrl'
       ]),
       isBlog () {
         return this.$route.name && this.$route.name.startsWith('Blog')
@@ -176,7 +174,7 @@
         window.open('http://weibo.com/' + this.weiBoUsername)
       },
       openGitBook () {
-        window.open('https://bingoogolapple.gitbooks.io/bgalearningnotes-git/content')
+        window.open(this.gitBookUrl)
       }
     }
   }
