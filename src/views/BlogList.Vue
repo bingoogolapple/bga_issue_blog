@@ -7,19 +7,19 @@
     <div class="scrollable-container">
       <ul class="issue-list">
         <li v-for="issue in issues">
-          <router-link class="mr20" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
+          <router-link class="mr30" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
             {{issue.title.trim().substring(0, 35)}}
           </router-link>
-          <span class="tag" v-for="tag in issue.labels" @click="setActiveLabel(tag)">
-          <el-tag :color="'#' + tag.color">{{tag.name}}</el-tag>
-        </span>
-          <span class="fr time">
+          <span class="tag" v-for="label in issue.labels" @click="setActiveLabel(label)"
+                :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
+          <span class="time">
           {{$moment(issue.created_at).format('YYYY-MM-DD HH:mm')}}
         </span>
         </li>
       </ul>
       <div class="bottom-bar">
-        <input type="text" class="fl query" v-model="keyword" placeholder="Search issues" @keyup.enter="searchIssues()"/>
+        <input type="text" class="fl query" v-model="keyword" placeholder="Search issues"
+               @keyup.enter="searchIssues()"/>
         <!--<el-input class="fl query" v-model="keyword" placeholder="Search issues" @keyup.enter.native="searchIssues()"/>-->
         <el-pagination
           class="mt20 fr"
@@ -34,13 +34,19 @@
   </div>
 </template>
 <style lang="scss" scoped>
+  @import "../css/common";
+  $table-header-height: 70px;
   $item-height: 69px;
   $time-width: 240px;
   $title-pdding-left: 67px;
   $bottom-bar-height: 70px;
 
+  @mixin heightBox($other-height){
+    height: calc(100% - #{$other-height});
+  }
+
   .blog-list-container {
-    height: 100%;
+    @include heightBox($label-list-height);
   }
 
   .issue-list {
@@ -50,6 +56,7 @@
       border-bottom: solid 1px #eeeeee;
       padding-left: $title-pdding-left;
       .time {
+        float: right;
         height: $item-height;
         line-height: $item-height;
         font-size: 15px;
@@ -70,11 +77,11 @@
   }
 
   .table-header {
-    height: $item-height;
+    height: $table-header-height;
     background-color: #f9fafc;
     font-size: 12px;
     color: #a3b4bc;
-    line-height: $item-height;
+    line-height: $table-header-height;
     :first-child {
       padding-left: $title-pdding-left;
     }
@@ -85,7 +92,7 @@
 
   .scrollable-container {
     overflow: scroll;
-    height: calc(100% - 196px);
+    @include heightBox($table-header-height);
   }
 
   .bottom-bar {

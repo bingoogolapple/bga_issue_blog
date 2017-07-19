@@ -1,38 +1,31 @@
 <template>
   <ul class="label-list">
     <li>
-      <span v-if="activeLabel == null">
-        <el-tag :color="'#3593f2'" style="color: #ffffff;">ALL</el-tag>
-      </span>
-      <span v-else @click="setActiveLabel(null)">
-        <el-tag :color="'#f2f5f8'">ALL</el-tag>
-      </span>
+      <span class="tag" v-if="activeLabel == null" style="background-color: #3593f2;">ALL</span>
+      <span class="tag tag-unchecked" v-else @click="setActiveLabel(null)">ALL</span>
     </li>
     <li v-for="label in labels">
-      <span v-if="activeLabel != null && activeLabel.name === label.name">
-        <el-tag :color="'#' + label.color" style="color: #ffffff;">{{label.name}}</el-tag>
-      </span>
-      <span v-else @click="setActiveLabel(label)">
-        <el-tag :color="'#f2f5f8'">{{label.name}}</el-tag>
-      </span>
+      <span class="tag" v-if="activeLabel != null && activeLabel.name === label.name" @click="setActiveLabel(null)"
+            :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
+      <span v-else class="tag tag-unchecked" @click="setActiveLabel(label)">{{label.name}}</span>
     </li>
   </ul>
 </template>
 <style lang="scss" scoped>
   .label-list {
-    padding: 18px 36px;
-    display: block;
+    padding: 30px 26px 15px 50px;
+    display: inline-block;
     list-style: none;
     li {
       float: left;
-      margin: 12px;
-      cursor: pointer;
-      span {
-        color: #849aa4;
-        height: 30px;
-        line-height: 30px;
-      }
+      margin-bottom: 15px;
+      margin-right: 10px;
     }
+  }
+
+  .tag-unchecked {
+    background-color: #f2f5f8;
+    color: #849aa4;
   }
 </style>
 <script>

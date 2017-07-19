@@ -16,6 +16,10 @@ const mutations = {
     state.labels = labels
   },
   [SET_ACTIVE_LABEL] (state, label) {
+    if ((state.activeLabel && label && label.name === state.activeLabel.name) || (!state.activeLabel && !label)) {
+      return
+    }
+
     state.activeLabel = label
   }
 }

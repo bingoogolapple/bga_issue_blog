@@ -2,26 +2,14 @@ import Vue from 'vue'
 import axios from 'axios'
 import {
   Pagination,
-  Input,
   Tag,
-  Card,
   Loading,
-  Message,
-  Table,
-  TableColumn,
-  Row,
-  Col
+  Message
 } from 'element-ui'
 
 Vue.use(Pagination)
-Vue.use(Input)
 Vue.use(Tag)
-Vue.use(Card)
 Vue.use(Loading)
-Vue.use(Row)
-Vue.use(Col)
-Vue.use(Table)
-Vue.use(TableColumn)
 Vue.component(Message.name, Message)
 Vue.prototype.$message = Message
 

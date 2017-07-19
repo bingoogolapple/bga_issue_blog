@@ -1,10 +1,9 @@
 <template>
   <div v-if="issue" class="blog-detail-container">
     <div class="title-container">
-      <span class="mr20 title">{{issue.title.trim()}}</span>
-      <span class="tag" v-for="tag in issue.labels" @click="setActiveLabel(tag)">
-          <el-tag :color="'#' + tag.color" style="color: #ffffff;">{{tag.name}}</el-tag>
-      </span>
+      <span class="title">{{issue.title.trim()}}</span>
+      <span class="tag" v-for="label in issue.labels" @click="setActiveLabel(label)"
+            :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
       <span class="back" @click="back">
         <img src="../assets/back-icon.svg"
              class="back-icon">返回
@@ -18,57 +17,62 @@
   </div>
 </template>
 <style lang="scss" scoped>
+  @import "../css/common";
+
   $title-container-height: 80px;
 
   .blog-detail-container {
-    height: 100%;
-    .title-container {
-      height: $title-container-height;
-      line-height: $title-container-height;
-      background-color: #f9fafc;
-      padding: 0px 50px;
-      span {
-        float: left;
-        .el-tag {
-          margin-top: 27px;
-        }
-      }
-      .title {
-        font-size: 22px;
-        color: #4b595f;
-      }
-      .back {
-        float: right;
-        font-size: 14px;
-        color: #4b595f;
-        margin-right: 30px;
-        cursor: pointer;
-        img {
-          display: inline-block;
-          margin-right: 10px;
-          width: 18px;
-          height: 12px;
-          object-fit: contain;
-        }
-      }
-    }
-    .comment-container {
-      overflow: scroll;
-      height: calc(100% - 250px);
-      padding: 0px 50px 30px 50px;
-    }
+    @include heightBox($label-list-height);
+  }
 
-    .remark {
-      cursor: pointer;
-      margin-top: 30px;
-      height: 50px;
-      line-height: 50px;
-      text-align: center;
-      border-radius: 4px;
-      background-color: #eff7ff;
-      font-size: 16px;
-      color: #3593f2;
+  .title-container {
+    height: $title-container-height;
+    line-height: $title-container-height;
+    background-color: #f9fafc;
+    padding: 0px 50px;
+    span {
+      float: left;
     }
+    .title {
+      font-size: 22px;
+      color: #4b595f;
+      margin-right: 30px;
+    }
+    .tag {
+      margin-top: 25px;
+    }
+    .back {
+      float: right;
+      font-size: 14px;
+      color: #4b595f;
+      margin-right: 30px;
+      cursor: pointer;
+      img {
+        display: inline-block;
+        margin-right: 10px;
+        width: 18px;
+        height: 12px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .comment-container {
+    @include heightBox($title-container-height);
+    overflow: scroll;
+    padding: 0px 50px;
+  }
+
+  .remark {
+    cursor: pointer;
+    margin: 30px 0px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #eff7ff;
+    font-size: 16px;
+    color: #3593f2;
   }
 </style>
 <script>

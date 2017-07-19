@@ -12,6 +12,15 @@ a {
   color: inherit;
 }
 
+clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+  overflow: hidden;
+}
+
 .fl {
   float: left;
 }
@@ -28,8 +37,8 @@ a {
   margin: 5px;
 }
 
-.mr20 {
-  margin-right: 10px;
+.mr30 {
+  margin-right: 30px;
 }
 
 .mt20 {
@@ -39,6 +48,14 @@ a {
 .tag {
   margin-right: 14px;
   cursor: pointer;
+  user-select: none;
+  border-radius: 3px;
+  font-size: 14px;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px;
+  color: #ffffff;
 }
 
 .el-loading-mask{
