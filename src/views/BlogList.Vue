@@ -18,17 +18,8 @@
         </li>
       </ul>
       <div class="bottom-bar">
-        <input type="text" class="fl query" v-model="keyword" placeholder="Search issues"
-               @keyup.enter="searchIssues()"/>
-        <!--<el-input class="fl query" v-model="keyword" placeholder="Search issues" @keyup.enter.native="searchIssues()"/>-->
-        <el-pagination
-          class="mt20 fr"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage"
-          :page-size="pageSize"
-          layout="total, prev, pager, next"
-          :total="totalNum">
-        </el-pagination>
+        <input type="text" class="fl query" v-model="keyword" placeholder="Search issues" @keyup.enter="searchIssues()"/>
+        <pagination class="pagination" :totalNum="totalNum" :currentPage="currentPage" :pageSize="pageSize" @current-change="handleCurrentChange"/>
       </div>
     </div>
   </div>
@@ -99,8 +90,7 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     height: $bottom-bar-height;
     margin-top: 80px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 0px 40px;
   }
 
   .query {
@@ -111,17 +101,24 @@
     border: solid 1px #eeeeee;
     font-size: 14px;
     color: #4b595f;
-    width: 250px;
-    background: url("../assets/enter-icon.svg") no-repeat 270px center;
+    margin-right: 20px;
+    width: calc(100% - 80px - 365px - 20px - 2px);
+    /*background: url("../assets/enter-icon.svg") no-repeat 270px center;*/
     background-color: #f9fafc;
     outline: none;
   }
   .query::placeholder {
     color: #849aa4;
   }
+
+  .pagination {
+    float: right;
+    margin: 16px 0px;
+  }
 </style>
 <script>
   import { mapGetters, mapActions } from 'vuex'
+  import Pagination from '../components/Pagination.vue'
 
   export default {
     data () {
@@ -133,6 +130,7 @@
         issues: []
       }
     },
+    components: {Pagination},
     watch: {
       activeLabel: function (label) {
         this.keyword = ''
