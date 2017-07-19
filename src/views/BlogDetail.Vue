@@ -2,7 +2,7 @@
   <div v-if="issue" class="blog-detail-container">
     <div class="title-container">
       <span class="title">{{issue.title.trim()}}</span>
-      <span class="tag tag-small" v-for="label in issue.labels" @click="setActiveLabel(label)"
+      <span class="tag tag-small" v-for="label in issue.labels" :key="label.id" @click="setActiveLabel(label)"
             :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
       <span class="back" @click="back">
         <img src="../assets/back-icon.svg"
@@ -11,7 +11,7 @@
     </div>
     <div class="comment-container">
       <comment :comment="issue"/>
-      <comment v-for="comment in comments" :comment="comment"/>
+      <comment v-for="comment in comments" :key="comment.id" :comment="comment"/>
       <div v-if="issue" @click="remark" class="remark">评论</div>
     </div>
   </div>
@@ -19,10 +19,10 @@
 <style lang="scss" scoped>
   @import "../css/common";
 
-  $title-container-height: 80px;
+  $title-container-height: 60px;
 
   .blog-detail-container {
-    @include heightBox($label-list-height);
+    @include excludeLabelListHeightBox();
   }
 
   .title-container {
@@ -39,7 +39,7 @@
       margin-right: 30px;
     }
     .tag {
-      margin-top: 28px;
+      margin-top: 18px;
     }
     .back {
       float: right;

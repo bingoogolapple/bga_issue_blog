@@ -9,7 +9,8 @@ const state = {
   gitHubUsername: 'bingoogolapple',
   weiBoUsername: 'bingoogol',
   gitHubUser: null,
-  showQQGroup: true
+  showQQGroup: true,
+  gitBookUrl: 'https://bingoogolapple.gitbooks.io/bgalearningnotes-git/content'
 }
 
 const mutations = {
@@ -37,6 +38,9 @@ const getters = {
   },
   showQQGroup: (state) => {
     return state.showQQGroup
+  },
+  gitBookUrl: (state) => {
+    return state.gitBookUrl
   }
 }
 

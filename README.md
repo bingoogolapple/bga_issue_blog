@@ -26,16 +26,16 @@
 
 > 列表界面
 
-![image](https://user-images.githubusercontent.com/8949716/28362584-76cac940-6caf-11e7-8ef9-2a443cd41b54.png)
+![1](https://user-images.githubusercontent.com/8949716/28390669-a41f1d3e-6d0d-11e7-833d-54d8c8d4f8e2.png)
 
 > 详情界面
 
-![image](https://user-images.githubusercontent.com/8949716/28362628-b6f99ee2-6caf-11e7-9594-36ee2bdb8ef9.png)
-![image](https://user-images.githubusercontent.com/8949716/28362604-90364ec2-6caf-11e7-9fe9-3d056eed5eb6.png)
+![2](https://user-images.githubusercontent.com/8949716/28390678-aa225912-6d0d-11e7-94f4-3f3e67c19894.png)
+![3](https://user-images.githubusercontent.com/8949716/28390685-b0448f86-6d0d-11e7-914b-a584bcfbb7c0.png)
 
 > 关于我界面
 
-![image](https://user-images.githubusercontent.com/8949716/28362621-a1dc6e36-6caf-11e7-9171-f340cea9d235.png)
+![4](https://user-images.githubusercontent.com/8949716/28390692-b8dc8a22-6d0d-11e7-94de-1e52d84a7228.png)
 
 ## 使用方法
 

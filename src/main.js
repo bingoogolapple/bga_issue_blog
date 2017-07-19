@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import axios from 'axios'
 import {
-  Pagination,
   Loading,
   Message
 } from 'element-ui'
 
-Vue.use(Pagination)
 Vue.use(Loading)
 Vue.component(Message.name, Message)
 Vue.prototype.$message = Message

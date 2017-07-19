@@ -4,7 +4,7 @@
       <span class="tag" v-if="activeLabel == null" style="background-color: #3593f2;">ALL</span>
       <span class="tag tag-unchecked" v-else @click="setActiveLabel(null)">ALL</span>
     </li>
-    <li v-for="label in labels">
+    <li v-for="label in labels" :key="label.id">
       <span class="tag" v-if="activeLabel != null && activeLabel.name === label.name" @click="setActiveLabel(null)"
             :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
       <span v-else class="tag tag-unchecked" @click="setActiveLabel(label)">{{label.name}}</span>
@@ -13,7 +13,7 @@
 </template>
 <style lang="scss" scoped>
   .label-list {
-    padding: 30px 26px 10px 50px;
+    padding: 20px 26px 0px 50px;
     display: inline-block;
     list-style: none;
     li {
