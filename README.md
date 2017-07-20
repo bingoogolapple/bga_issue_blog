@@ -1,6 +1,8 @@
 :running:BGAIssueBlog-Web:running:
 ============
 
+### [使用了该博客系统的个人博客站点列表](https://github.com/bingoogolapple/BGAIssueBlog-Web/issues/4)，如果你的个人博客站点也使用了该博客系统，希望你能追加你的个人博客站点链接到这里面
+
 ## 目录
 
 * [项目背景](#项目背景)
