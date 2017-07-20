@@ -11,7 +11,7 @@
 
 ## 项目背景
 
-刚接触 GitHub 的时候就开始在仓库 [bingoogolapple.github.io](https://github.com/bingoogolapple/bingoogolapple.github.io) 里创建 [Issues](https://github.com/bingoogolapple/bingoogolapple.github.io/issues) 来记录学习笔记，那时候我还不知道有 GitHub Pages，后来了解到了可以通过 GitHub Pages 来搭建 [个人博客站点](http://www.bingoogolapple.cn)，但是如果涉及到在文章里嵌套图片的话还是比较麻烦的（有人写了工具用七牛云来作为图床）
+刚接触 GitHub 的时候就开始在仓库 [bingoogolapple.github.io](https://github.com/bingoogolapple/bingoogolapple.github.io) 里创建 [Issues](https://github.com/bingoogolapple/bingoogolapple.github.io/issues) 来记录学习笔记，那时候我还不知道有 GitHub Pages，后来了解到了可以通过 GitHub Pages 来搭建 [个人博客站点](http://www.bingoogolapple.cn)，但是如果涉及到在文章里嵌套图片的话还是比较麻烦的
 
 通过 Issues 记录学习笔记的优点：
 
@@ -26,16 +26,16 @@
 
 > 列表界面
 
-![1](https://user-images.githubusercontent.com/8949716/28390669-a41f1d3e-6d0d-11e7-833d-54d8c8d4f8e2.png)
+![列表界面](https://user-images.githubusercontent.com/8949716/28396844-906be290-6d30-11e7-999f-3e14683ecb8a.png)
 
 > 详情界面
 
-![2](https://user-images.githubusercontent.com/8949716/28390678-aa225912-6d0d-11e7-94f4-3f3e67c19894.png)
-![3](https://user-images.githubusercontent.com/8949716/28390685-b0448f86-6d0d-11e7-914b-a584bcfbb7c0.png)
+![详情界面](https://user-images.githubusercontent.com/8949716/28396872-b815c874-6d30-11e7-9d4b-3534f31c55c8.png)
+![详情界面](https://user-images.githubusercontent.com/8949716/28396888-cf799afe-6d30-11e7-9758-cd910ef1ed85.png)
 
 > 关于我界面
 
-![4](https://user-images.githubusercontent.com/8949716/28390692-b8dc8a22-6d0d-11e7-94de-1e52d84a7228.png)
+![关于我界面](https://user-images.githubusercontent.com/8949716/28396910-f951570e-6d30-11e7-815c-e644ff34caaa.png)
 
 ## 使用方法
 
@@ -51,24 +51,36 @@ npm install
 ```
 npm run dev
 ```
-> 3.个人配置 - 修改 GitHub 账号和微博账号
+> 3.个人配置 - 修改「BGAIssueBlog-Web/src/store/account.js」文件中的「state」属性
 
+```JavaScript
+const state = {
+  gitHubUser: null,  // 这个不要修改，这个不要修改，这个不要修改
+  gitHubUsername: 'bingoogolapple',  // 修改成你自己的 GitHub 账号
+  showQQGroup: true,  // 如果要显示你自己的 QQ 群二维码图片的话这里配置成 true 并且替换「BGAIssueBlog-Web/static/img/qq-group.png」为你自己的 QQ 群二维码图片，否则配置成 false 即可
+  thirdPartySite: [  // 配置你想在左上角展示的第三方站点信息
+    {
+      img: '/static/img/github.png',  // 第三方站点图标，存放在「BGAIssueBlog-Web/static/img」目录中
+      url: 'https://github.com/bingoogolapple'  // 第三方站点的 url
+    },
+    {
+      img: '/static/img/weibo.png',
+      url: 'http://weibo.com/bingoogol'
+    },
+    {
+      img: '/static/img/git.png',
+      url: 'https://bingoogolapple.gitbooks.io/bgalearningnotes-git/content'
+    }
+    // 如果还有其他站点需要显示，继续在这里追加
+  ]
+}
 ```
-修改「BGAIssueBlog-Web/src/store/account.js」文件中「state」里 key 为「gitHubUsername」和「weiBoUsername」对应的值
-```
-> 4.个人配置 - 修改 QQ 群
-
-```
-1.如果想显示自己的 QQ 群图片的话，替换「BGAIssueBlog-Web/src/assets/qq-group.png」
-
-2.如果不想显示自己的 QQ 群图片的话，修改「BGAIssueBlog-Web/src/store/account.js」文件中「state」里 key 为「showQQGroup」对应的值为 false
-```
-> 5.个人配置 - 修改网站图标
+> 4.个人配置 - 修改网站图标
 
 ```
 修改「BGAIssueBlog-Web/static/img/favicon.ico」文件
 ```
-> 6.个人配置 - 修改网站标题
+> 5.个人配置 - 修改网站标题
 
 ```
 修改「BGAIssueBlog-Web/index.html」文件里「<title>」标签里的内容
@@ -89,6 +101,7 @@ npm run build
 ```
 
 #### 绑定域名到 GitHub Pages
+
 > 1.在「GitHub Pages」根目录下添加文件名为「CNAME」的文件，文件内容就是你的二级域名，例如我的是
 
 ```

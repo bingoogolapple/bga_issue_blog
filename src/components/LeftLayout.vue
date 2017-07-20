@@ -4,9 +4,9 @@
     <div class="login-name">{{gitHubUser.login}}</div>
     <div class="bio">{{gitHubUser.bio}}</div>
     <ul class="other-site">
-      <li @click="openWeiBo"><img src="../assets/weibo.png"></li>
-      <li @click="openGitHub"><img src="../assets/github.png"></li>
-      <li v-if="gitBookUrl" @click="openGitBook"><img src="../assets/git.png"></li>
+      <li v-for="site in thirdPartySite" :key="site.url" @click="openThirdPartySite(site.url)">
+        <img :src="site.img">
+      </li>
     </ul>
     <ul class="left-menu">
       <router-link :class="isBlog ? 'selected-menu':''" tag="li" to="/Blog">个人博客</router-link>
@@ -15,7 +15,7 @@
     <div v-if="showQQGroup" class="qq-group">
       <span>BGA 系列</span>
       <span>开源库 QQ 群</span>
-      <img src="../assets/qq-group.png">
+      <img src="/static/img/qq-group.png">
     </div>
   </div>
 </template>
@@ -151,10 +151,8 @@
     computed: {
       ...mapGetters([
         'gitHubUser',
-        'gitHubUsername',
-        'weiBoUsername',
         'showQQGroup',
-        'gitBookUrl'
+        'thirdPartySite'
       ]),
       isBlog () {
         return this.$route.name && this.$route.name.startsWith('Blog')
@@ -167,14 +165,8 @@
       home () {
         this.$router.push('/')
       },
-      openGitHub () {
-        window.open('https://github.com/' + this.gitHubUsername)
-      },
-      openWeiBo () {
-        window.open('http://weibo.com/' + this.weiBoUsername)
-      },
-      openGitBook () {
-        window.open(this.gitBookUrl)
+      openThirdPartySite (url) {
+        window.open(url)
       }
     }
   }

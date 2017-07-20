@@ -28,15 +28,30 @@
     color: #4b595f;
   }
 
-  .pre-page {
-    content: url("../assets/pre-page-normal.png");
+  @mixin page-arrow($prefix) {
+    content: url("../assets/#{$prefix}-page-normal.png");
     &:hover {
-      content: url("../assets/pre-page-hover.png");
+      content: url("../assets/#{$prefix}-page-hover.png");
     }
+  }
+  @mixin page-arrow-disabled($prefix) {
+    content: url("../assets/#{$prefix}-page-normal.png");
+  }
+
+  .pre-page {
+    @include page-arrow('pre');
   }
 
   .pre-page-disabled {
-    content: url("../assets/pre-page-normal.png");
+    @include page-arrow-disabled('pre');
+  }
+
+  .next-page {
+    @include page-arrow('next');
+  }
+
+  .next-page-disabled {
+    @include page-arrow-disabled('next');
   }
 
   .current-page {
@@ -55,17 +70,6 @@
     line-height: 16px;
     font-size: 14px;
     color: #4b595f;
-  }
-
-  .next-page {
-    content: url("../assets/next-page-normal.png");
-    &:hover {
-      content: url("../assets/next-page-hover.png");
-    }
-  }
-
-  .next-page-disabled {
-    content: url("../assets/next-page-normal.png");
   }
 </style>
 <script>
