@@ -131,7 +131,7 @@
     },
     components: {Pagination},
     watch: {
-      activeLabel: function (label) {
+      activeLabel (label) {
         this.keyword = ''
         this.totalNum = 0
         this.currentPage = 1
@@ -166,12 +166,13 @@
           currentPage: this.currentPage,
           pageSize: this.pageSize
         }).then(response => {
+          this.$bgaBacktop()
           this.totalNum = response.data.total_count
           this.issues = response.data.items
         })
       }
     },
-    mounted: function () {
+    mounted () {
       this.$nextTick(function () {
         this.getIssues()
       })

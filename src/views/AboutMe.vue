@@ -1,5 +1,5 @@
 <template>
-  <div class="about-me">
+  <div class="about-me bga-backtop">
     <article class="markdown-body" v-html="renderedMarkdown"/>
   </div>
 </template>
@@ -25,7 +25,7 @@
         })
       }
     },
-    mounted: function () {
+    mounted () {
       this.$nextTick(function () {
         this.getReadme()
       })

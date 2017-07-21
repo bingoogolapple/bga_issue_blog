@@ -53,7 +53,7 @@
 </style>
 <script>
   export default {
-    data: function () {
+    data () {
       return {
         renderedMarkdown: ''
       }
@@ -70,7 +70,7 @@
         window.open(this.comment.user.html_url)
       }
     },
-    mounted: function () {
+    mounted () {
       this.$nextTick(function () {
         this.renderMarkdown()
       })

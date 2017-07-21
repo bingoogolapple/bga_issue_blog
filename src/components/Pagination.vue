@@ -89,7 +89,7 @@
         default: 1
       },
       pageSize: {
-        type: [Number, String],
+        type: [Number],
         required: false,
         default: 10,
         validator (val) {
@@ -134,10 +134,9 @@
       currentPage (val) {
         this.lastCurrentPage = this.currentPage
         this.page = this.currentPage
-        console.log('currentPage changed')
       }
     },
-    mounted: function () {
+    mounted () {
       this.$nextTick(function () {
         this.lastCurrentPage = this.currentPage
         this.page = this.currentPage

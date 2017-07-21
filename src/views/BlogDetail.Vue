@@ -9,10 +9,10 @@
              class="back-icon">返回
       </span>
     </div>
-    <div class="comment-container">
+    <div class="comment-container bga-backtop">
       <comment :comment="issue"/>
       <comment v-for="comment in comments" :key="comment.id" :comment="comment"/>
-      <div v-if="issue" @click="remark" class="remark">评论</div>
+      <div @click="remark" class="remark">评论</div>
     </div>
   </div>
 </template>
@@ -132,7 +132,7 @@
         }
       }
     },
-    mounted: function () {
+    mounted () {
       this.$nextTick(function () {
         if (this.issue) {
           this.getComments()
