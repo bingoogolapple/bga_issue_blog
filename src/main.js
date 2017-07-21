@@ -9,7 +9,7 @@ Vue.use(Loading)
 Vue.component(Message.name, Message)
 Vue.prototype.$message = Message
 
-import BgaBacktop from '@/components/BgaBacktop'
+import BgaBacktop from 'bga-npm-hello-world-vue'
 Vue.use(BgaBacktop)
 
 import lodash from 'lodash'
