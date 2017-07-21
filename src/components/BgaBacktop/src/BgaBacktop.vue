@@ -42,12 +42,12 @@
       width: {
         type: Number,
         required: false,
-        default: 40
+        default: 45
       },
       height: {
         type: Number,
         required: false,
-        default: 40
+        default: 45
       }
     },
     data () {

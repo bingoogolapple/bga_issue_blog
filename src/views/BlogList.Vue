@@ -4,7 +4,7 @@
       <span>名称</span>
       <span class="fr">创建时间</span>
     </div>
-    <div class="scrollable-container bga-backtop">
+    <div class="scrollable-container">
       <ul class="issue-list">
         <li v-for="issue in issues" :key="issue.id">
           <router-link class="mr30" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
