@@ -4,7 +4,7 @@
       <span>名称</span>
       <span class="fr">创建时间</span>
     </div>
-    <div class="scrollable-container">
+    <div class="scrollable-container bga-backtop">
       <ul class="issue-list">
         <li v-for="issue in issues" :key="issue.id">
           <router-link class="mr30" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
@@ -131,7 +131,7 @@
     },
     components: {Pagination},
     watch: {
-      activeLabel: function (label) {
+      activeLabel (label) {
         this.keyword = ''
         this.totalNum = 0
         this.currentPage = 1
@@ -166,12 +166,13 @@
           currentPage: this.currentPage,
           pageSize: this.pageSize
         }).then(response => {
+          this.$bgaBacktop()
           this.totalNum = response.data.total_count
           this.issues = response.data.items
         })
       }
     },
-    mounted: function () {
+    mounted () {
       this.$nextTick(function () {
         this.getIssues()
       })

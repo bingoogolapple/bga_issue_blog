@@ -2,6 +2,7 @@
   <div>
     <left-layout/>
     <router-view class="main-container"/>
+    <bga-backtop/>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -27,7 +28,7 @@
         'setGitHubUser'
       ])
     },
-    mounted: function () {
+    mounted () {
       this.$nextTick(function () {
         this.$gitHubApi.getUserInfo(this).then(this.$http.spread((userResp, labelResp) => {
           this.setGitHubUser(userResp.data)
