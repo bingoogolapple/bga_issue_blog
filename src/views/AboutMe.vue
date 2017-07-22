@@ -1,5 +1,5 @@
 <template>
-  <div class="about-me bga-backtop">
+  <div class="about-me bga-back-top">
     <article class="markdown-body" v-html="renderedMarkdown"/>
   </div>
 </template>

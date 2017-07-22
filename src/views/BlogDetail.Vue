@@ -9,7 +9,7 @@
              class="back-icon">返回
       </span>
     </div>
-    <div class="comment-container bga-backtop">
+    <div class="comment-container bga-back-top">
       <comment :comment="issue"/>
       <comment v-for="comment in comments" :key="comment.id" :comment="comment"/>
       <div @click="remark" class="remark">评论</div>

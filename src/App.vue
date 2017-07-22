@@ -2,11 +2,10 @@
   <div>
     <left-layout/>
     <router-view class="main-container"/>
-    <bga-backtop :right="30" :bottom="60" :svgType="'robot_smoke'"/>
-    <!--<bga-backtop :right="30" :bottom="60" :svgMajorColor="'#ff0000'" :imgIcon="'/static/img/bga-backtop.png'"/>-->
+    <bga-back-top :svgMajorColor="'#7b79e5'" :svgMinorColor="'#ba6fda'" :svgType="'rocket_smoke'"/>
   </div>
 </template>
-<style lang="scss" scoped>
+<style lang="scss">
   .main-container {
     position: fixed;
     left: 200px;
