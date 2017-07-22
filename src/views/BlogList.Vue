@@ -166,7 +166,7 @@
           currentPage: this.currentPage,
           pageSize: this.pageSize
         }).then(response => {
-          this.$bgaBacktop()
+          this.$bgaBackTop()
           this.totalNum = response.data.total_count
           this.issues = response.data.items
         })
