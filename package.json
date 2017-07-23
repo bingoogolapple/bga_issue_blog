@@ -1,7 +1,7 @@
 {
-  "name": "bga-issue-blog-web",
+  "name": "bga-issue-blog",
   "version": "1.0.0",
-  "description": "BGAIssueBlog-Web",
+  "description": "BGAIssueBlog",
   "author": "bingoogolapple <bingoogolapple@gmail.com>",
   "private": true,
   "scripts": {

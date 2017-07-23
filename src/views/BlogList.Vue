@@ -22,13 +22,13 @@
     <div class="bottom-bar">
       <input type="text" class="fl query" v-model="keyword" placeholder="Search issues"
              @keyup.enter="searchIssues()"/>
-      <pagination class="pagination" :totalNum="totalNum" :currentPage="currentPage" :pageSize="pageSize"
+      <pagination :totalNum="totalNum" :currentPage="currentPage" :pageSize="pageSize"
                   @currentPageChanged="handleCurrentPageChanged"/>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
-  $time-width: 200px;
+  $time-width: 150px;
 
   .blog-list-container {
     flex-grow: 1;
@@ -107,9 +107,6 @@
 
     .query::placeholder {
       color: #849aa4;
-    }
-
-    .pagination {
     }
   }
 </style>
