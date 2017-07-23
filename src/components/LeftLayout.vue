@@ -1,21 +1,24 @@
 <template>
-  <div class="left-layout-container" v-if="gitHubUser">
-    <img @click="home" class="avatar" :src="gitHubUser.avatar_url">
-    <div class="login-name">{{gitHubUser.login}}</div>
-    <div class="bio">{{gitHubUser.bio}}</div>
-    <ul class="other-site">
-      <li v-for="site in thirdPartySite" :key="site.url" @click="openThirdPartySite(site.url)">
-        <img :src="site.img">
-      </li>
-    </ul>
-    <ul class="left-menu">
-      <router-link :class="isBlog ? 'selected-menu':''" tag="li" to="/Blog">个人博客</router-link>
-      <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" to="/AboutMe">关于我</router-link>
-    </ul>
-    <div v-if="showQQGroup" class="qq-group">
-      <span>BGA 系列</span>
-      <span>开源库 QQ 群</span>
-      <img src="/static/img/qq-group.png">
+  <!-- 最外层套一层 div 避免 gitHubUser 还未加载完时，右侧占满整个浏览器 -->
+  <div>
+    <div class="left-layout-container" v-if="gitHubUser">
+      <img @click="home" class="avatar" :src="gitHubUser.avatar_url">
+      <div class="login-name">{{gitHubUser.login}}</div>
+      <div class="bio">{{gitHubUser.bio}}</div>
+      <ul class="other-site">
+        <li v-for="site in thirdPartySite" :key="site.url" @click="openThirdPartySite(site.url)">
+          <img :src="site.img">
+        </li>
+      </ul>
+      <ul class="left-menu">
+        <router-link :class="isBlog ? 'selected-menu':''" tag="li" to="/Blog">个人博客</router-link>
+        <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" to="/AboutMe">关于我</router-link>
+      </ul>
+      <div v-if="showQQGroup" class="qq-group">
+        <span>BGA 系列</span>
+        <span>开源库 QQ 群</span>
+        <img src="/static/img/qq-group.png">
+      </div>
     </div>
   </div>
 </template>
@@ -23,13 +26,10 @@
   $indicator-color: #3593f2;
 
   .left-layout-container {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    width: 199px;
-    background-color: #ffffff;
-    border-right: 1px solid #eeeeee;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: scroll;
   }
 
   .avatar {
@@ -81,9 +81,7 @@
   }
 
   .left-menu {
-    // 上面总的高度为 290px，下面 QQ 群的 margin + 高度为 240px
-    height: calc(100% - 290px - 240px);
-    min-height: 150px;
+    flex-grow: 1;
     list-style: none;
     color: #4b595f;
     li {
