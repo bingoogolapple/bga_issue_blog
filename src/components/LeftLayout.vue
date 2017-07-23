@@ -1,6 +1,6 @@
 <template>
   <!-- 最外层套一层 div 避免 gitHubUser 还未加载完时，右侧占满整个浏览器 -->
-  <div>
+  <div style="height: 100%;">
     <div class="left-layout-container" v-if="gitHubUser">
       <img @click="home" class="avatar" :src="gitHubUser.avatar_url">
       <div class="login-name">{{gitHubUser.login}}</div>
@@ -34,7 +34,7 @@
 
   .avatar {
     width: 70px;
-    height: 70px;
+    flex: 0 0 70px;
     border-radius: 35px;
     margin-top: 50px;
     margin-left: 65px;
@@ -43,10 +43,9 @@
 
   .login-name {
     text-align: center;
-    margin: 14px auto;
-    margin-bottom: 12px;
+    margin: 14px auto 12px;
     font-size: 14px;
-    height: 16px;
+    flex: 0 0 16px;
     line-height: 16px;
     color: #4b595f;
   }
@@ -55,7 +54,7 @@
     text-align: center;
     margin: 0px auto;
     font-size: 13px;
-    height: 18px;
+    flex: 0 0 18px;
     line-height: 18px;
     color: #849aa4;
   }
@@ -63,7 +62,7 @@
   .other-site {
     margin-top: 20px;
     margin-bottom: 67px;
-    height: 20px;
+    flex: 0 0 20px;
     display: flex;
     justify-content: center;
     li {
@@ -80,10 +79,13 @@
   }
 
   .left-menu {
-    flex-grow: 1;
+    flex: 1 1 150px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
     color: #4b595f;
     li {
-      width: 199px;
+      width: 100%;
       height: 60px;
       line-height: 60px;
       cursor: pointer;
@@ -116,10 +118,10 @@
   }
 
   .qq-group {
+    flex: 0 0 140px;
     margin-top: 50px;
     margin-left: 55px;
     margin-bottom: 50px;
-    height: 140px;
     width: 90px;
     span {
       display: block;

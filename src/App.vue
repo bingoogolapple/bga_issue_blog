@@ -13,8 +13,7 @@
   }
 
   .left-container {
-    flex-basis: 199px;
-    flex-shrink: 0;
+    flex: 0 0 199px;
     border-right: 1px solid #eeeeee;
   }
 </style>

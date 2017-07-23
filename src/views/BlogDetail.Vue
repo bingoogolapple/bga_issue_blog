@@ -21,14 +21,14 @@
 </template>
 <style lang="scss" scoped>
   .blog-detail-container {
+    flex-grow: 1;
     display: flex;
-    overflow: scroll;  // 本来只在 comment-container 上添加 overflow: scroll 就可以的，在 blog-detail-container 里也添加 overflow: scroll 是为了兼容 Firefox 和 Android
+    overflow: scroll; // 本来只在 comment-container 上添加 overflow: scroll 就可以的，在 blog-detail-container 里也添加 overflow: scroll 是为了兼容 Firefox 和 Android
     flex-direction: column;
   }
 
   .title-container {
-    flex-basis: 60px;
-    flex-shrink: 0;
+    flex: 0 0 48px;
     display: flex;
     align-items: center;
     background-color: #f9fafc;
@@ -60,6 +60,7 @@
   }
 
   .comment-container {
+    flex-grow: 1;
     overflow: scroll;
     padding: 0px 50px;
   }

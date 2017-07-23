@@ -5,7 +5,8 @@
     <input ref="currentPageInput" type="number" class="current-page" v-model="page"
            @keyup.enter="handleCurrentPageChanged()"/>
     <span class="page-count">/&nbsp;&nbsp;&nbsp;{{pageCount}}</span>
-    <img :class="lastCurrentPage === pageCount ? 'next-page-disabled' : 'next-page'" @click="selectPage(parseInt(page) + 1)"/>
+    <img :class="lastCurrentPage === pageCount ? 'next-page-disabled' : 'next-page'"
+         @click="selectPage(parseInt(page) + 1)"/>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -16,14 +17,12 @@
     width: 300px;
     height: 38px;
     img {
-      width: 38px;
+      flex: 0 0 38px;
       height: 38px;
     }
   }
 
   .total-num {
-    height: 20px;
-    line-height: 20px;
     font-size: 14px;
     color: #4b595f;
   }
@@ -33,9 +32,25 @@
     &:hover {
       content: url("../assets/#{$prefix}-page-hover.png");
     }
+
+    // Firefox content base64 仅支持 after
+    &::after {
+      content: url("../assets/#{$prefix}-page-normal.png");
+    }
+    &:hover {
+      &::after {
+        content: url("../assets/#{$prefix}-page-hover.png");
+      }
+    }
   }
+
   @mixin page-arrow-disabled($prefix) {
     content: url("../assets/#{$prefix}-page-normal.png");
+
+    // Firefox content base64 仅支持 after
+    &::after {
+      content: url("../assets/#{$prefix}-page-normal.png");
+    }
   }
 
   .pre-page {
@@ -66,8 +81,6 @@
   }
 
   .page-count {
-    height: 16px;
-    line-height: 16px;
     font-size: 14px;
     color: #4b595f;
   }
@@ -137,7 +150,7 @@
       }
     },
     mounted () {
-      this.$nextTick(() => {
+      this.$nextTick(function () {
         this.lastCurrentPage = this.currentPage
         this.page = this.currentPage
       })
