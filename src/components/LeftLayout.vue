@@ -19,6 +19,10 @@
         <span>开源库 QQ 群</span>
         <img src="static/img/qq-group.png">
       </div>
+      <div class="powered">
+        Powered by <span
+        @click="openThirdPartySite('https://github.com/bingoogolapple/BGAIssueBlog')">BGAIssueBlog</span>
+      </div>
     </div>
   </div>
 </template>
@@ -118,10 +122,9 @@
   }
 
   .qq-group {
-    flex: 0 0 140px;
+    flex: 0 0 170px;
     margin-top: 50px;
     margin-left: 55px;
-    margin-bottom: 50px;
     width: 90px;
     span {
       display: block;
@@ -139,6 +142,21 @@
     img {
       width: 90px;
       height: 90px;
+    }
+  }
+
+  .powered {
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 12px;
+    color: #888888;
+    span {
+      text-decoration: underline;
+    }
+    span:hover {
+      color: #484848;
+      cursor: pointer;
     }
   }
 </style>
