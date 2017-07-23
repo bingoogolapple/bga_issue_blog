@@ -24,8 +24,8 @@ import store from './store'
 import router from './router'
 import './css/main.css'
 
-import {gitHubApi, isGetUserInfo} from './utils'
-import {showMessage, successMessage, errorMessage, warningMessage, infoMessage} from './utils/toastUtil'
+import { gitHubApi, isGetUserInfo } from './utils'
+import { showMessage, successMessage, errorMessage, warningMessage, infoMessage } from './utils/toastUtil'
 
 Vue.prototype._ = lodash
 moment.locale('zh-cn')

@@ -2,117 +2,112 @@
   <div class="blog-list-container">
     <div class="table-header">
       <span>名称</span>
-      <span class="fr">创建时间</span>
+      <span>创建时间</span>
     </div>
-    <div class="scrollable-container">
-      <ul class="issue-list">
-        <li v-for="issue in issues" :key="issue.id">
-          <router-link class="mr30" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
-            {{issue.title.trim().substring(0, 35)}}
-          </router-link>
-          <span class="tag tag-small" v-for="label in issue.labels" :key="label.id" @click="setActiveLabel(label)"
-                :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
-          <span class="time">
+    <ul class="issue-list" ref="issueList">
+      <li class="issue-item" v-for="issue in issues" :key="issue.id">
+        <router-link class="mr30" tag="a" :to="{name: 'BlogDetail', params: {number: issue.number, issue: issue}}">
+          {{issue.title.trim().substring(0, 35)}}
+        </router-link>
+        <ul>
+          <li class="tag tag-small" v-for="label in issue.labels" :key="label.id" @click="setActiveLabel(label)"
+              :style="{ backgroundColor: '#' + label.color}">{{label.name}}
+          </li>
+        </ul>
+        <span class="time">
           {{$moment(issue.created_at).format('YYYY-MM-DD HH:mm')}}
         </span>
-        </li>
-      </ul>
-      <div class="bottom-bar">
-        <input type="text" class="fl query" v-model="keyword" placeholder="Search issues"
-               @keyup.enter="searchIssues()"/>
-        <pagination class="pagination" :totalNum="totalNum" :currentPage="currentPage" :pageSize="pageSize"
-                    @currentPageChanged="handleCurrentPageChanged"/>
-      </div>
+      </li>
+    </ul>
+    <div class="bottom-bar">
+      <input type="text" class="fl query" v-model="keyword" placeholder="Search issues"
+             @keyup.enter="searchIssues()"/>
+      <pagination :totalNum="totalNum" :currentPage="currentPage" :pageSize="pageSize"
+                  @currentPageChanged="handleCurrentPageChanged"/>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
-  @import "../css/common";
-
-  $table-header-height: 50px;
-  $item-height: 69px;
-  $time-width: 240px;
-  $title-pdding-left: 67px;
-  $bottom-bar-height: 70px;
+  $time-width: 150px;
 
   .blog-list-container {
-    @include excludeLabelListHeightBox();
+    flex-grow: 1;
+    display: flex;
+    overflow: scroll; // 本来只在 issue-list 上添加 overflow: scroll 就可以的，在 blog-list-container 里也添加 overflow: scroll 是为了兼容 Firefox 和 Android
+    flex-direction: column;
+  }
+
+  .table-header {
+    flex: 0 0 48px;
+    display: flex;
+    align-items: center;
+    background-color: #f9fafc;
+    padding: 0px 70px;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 12px;
+    color: #a3b4bc;
+    :first-child {
+      flex-grow: 1;
+    }
+    :last-child {
+      flex: 0 0 $time-width;
+    }
   }
 
   .issue-list {
-    li {
-      list-style-type: none;
-      height: $item-height;
+    flex-grow: 1;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    .issue-item {
+      flex: 0 0 69px;
       border-bottom: solid 1px #eeeeee;
-      padding-left: $title-pdding-left;
-      .time {
-        float: right;
-        height: $item-height;
-        line-height: $item-height;
-        font-size: 15px;
-        color: #4b595f;
-        cursor: default;
-        width: $time-width;
-      }
+      display: flex;
+      align-items: center;
+      padding: 0px 70px;
       a {
-        height: $item-height;
-        line-height: $item-height;
         font-size: 15px;
         color: #4b595f;
       }
       a:hover {
         color: #3593f2;
       }
+      ul {
+        display: flex;
+        flex-grow: 1;
+      }
+      .time {
+        font-size: 15px;
+        color: #4b595f;
+        cursor: default;
+        flex: 0 0 $time-width;
+      }
     }
-  }
-
-  .table-header {
-    height: $table-header-height;
-    background-color: #f9fafc;
-    font-size: 12px;
-    color: #a3b4bc;
-    line-height: $table-header-height;
-    :first-child {
-      padding-left: $title-pdding-left;
-    }
-    :last-child {
-      width: $time-width;
-    }
-  }
-
-  .scrollable-container {
-    overflow: scroll;
-    @include heightBox($table-header-height);
   }
 
   .bottom-bar {
-    height: $bottom-bar-height;
-    margin-top: 50px;
+    flex: 0 0 69px;
     padding: 0px 40px;
-  }
+    border-top: 1px solid #eeeeee;
+    display: flex;
+    align-items: center;
+    .query {
+      flex-grow: 1;
+      height: 16px;
+      border-radius: 3px;
+      padding: 15px 30px 15px 15px;
+      border: solid 1px #eeeeee;
+      font-size: 14px;
+      color: #4b595f;
+      margin-right: 20px;
+      outline: none;
+      background: #f9fafc url("../assets/enter-icon.svg") no-repeat calc(100% - 10px) center;
+    }
 
-  .query {
-    margin-top: 11px;
-    height: 16px;
-    border-radius: 3px;
-    padding: 15px 30px 15px 15px;
-    border: solid 1px #eeeeee;
-    font-size: 14px;
-    color: #4b595f;
-    margin-right: 20px;
-    width: calc(100% - 50px - 300px - 20px - 2px);
-    outline: none;
-    background: url("../assets/enter-icon.svg") no-repeat calc(100% - 10px) center;
-    background-color: #f9fafc;
-  }
-
-  .query::placeholder {
-    color: #849aa4;
-  }
-
-  .pagination {
-    float: right;
-    margin: 16px 0px;
+    .query::placeholder {
+      color: #849aa4;
+    }
   }
 </style>
 <script>
@@ -125,7 +120,6 @@
         keyword: '',
         totalNum: 0,
         currentPage: 1,
-        pageSize: 10,
         issues: []
       }
     },
@@ -135,13 +129,13 @@
         this.keyword = ''
         this.totalNum = 0
         this.currentPage = 1
-        this.pageSize = 10
         this.getIssues()
       }
     },
     computed: {
       ...mapGetters([
-        'activeLabel'
+        'activeLabel',
+        'pageSize'
       ])
     },
     methods: {
@@ -166,14 +160,15 @@
           currentPage: this.currentPage,
           pageSize: this.pageSize
         }).then(response => {
-          this.$bgaBackTop()
+          // 加载完数据后滚动到顶部
+          this.$refs.issueList.scrollTop = 0
           this.totalNum = response.data.total_count
           this.issues = response.data.items
         })
       }
     },
     mounted () {
-      this.$nextTick(function () {
+      this.$nextTick(() => {
         this.getIssues()
       })
     }

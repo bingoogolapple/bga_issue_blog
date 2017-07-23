@@ -1,11 +1,14 @@
 <template>
   <div class="blog-container">
     <labels-list/>
-    <router-view class="cl"/>
+    <router-view/>
   </div>
 </template>
 <style lang="scss" scoped>
   .blog-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 </style>
 <script>

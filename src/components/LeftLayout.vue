@@ -1,21 +1,28 @@
 <template>
-  <div class="left-layout-container" v-if="gitHubUser">
-    <img @click="home" class="avatar" :src="gitHubUser.avatar_url">
-    <div class="login-name">{{gitHubUser.login}}</div>
-    <div class="bio">{{gitHubUser.bio}}</div>
-    <ul class="other-site">
-      <li v-for="site in thirdPartySite" :key="site.url" @click="openThirdPartySite(site.url)">
-        <img :src="site.img">
-      </li>
-    </ul>
-    <ul class="left-menu">
-      <router-link :class="isBlog ? 'selected-menu':''" tag="li" to="/Blog">个人博客</router-link>
-      <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" to="/AboutMe">关于我</router-link>
-    </ul>
-    <div v-if="showQQGroup" class="qq-group">
-      <span>BGA 系列</span>
-      <span>开源库 QQ 群</span>
-      <img src="/static/img/qq-group.png">
+  <!-- 最外层套一层 div 避免 gitHubUser 还未加载完时，右侧占满整个浏览器 -->
+  <div style="height: 100%;">
+    <div class="left-layout-container" v-if="gitHubUser">
+      <img @click="home" class="avatar" :src="gitHubUser.avatar_url">
+      <div class="login-name">{{gitHubUser.login}}</div>
+      <div class="bio">{{gitHubUser.bio}}</div>
+      <ul class="other-site">
+        <li v-for="site in thirdPartySite" :key="site.url" @click="openThirdPartySite(site.url)">
+          <img :src="site.img">
+        </li>
+      </ul>
+      <ul class="left-menu">
+        <router-link :class="isBlog ? 'selected-menu':''" tag="li" :to="{name: 'Blog'}">个人博客</router-link>
+        <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" :to="{name: 'AboutMe'}">关于我</router-link>
+      </ul>
+      <div v-if="showQQGroup" class="qq-group">
+        <span>BGA 系列</span>
+        <span>开源库 QQ 群</span>
+        <img src="static/img/qq-group.png">
+      </div>
+      <div class="powered">
+        Powered by <span
+        @click="openThirdPartySite('https://github.com/bingoogolapple/BGAIssueBlog')">BGAIssueBlog</span>
+      </div>
     </div>
   </div>
 </template>
@@ -23,18 +30,15 @@
   $indicator-color: #3593f2;
 
   .left-layout-container {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    width: 199px;
-    background-color: #ffffff;
-    border-right: 1px solid #eeeeee;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: scroll;
   }
 
   .avatar {
     width: 70px;
-    height: 70px;
+    flex: 0 0 70px;
     border-radius: 35px;
     margin-top: 50px;
     margin-left: 65px;
@@ -43,10 +47,9 @@
 
   .login-name {
     text-align: center;
-    margin: 14px auto;
-    margin-bottom: 12px;
+    margin: 14px auto 12px;
     font-size: 14px;
-    height: 16px;
+    flex: 0 0 16px;
     line-height: 16px;
     color: #4b595f;
   }
@@ -55,24 +58,23 @@
     text-align: center;
     margin: 0px auto;
     font-size: 13px;
-    height: 18px;
+    flex: 0 0 18px;
     line-height: 18px;
     color: #849aa4;
   }
 
   .other-site {
-    list-style: none;
     margin-top: 20px;
     margin-bottom: 67px;
-    height: 20px;
+    flex: 0 0 20px;
     display: flex;
     justify-content: center;
     li {
       cursor: pointer;
       margin-right: 20px;
       img {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
       }
     }
     li:last-child {
@@ -81,13 +83,13 @@
   }
 
   .left-menu {
-    // 上面总的高度为 290px，下面 QQ 群的 margin + 高度为 240px
-    height: calc(100% - 290px - 240px);
+    flex: 1 1 150px;
     min-height: 150px;
-    list-style: none;
+    display: flex;
+    flex-direction: column;
     color: #4b595f;
     li {
-      width: 199px;
+      width: 100%;
       height: 60px;
       line-height: 60px;
       cursor: pointer;
@@ -120,10 +122,9 @@
   }
 
   .qq-group {
+    flex: 0 0 170px;
     margin-top: 50px;
     margin-left: 55px;
-    margin-bottom: 50px;
-    height: 140px;
     width: 90px;
     span {
       display: block;
@@ -141,6 +142,21 @@
     img {
       width: 90px;
       height: 90px;
+    }
+  }
+
+  .powered {
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 12px;
+    color: #888888;
+    span {
+      text-decoration: underline;
+    }
+    span:hover {
+      color: #484848;
+      cursor: pointer;
     }
   }
 </style>

@@ -1,17 +1,20 @@
 <template>
-  <div>
-    <left-layout/>
-    <router-view class="main-container"/>
+  <div class="app">
+    <left-layout class="left-container"/>
+    <router-view/>
     <bga-back-top :svgMajorColor="'#7b79e5'" :svgMinorColor="'#ba6fda'" :svgType="'rocket_smoke'"/>
   </div>
 </template>
-<style lang="scss">
-  .main-container {
-    position: fixed;
-    left: 200px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px;
+<style lang="scss" scoped>
+  .app {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .left-container {
+    flex: 0 0 199px;
+    border-right: 1px solid #eeeeee;
   }
 </style>
 <script>

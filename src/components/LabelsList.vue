@@ -1,8 +1,8 @@
 <template>
   <ul class="label-list">
-    <li>
+    <li @click="setActiveLabel(null)">
       <span class="tag" v-if="activeLabel == null" style="background-color: #3593f2;">ALL</span>
-      <span class="tag tag-unchecked" v-else @click="setActiveLabel(null)">ALL</span>
+      <span class="tag tag-unchecked" v-else>ALL</span>
     </li>
     <li v-for="label in labels" :key="label.id">
       <span class="tag" v-if="activeLabel != null && activeLabel.name === label.name" @click="setActiveLabel(null)"
@@ -13,11 +13,11 @@
 </template>
 <style lang="scss" scoped>
   .label-list {
+    flex-shrink: 0;
     padding: 20px 26px 0px 50px;
-    display: inline-block;
-    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
     li {
-      float: left;
       margin-bottom: 20px;
       margin-right: 10px;
     }

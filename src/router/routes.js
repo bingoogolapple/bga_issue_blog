@@ -13,6 +13,7 @@ export default [
     component: resolve => require.ensure([], () => resolve(require('@/views/AboutMe.vue')), 'AboutMe')
   },
   {
+    name: 'Blog',
     path: '/Blog',
     component: resolve => require.ensure([], () => resolve(require('@/views/Blog.vue')), 'Blog'),
     children: blogRoutes
