@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <left-layout class="left-container"/>
-    <router-view class="main-container"/>
+    <router-view/>
     <bga-back-top :svgMajorColor="'#7b79e5'" :svgMinorColor="'#ba6fda'" :svgType="'rocket_smoke'"/>
   </div>
 </template>
@@ -16,9 +16,6 @@
     flex-basis: 199px;
     flex-shrink: 0;
     border-right: 1px solid #eeeeee;
-  }
-
-  .main-container {
   }
 </style>
 <script>

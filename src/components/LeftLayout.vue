@@ -61,7 +61,6 @@
   }
 
   .other-site {
-    list-style: none;
     margin-top: 20px;
     margin-bottom: 67px;
     height: 20px;
@@ -71,8 +70,8 @@
       cursor: pointer;
       margin-right: 20px;
       img {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
       }
     }
     li:last-child {
@@ -82,7 +81,6 @@
 
   .left-menu {
     flex-grow: 1;
-    list-style: none;
     color: #4b595f;
     li {
       width: 199px;

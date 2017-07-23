@@ -173,7 +173,7 @@
       }
     },
     mounted () {
-      this.$nextTick(function () {
+      this.$nextTick(() => {
         this.getIssues()
       })
     }

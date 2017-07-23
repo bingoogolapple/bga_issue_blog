@@ -2,8 +2,11 @@
   <div v-if="issue" class="blog-detail-container">
     <div class="title-container">
       <span class="title">{{issue.title.trim()}}</span>
-      <span class="tag tag-small" v-for="label in issue.labels" :key="label.id" @click="setActiveLabel(label)"
-            :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
+      <ul>
+        <li class="tag tag-small" v-for="label in issue.labels" :key="label.id" @click="setActiveLabel(label)"
+            :style="{ backgroundColor: '#' + label.color}">{{label.name}}
+        </li>
+      </ul>
       <span class="back" @click="back">
         <img src="../assets/back-icon.svg"
              class="back-icon">返回
@@ -17,32 +20,31 @@
   </div>
 </template>
 <style lang="scss" scoped>
-  @import "../css/common";
-
-  $title-container-height: 60px;
-
   .blog-detail-container {
-    @include excludeLabelListHeightBox();
+    display: flex;
+    overflow: scroll;  // 本来只在 comment-container 上添加 overflow: scroll 就可以的，在 blog-detail-container 里也添加 overflow: scroll 是为了兼容 Firefox 和 Android
+    flex-direction: column;
   }
 
   .title-container {
-    height: $title-container-height;
-    line-height: $title-container-height;
+    flex-basis: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
     background-color: #f9fafc;
     padding: 0px 50px;
-    span {
-      float: left;
-    }
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
     .title {
       font-size: 22px;
       color: #4b595f;
       margin-right: 30px;
     }
-    .tag {
-      margin-top: 18px;
+    ul {
+      display: flex;
+      flex-grow: 1;
     }
     .back {
-      float: right;
       font-size: 14px;
       color: #4b595f;
       margin-right: 30px;
@@ -58,7 +60,6 @@
   }
 
   .comment-container {
-    @include heightBox($title-container-height);
     overflow: scroll;
     padding: 0px 50px;
   }
@@ -133,7 +134,7 @@
       }
     },
     mounted () {
-      this.$nextTick(function () {
+      this.$nextTick(() => {
         if (this.issue) {
           this.getComments()
         } else {
