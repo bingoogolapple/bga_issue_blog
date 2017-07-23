@@ -2,7 +2,6 @@
   <div class="app">
     <left-layout class="left-container"/>
     <router-view/>
-    <bga-back-top :svgMajorColor="'#7b79e5'" :svgMinorColor="'#ba6fda'" :svgType="'rocket_smoke'"/>
   </div>
 </template>
 <style lang="scss" scoped>

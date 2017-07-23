@@ -1,6 +1,7 @@
 <template>
   <div class="about-me bga-back-top">
     <article class="markdown-body" v-html="renderedMarkdown"/>
+    <bga-back-top :svgMajorColor="'#7b79e5'" :svgMinorColor="'#ba6fda'" :svgType="'rocket_smoke'"/>
   </div>
 </template>
 <style lang="scss" scoped>
