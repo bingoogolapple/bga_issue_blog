@@ -7,7 +7,7 @@
     <div class="scrollable-container">
       <ul class="issue-list">
         <li v-for="issue in issues" :key="issue.id">
-          <router-link class="mr30" :to="{name:'BlogDetail', params: {number: issue.number, issue: issue}}">
+          <router-link class="mr30" :to="{name: 'BlogDetail', params: {number: issue.number, issue: issue}}">
             {{issue.title.trim().substring(0, 35)}}
           </router-link>
           <span class="tag tag-small" v-for="label in issue.labels" :key="label.id" @click="setActiveLabel(label)"

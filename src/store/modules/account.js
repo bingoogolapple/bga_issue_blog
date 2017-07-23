@@ -11,15 +11,15 @@ const state = {
   showQQGroup: true,  // 如果要显示你自己的 QQ 群二维码图片的话这里配置成 true 并且替换「BGAIssueBlog-Web/static/img/qq-group.png」为你自己的 QQ 群二维码图片，否则配置成 false 即可
   thirdPartySite: [  // 配置你想在左上角展示的第三方站点信息
     {
-      img: '/static/img/github.png',  // 第三方站点图标，存放在「BGAIssueBlog-Web/static/img」目录中
+      img: 'static/img/github.png',  // 第三方站点图标，存放在「BGAIssueBlog-Web/static/img」目录中
       url: 'https://github.com/bingoogolapple'  // 第三方站点的 url
     },
     {
-      img: '/static/img/weibo.png',
+      img: 'static/img/weibo.png',
       url: 'http://weibo.com/bingoogol'
     },
     {
-      img: '/static/img/git.png',
+      img: 'static/img/git.png',
       url: 'https://bingoogolapple.gitbooks.io/bgalearningnotes-git/content'
     }
     // 如果还有其他站点需要显示，继续在这里追加
@@ -37,19 +37,19 @@ const actions = {
 }
 
 const getters = {
-  gitHubUsername: (state) => {
+  gitHubUsername (state) {
     return state.gitHubUsername
   },
-  context: (state) => {
+  context (state) {
     return `${state.gitHubUsername}/${state.gitHubUsername}.github.io`
   },
-  gitHubUser: (state) => {
+  gitHubUser (state) {
     return state.gitHubUser
   },
-  showQQGroup: (state) => {
+  showQQGroup (state) {
     return state.showQQGroup
   },
-  thirdPartySite: (state) => {
+  thirdPartySite (state) {
     return state.thirdPartySite
   }
 }

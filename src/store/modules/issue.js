@@ -30,10 +30,10 @@ const actions = {
 }
 
 const getters = {
-  labels: (state) => {
+  labels (state) {
     return state.labels
   },
-  activeLabel: (state) => {
+  activeLabel (state) {
     return state.activeLabel
   }
 }

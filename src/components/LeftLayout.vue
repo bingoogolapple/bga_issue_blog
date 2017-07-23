@@ -11,13 +11,13 @@
         </li>
       </ul>
       <ul class="left-menu">
-        <router-link :class="isBlog ? 'selected-menu':''" tag="li" to="/Blog">个人博客</router-link>
-        <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" to="/AboutMe">关于我</router-link>
+        <router-link :class="isBlog ? 'selected-menu':''" tag="li" :to="{name: 'Blog'}">个人博客</router-link>
+        <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" :to="{name: 'AboutMe'}">关于我</router-link>
       </ul>
       <div v-if="showQQGroup" class="qq-group">
         <span>BGA 系列</span>
         <span>开源库 QQ 群</span>
-        <img src="/static/img/qq-group.png">
+        <img src="static/img/qq-group.png">
       </div>
     </div>
   </div>
