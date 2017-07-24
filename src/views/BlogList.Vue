@@ -60,6 +60,7 @@
     overflow: scroll;
     display: flex;
     flex-direction: column;
+    list-style: none;
     .issue-item {
       flex: 0 0 69px;
       border-bottom: solid 1px #eeeeee;
@@ -76,6 +77,7 @@
       ul {
         display: flex;
         flex-grow: 1;
+        list-style: none;
       }
       .time {
         font-size: 15px;
