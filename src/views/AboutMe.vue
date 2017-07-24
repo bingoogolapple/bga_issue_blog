@@ -5,6 +5,7 @@
 </template>
 <style lang="scss" scoped>
   .about-me {
+    flex-grow: 1;
     padding: 30px;
     overflow: scroll;
   }
