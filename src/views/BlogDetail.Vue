@@ -41,6 +41,7 @@
       margin-right: 30px;
     }
     ul {
+      list-style: none;
       display: flex;
       flex-grow: 1;
     }

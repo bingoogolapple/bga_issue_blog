@@ -72,6 +72,7 @@
   .other-site {
     margin-top: 20px;
     margin-bottom: 67px;
+    list-style: none;
     flex: 0 0 20px;
     display: flex;
     justify-content: center;
@@ -92,6 +93,7 @@
     flex: 1 1 150px;
     min-height: 150px;
     display: flex;
+    list-style: none;
     flex-direction: column;
     color: #4b595f;
     li {

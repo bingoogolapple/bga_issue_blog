@@ -13,6 +13,7 @@
 </template>
 <style lang="scss" scoped>
   .label-list {
+    list-style: none;
     flex-shrink: 0;
     padding: 20px 26px 0px 50px;
     display: flex;
