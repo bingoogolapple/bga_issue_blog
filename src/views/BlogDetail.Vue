@@ -17,7 +17,6 @@
       <comment v-for="comment in comments" :key="comment.id" :comment="comment"/>
       <div @click="remark" class="remark">评论</div>
     </div>
-    <bga-back-top :svgMajorColor="'#7b79e5'" :svgMinorColor="'#ba6fda'" :svgType="'rocket_smoke'"/>
   </div>
 </template>
 <style lang="scss" scoped>

@@ -110,7 +110,7 @@ npm run build
 ```
 www.bingoogolapple.cn
 ```
-> 2.登陆你的域名控制台添加域名解析
+> 2.登录你的域名控制台添加域名解析
 
 ```
 「记录类型」选择「CNAME」
