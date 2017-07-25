@@ -9,7 +9,6 @@
   .app {
     display: flex;
     height: 100%;
-    overflow: hidden;
   }
 
   .left-container {

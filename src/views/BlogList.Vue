@@ -33,7 +33,7 @@
   .blog-list-container {
     flex-grow: 1;
     display: flex;
-    overflow: scroll; // 本来只在 issue-list 上添加 overflow: scroll 就可以的，在 blog-list-container 里也添加 overflow: scroll 是为了兼容 Firefox 和 Android
+    overflow-y: auto; // 本来只在 issue-list 上添加 overflow-y: auto 就可以的，在 blog-list-container 里也添加 overflow-y: auto 是为了兼容 Firefox 和 Android
     flex-direction: column;
   }
 
@@ -57,7 +57,7 @@
 
   .issue-list {
     flex-grow: 1;
-    overflow: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     list-style: none;
