@@ -39,7 +39,7 @@
   }
 
   .user-info {
-    flex: 0 0 130px;
+    flex: 0 0 150px;
     margin-top: 50px;
     display: flex;
     align-items: center;
@@ -63,6 +63,7 @@
 
     :last-child {
       font-size: 13px;
+      margin: 0 20px;
       flex: 0 0 18px;
       line-height: 18px;
       color: #849aa4;
