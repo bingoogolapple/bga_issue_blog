@@ -5,6 +5,7 @@
 </template>
 <style lang="scss" scoped>
   .about-me {
+    width: calc(100% - 260px); // 兼容 IE 10
     flex-grow: 1;
     padding: 30px;
     overflow-y: auto;

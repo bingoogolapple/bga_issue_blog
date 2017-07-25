@@ -13,7 +13,7 @@
         </li>
       </ul>
       <ul class="left-menu">
-        <router-link :class="isBlog ? 'selected-menu':''" tag="li" :to="{name: 'Blog'}">个人博客</router-link>
+        <router-link :class="isBlog ? 'selected-menu':''" tag="li" :to="{name: 'BlogList'}">个人博客</router-link>
         <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" :to="{name: 'AboutMe'}">关于我</router-link>
       </ul>
       <div v-if="showQQGroup" class="qq-group">
