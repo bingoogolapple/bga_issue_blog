@@ -99,7 +99,7 @@ npm run build
 > 2.发布
 
 ```
-拷贝「BGAIssueBlog/dist」目录里的所有文件到「GitHub Pages」的根目录下
+拷贝「BGAIssueBlog/docs」目录里的所有文件到「GitHub Pages」的根目录下
 并将「GitHub Pages」仓库 PUSH 到 GitHub 上
 ```
 
