@@ -23,7 +23,7 @@
   .blog-detail-container {
     flex-grow: 1;
     display: flex;
-    overflow: scroll; // 本来只在 comment-container 上添加 overflow: scroll 就可以的，在 blog-detail-container 里也添加 overflow: scroll 是为了兼容 Firefox 和 Android
+    overflow-y: auto; // 本来只在 comment-container 上添加 overflow-y: auto 就可以的，在 blog-detail-container 里也添加 overflow-y: auto 是为了兼容 Firefox 和 Android
     flex-direction: column;
   }
 
@@ -62,7 +62,7 @@
 
   .comment-container {
     flex-grow: 1;
-    overflow: scroll;
+    overflow-y: auto;
     padding: 0px 50px;
   }
 

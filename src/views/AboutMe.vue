@@ -7,7 +7,7 @@
   .about-me {
     flex-grow: 1;
     padding: 30px;
-    overflow: scroll;
+    overflow-y: auto;
   }
 </style>
 <script>

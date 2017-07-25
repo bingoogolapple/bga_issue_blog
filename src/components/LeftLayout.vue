@@ -1,6 +1,6 @@
 <template>
   <!-- 最外层套一层 div 避免 gitHubUser 还未加载完时，右侧占满整个浏览器 -->
-  <div style="height: 100%;">
+  <div>
     <div class="left-layout-container">
       <div class="user-info">
         <img v-if="gitHubUser" @click="home" :src="gitHubUser.avatar_url">
@@ -35,7 +35,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    overflow: scroll;
+    overflow-y: auto;
   }
 
   .user-info {
