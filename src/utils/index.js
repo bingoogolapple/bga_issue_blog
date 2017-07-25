@@ -5,7 +5,7 @@
 const gitHubApi = require('./gitHubApi')
 
 const isGetUserInfo = function (vm, config) {
-  return config && (config.url === `https://api.github.com/repos/${vm.$store.getters.context}/labels` || config.url === `https://api.github.com/users/${vm.$store.getters.gitHubUsername}`)
+  return config && (config.url === `https://api.github.com/repos/${vm.$store.getters.repo}/labels` || config.url === `https://api.github.com/users/${vm.$store.getters.gitHubUsername}`)
 }
 
 module.exports = {

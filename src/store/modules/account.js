@@ -8,6 +8,7 @@ const SET_GITHUB_USER = 'SET_GITHUB_USER'
 const state = {
   gitHubUser: null,  // 这个不要修改，这个不要修改，这个不要修改
   gitHubUsername: 'bingoogolapple',  // 修改成你自己的 GitHub 账号
+  repo: 'bingoogolapple/bingoogolapple.github.io',  // 记录 Issue 的仓库的全名「用户名/仓库名」
   pageSize: 10,  // 博客列表每页显示多少条博客
   showQQGroup: true,  // 如果要显示你自己的 QQ 群二维码图片的话这里配置成 true 并且替换「BGAIssueBlog-Web/static/img/qq-group.png」为你自己的 QQ 群二维码图片，否则配置成 false 即可
   thirdPartySite: [  // 配置你想在左上角展示的第三方站点信息
@@ -41,8 +42,8 @@ const getters = {
   gitHubUsername (state) {
     return state.gitHubUsername
   },
-  context (state) {
-    return `${state.gitHubUsername}/${state.gitHubUsername}.github.io`
+  repo (state) {
+    return state.repo
   },
   gitHubUser (state) {
     return state.gitHubUser
