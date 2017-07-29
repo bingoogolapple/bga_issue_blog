@@ -1,7 +1,7 @@
 <template>
   <div v-if="issue" class="blog-detail-container">
     <div class="title-container">
-      <span class="title">{{issue.title.trim()}}</span>
+      <span class="title">{{issue.title}}</span>
       <ul>
         <li class="tag tag-small" v-for="label in issue.labels" :key="label.id" @click="setActiveLabel(label)"
             :style="{ backgroundColor: '#' + label.color}">{{label.name}}
@@ -38,14 +38,18 @@
     .title {
       font-size: 22px;
       color: #4b595f;
-      margin-right: 30px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     ul {
       list-style: none;
       display: flex;
       flex-grow: 1;
+      margin: 0 30px;
     }
     .back {
+      flex: 0 0 65px;
       font-size: 14px;
       color: #4b595f;
       margin-right: 30px;
