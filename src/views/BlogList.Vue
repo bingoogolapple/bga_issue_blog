@@ -6,8 +6,8 @@
     </div>
     <ul class="issue-list" ref="issueList">
       <li class="issue-item" v-for="issue in issues" :key="issue.id">
-        <router-link class="mr30" tag="a" :to="{name: 'BlogDetail', params: {number: issue.number, issue: issue}}">
-          {{issue.title.trim().substring(0, 35)}}
+        <router-link tag="a" :to="{name: 'BlogDetail', params: {number: issue.number, issue: issue}}">
+          {{issue.title}}
         </router-link>
         <ul>
           <li class="tag tag-small" v-for="label in issue.labels" :key="label.id" @click="setActiveLabel(label)"
@@ -70,6 +70,9 @@
       a {
         font-size: 15px;
         color: #4b595f;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       a:hover {
         color: #3593f2;
@@ -77,6 +80,7 @@
       ul {
         display: flex;
         flex-grow: 1;
+        margin: 0 30px;
         list-style: none;
       }
       .time {
