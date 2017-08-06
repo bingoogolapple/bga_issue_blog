@@ -15,7 +15,7 @@ module.exports = {
   getIssues (vue, data) {
     let label = ''
     if (data.label && data.label.trim().length > 0) {
-      label = `+label:${data.label}`
+      label = `+label:"${data.label}"`
     }
 
     return vue.$http.get(`https://api.github.com/search/issues?q=${data.keyword}+state:open+repo:${vue.$store.getters.repo}${label}&sort=created&order=desc&page=${data.currentPage}&per_page=${data.pageSize}`)
