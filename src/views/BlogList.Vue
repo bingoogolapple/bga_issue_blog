@@ -79,7 +79,7 @@
       }
       ul {
         display: flex;
-        flex-grow: 1;
+        flex: 1 0 auto;
         margin: 0 30px;
         list-style: none;
       }
