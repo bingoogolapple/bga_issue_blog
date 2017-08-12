@@ -24,7 +24,7 @@ import store from './store'
 import router from './router'
 import './css/main.css'
 
-import { gitHubApi, isGetUserInfo } from './utils'
+import { gitHubApi, isGetUserInfo, queryParse, queryStringify } from './utils'
 import { showMessage, successMessage, errorMessage, warningMessage, infoMessage } from './utils/toastUtil'
 
 Vue.prototype._ = lodash
@@ -39,6 +39,8 @@ Vue.prototype.$warningMessage = warningMessage
 Vue.prototype.$gitHubApi = gitHubApi
 Vue.prototype.$infoMessage = infoMessage
 Vue.prototype.$isGetUserInfo = isGetUserInfo
+Vue.prototype.$queryParse = queryParse
+Vue.prototype.$queryStringify = queryStringify
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -94,12 +96,17 @@ axios.interceptors.response.use((response) => {
   let isGetUserInfo = vm.$isGetUserInfo(vm, error.config)
   if (!isGetUserInfo) {
     loadingInstance.close()
-    console.error('response', JSON.stringify(error))
 
-    if (error.response && error.response.statusText) {
-      vm.$errorMessage(error.response.status + ' ' + error.response.statusText)
+    if (error.response) {
+      if (error.response.status === 401) {
+        vm.$warningMessage('登录信息已过期，请重新登录!')
+      } else if (error.response.status === 403) {
+        vm.$warningMessage('您操作的太频繁，请稍后再试!')
+      } else if (error.response.statusText) {
+        vm.$errorMessage(error.response.status + ' ' + error.response.statusText)
+      }
     }
   }
 
-  return Promise.reject(error.response)
+  return Promise.reject(error)
 })
