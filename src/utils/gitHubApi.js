@@ -28,5 +28,26 @@ module.exports = {
   },
   getReadme (vue) {
     return vue.$http.get(`https://raw.githubusercontent.com/${vue.$store.getters.repo}/master/README.md`)
+  },
+  getAccessToken (vue, code) {
+    const auth = vue.$store.getters.auth
+    return vue.$http.post(auth.proxy, {
+      code,
+      client_id: auth.clientID,
+      client_secret: auth.clientSecret
+    }, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+  },
+  addComment (vue, url, comment) {
+    return vue.$http.post(url, {
+      body: comment
+    }, {
+      headers: {
+        Authorization: `token ${vue.$store.getters.accessToken}`
+      }
+    })
   }
 }
