@@ -33,7 +33,7 @@
 > 详情界面
 
 ![详情界面](https://user-images.githubusercontent.com/8949716/29244749-102186dc-7ff3-11e7-8a17-6ab3ed848139.png)
-![详情界面-滚动到顶部和评论](https://user-images.githubusercontent.com/8949716/29244755-4122f69e-7ff3-11e7-8fcc-5f942821fe31.png)
+![详情界面-滚动到顶部和评论](https://user-images.githubusercontent.com/8949716/29249940-3e1a4366-806c-11e7-9075-24e4731f6d62.png)
 
 > 关于我界面
 
