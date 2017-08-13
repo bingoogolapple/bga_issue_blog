@@ -15,11 +15,7 @@
     <div class="comment-container bga-back-top" ref="commentContainer">
       <comment :comment="issue"/>
       <comment v-for="comment in comments" :key="comment.id" :comment="comment"/>
-      <div v-if="accessToken" class="add-comment-container">
-        <textarea rows="5" v-model="newComment" placeholder="说点什么？「支持 MarkDown 语法」"/>
-        <div @click="addComment" class="width-match-parent-btn">评论</div>
-      </div>
-      <div v-else @click="login" class="width-match-parent-btn">使用 GitHub 登录</div>
+      <add-comment :commentsUrl="issue.comments_url" @addCommentSuccess="handleAddCommentSuccess"/>
     </div>
   </div>
 </template>
@@ -73,41 +69,11 @@
     overflow-y: auto;
     padding: 0px 50px;
   }
-
-  .width-match-parent-btn {
-    cursor: pointer;
-    user-select: none;
-    margin: 30px 0px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: #eff7ff;
-    color: #3593f2;
-    &:hover {
-      background-color: #3593f2;
-      color: #ffffff;
-    }
-  }
-
-  .add-comment-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
-    textarea {
-      border-radius: 3px;
-      padding: 15px 30px 15px 15px;
-      border: solid 1px #eeeeee;
-      font-size: 14px;
-      color: #4b595f;
-      outline: none;
-    }
-  }
 </style>
 <script>
-  import { mapActions, mapGetters } from 'vuex'
+  import { mapActions } from 'vuex'
   import Comment from '../components/Comment.vue'
+  import AddComment from '../components/AddComment.vue'
 
   export default{
     data () {
@@ -118,18 +84,10 @@
         newComment: null
       }
     },
-    components: {Comment},
-    computed: {
-      ...mapGetters([
-        'accessToken',
-        'loginLink'
-      ])
-    },
+    components: {Comment, AddComment},
     methods: {
       ...mapActions([
-        'updateActiveLabel',
-        'setAccessToken',
-        'setTokenUser'
+        'updateActiveLabel'
       ]),
       setActiveLabel (label) {
         this.updateActiveLabel(label)
@@ -151,44 +109,15 @@
       back () {
         this.$router.go(-1)
       },
-      login () {
-        window.location.href = this.loginLink
-      },
-      fetchAccessToken () {
-        const query = this.$queryParse()
-        if (query.code) {
-          const code = query.code
-          delete query.code
-          const replacedUrl = `${window.location.origin}${window.location.pathname}${this.$queryStringify(query)}${window.location.hash}`
-          history.replaceState(null, null, replacedUrl)
-
-          this.$gitHubApi.getAccessToken(this, code).then(response => {
-            if (response.data && response.data.access_token) {
-              this.setAccessToken(response.data.access_token)
-            }
-          })
-        }
-      },
-      addComment () {
-        if (this.issue && this.newComment && this.newComment.trim().length > 0) {
-          this.$gitHubApi.addComment(this, this.issue.comments_url, this.newComment.trim()).then(response => {
-            if (response.data && response.data) {
-              this.comments.push(response.data)
-              this.newComment = null
-              this.$nextTick(() => {
-                // 如果这里不加个 setTimeout 的话，Comment 数量太多时不会自动滚动到底部
-                setTimeout(() => {
-                  let commentContainer = this.$refs.commentContainer
-                  commentContainer.scrollTop = commentContainer.scrollHeight - commentContainer.clientHeight
-                }, 16)
-              })
-            }
-          }).catch((error) => {
-            if (error.response && error.response.status === 401) {
-              this.setAccessToken(null)
-            }
-          })
-        }
+      handleAddCommentSuccess (comment) {
+        this.comments.push(comment)
+        this.$nextTick(() => {
+          // 如果这里不加个 setTimeout 的话，Comment 数量太多时不会自动滚动到底部
+          setTimeout(() => {
+            let commentContainer = this.$refs.commentContainer
+            commentContainer.scrollTop = commentContainer.scrollHeight - commentContainer.clientHeight
+          }, 16)
+        })
       }
     },
     created () {
@@ -204,8 +133,6 @@
     },
     mounted () {
       this.$nextTick(() => {
-        this.fetchAccessToken()
-
         if (this.issue) {
           this.getComments()
         } else {
