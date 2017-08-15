@@ -6,9 +6,10 @@ import { makeAction } from '../util'
 const SET_GITHUB_USER = 'SET_GITHUB_USER'
 const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN'
 const SET_TOKEN_USER = 'SET_TOKEN_USER'
+const LS_KEY_ACCESS_TOKEN = 'LS_KEY_ACCESS_TOKEN'
 
 const state = {
-  accessToken: localStorage.getItem('accessToken'),  // 这个不要修改，这个不要修改，这个不要修改。当前登录用户的 GitHub AccessToken
+  accessToken: localStorage.getItem(LS_KEY_ACCESS_TOKEN),  // 这个不要修改，这个不要修改，这个不要修改。当前登录用户的 GitHub AccessToken
   auth: {
     proxy: 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token', // 这个不要修改，这个不要修改，这个不要修改。
     clientID: '8fe09ec96875938b908d',   // 改成你在 https://github.com/settings/applications/new 新建的 OAuth application 的 Client ID
@@ -16,6 +17,8 @@ const state = {
   },
   gitHubUser: null,  // 这个不要修改，这个不要修改，这个不要修改。
   gitHubUsername: 'bingoogolapple',  // 修改成你自己的 GitHub 账号
+  copyright: '2014 - 2017',  // 修改成你自己的
+  recordNumber: '蜀ICP备17023604号',  // 修改成你自己的备案编号，如果没有备案的话就设置为 null
   repo: 'bingoogolapple/bingoogolapple.github.io',  // 记录 Issue 的仓库的全名「用户名/仓库名」
   pageSize: 10,  // 博客列表每页显示多少条博客
   showQQGroup: true,  // 如果要显示你自己的 QQ 群二维码图片的话这里配置成 true 并且替换「BGAIssueBlog-Web/static/img/qq-group.png」为你自己的 QQ 群二维码图片，否则配置成 false 即可
@@ -42,7 +45,7 @@ const mutations = {
   },
   [SET_ACCESS_TOKEN] (state, accessToken) {
     state.accessToken = accessToken
-    localStorage.setItem('accessToken', accessToken)
+    localStorage.setItem(LS_KEY_ACCESS_TOKEN, accessToken)
   },
   [SET_TOKEN_USER] (state, tokenUser) {
     state.tokenUser = tokenUser
@@ -57,6 +60,12 @@ const actions = {
 const getters = {
   gitHubUsername (state) {
     return state.gitHubUsername
+  },
+  copyright (state) {
+    return `${state.copyright} ${state.gitHubUsername}`
+  },
+  recordNumber (state) {
+    return state.recordNumber
   },
   repo (state) {
     return state.repo

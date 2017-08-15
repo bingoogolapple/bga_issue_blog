@@ -21,8 +21,10 @@
         <span>开源库 QQ 群</span>
         <img src="static/img/qq-group.png">
       </div>
+      <div class="copyright">@ {{copyright}}</div>
+      <div v-if="recordNumber" class="copyright">{{recordNumber}}</div>
       <div class="powered">
-        Powered by <span
+        主题 - <span
         @click="openThirdPartySite('https://github.com/bingoogolapple/BGAIssueBlog')">BGAIssueBlog</span>
       </div>
     </div>
@@ -50,6 +52,10 @@
       flex: 0 0 70px;
       border-radius: 35px;
       cursor: pointer;
+      &:hover {
+        transform: rotate(360deg);
+        transition: 1s all ease-in;
+      }
     }
 
     .login-name {
@@ -154,12 +160,20 @@
     }
   }
 
-  .powered {
-    flex: 0 0 40px;
+  .copyright, .powered {
     text-align: center;
-    line-height: 40px;
     font-size: 12px;
     color: #888888;
+  }
+
+  .copyright {
+    flex: 0 0 20px;
+    line-height: 20px;
+  }
+
+  .powered {
+    flex: 0 0 40px;
+    line-height: 40px;
     span {
       text-decoration: underline;
     }
@@ -175,6 +189,8 @@
   export default {
     computed: {
       ...mapGetters([
+        'copyright',
+        'recordNumber',
         'gitHubUser',
         'showQQGroup',
         'thirdPartySite'
