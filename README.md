@@ -28,16 +28,16 @@
 
 > 列表界面
 
-![列表界面](https://user-images.githubusercontent.com/8949716/29244731-a3762ea2-7ff2-11e7-9af1-db932e83f7d4.png)
+![列表界面](https://user-images.githubusercontent.com/8949716/29306642-28079ec8-81d1-11e7-959f-4da1e0dc488a.png)
 
 > 详情界面
 
-![详情界面](https://user-images.githubusercontent.com/8949716/29244749-102186dc-7ff3-11e7-8a17-6ab3ed848139.png)
-![详情界面-滚动到顶部和评论](https://user-images.githubusercontent.com/8949716/29249940-3e1a4366-806c-11e7-9075-24e4731f6d62.png)
+![详情界面](https://user-images.githubusercontent.com/8949716/29306679-4bb2d824-81d1-11e7-9e9b-d792f17aaf89.png)
+![详情界面-滚动到顶部和评论](https://user-images.githubusercontent.com/8949716/29306736-809e28c2-81d1-11e7-8252-8526a3baedbd.png)
 
 > 关于我界面
 
-![关于我界面](https://user-images.githubusercontent.com/8949716/29244767-864408d0-7ff3-11e7-8f3d-2738b9fd31d8.png)
+![关于我界面](https://user-images.githubusercontent.com/8949716/29306836-d88c4c12-81d1-11e7-80c6-d461c05abeca.png)
 
 ## 使用方法
 
