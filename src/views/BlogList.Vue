@@ -4,7 +4,7 @@
       <span>名称</span>
       <span>创建时间</span>
     </div>
-    <ul class="issue-list" ref="issueList">
+    <ul v-if="issues && issues.length > 0" class="issue-list" ref="issueList">
       <li class="issue-item" v-for="issue in issues" :key="issue.id">
         <router-link tag="a" :to="{name: 'BlogDetail', params: {number: issue.number, issue: issue}}">
           {{issue.title}}
@@ -19,8 +19,12 @@
         </span>
       </li>
     </ul>
+    <div v-else class="no-data">
+      <div></div>
+      <span>该分类下还没有文章哦</span>
+    </div>
     <div class="bottom-bar">
-      <input type="text" class="fl query" v-model="keyword" placeholder="Search issues"
+      <input type="text" class="fl query" v-model="keyword" placeholder="按文章标题或内容搜索..."
              @keyup.enter="searchIssues()"/>
       <pagination :totalNum="totalNum" :currentPage="currentPage" :pageSize="pageSize"
                   @currentPageChanged="handleCurrentPageChanged"/>
@@ -89,6 +93,25 @@
         cursor: default;
         flex: 0 0 $time-width;
       }
+    }
+  }
+
+  .no-data {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    div {
+      flex: 1 0 160px;
+      background: url("../assets/no-data.png") no-repeat bottom;
+    }
+    span {
+      flex-grow: 1;
+      text-align: center;
+      padding: 30px;
+      color: #666666;
+      font-size: 14px;
     }
   }
 
@@ -167,7 +190,9 @@
           pageSize: this.pageSize
         }).then(response => {
           // 加载完数据后滚动到顶部
-          this.$refs.issueList.scrollTop = 0
+          if (this.$refs.issueList) {
+            this.$refs.issueList.scrollTop = 0
+          }
           this.totalNum = response.data.total_count
           this.issues = response.data.items
         })
