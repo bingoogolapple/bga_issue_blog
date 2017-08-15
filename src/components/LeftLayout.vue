@@ -50,6 +50,10 @@
       flex: 0 0 70px;
       border-radius: 35px;
       cursor: pointer;
+      &:hover {
+        transform: rotate(360deg);
+        transition: 1s all ease-in;
+      }
     }
 
     .login-name {
