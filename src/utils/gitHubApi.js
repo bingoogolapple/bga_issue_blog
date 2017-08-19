@@ -18,16 +18,32 @@ module.exports = {
       label = `+label:"${data.label}"`
     }
 
-    return vue.$http.get(`https://api.github.com/search/issues?q=${data.keyword}+state:open+repo:${vue.$store.getters.repo}${label}&sort=created&order=desc&page=${data.currentPage}&per_page=${data.pageSize}`)
+    return vue.$http.get(`https://api.github.com/search/issues?q=${data.keyword}+state:open+repo:${vue.$store.getters.repo}${label}&sort=created&order=desc&page=${data.currentPage}&per_page=${data.pageSize}`, {
+      headers: {
+        'Accept': 'application/vnd.github.v3.html'
+      }
+    })
   },
   getIssue (vue, number) {
-    return vue.$http.get(`https://api.github.com/repos/${vue.$store.getters.repo}/issues/${number}`)
+    return vue.$http.get(`https://api.github.com/repos/${vue.$store.getters.repo}/issues/${number}`, {
+      headers: {
+        'Accept': 'application/vnd.github.v3.html'
+      }
+    })
   },
   getComments (vue, url) {
-    return vue.$http.get(url)
+    return vue.$http.get(url, {
+      headers: {
+        'Accept': 'application/vnd.github.v3.html'
+      }
+    })
   },
   getReadme (vue) {
-    return vue.$http.get(`https://raw.githubusercontent.com/${vue.$store.getters.repo}/master/README.md`)
+    return vue.$http.get(`https://raw.githubusercontent.com/${vue.$store.getters.repo}/master/README.md`, {
+      headers: {
+        'Accept': 'application/vnd.github.v3.html'
+      }
+    })
   },
   getAccessToken (vue, code) {
     const auth = vue.$store.getters.auth
