@@ -7,7 +7,7 @@
       </div>
       <span class="time">{{$moment(comment.created_at).format('YYYY-MM-DD HH:mm')}}</span>
     </div>
-    <article class="markdown-body" v-html="renderedMarkdown"/>
+    <article class="comment-body markdown-body" v-html="renderedMarkdown"/>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -47,8 +47,9 @@
     }
   }
 
-  .markdown-body {
+  .comment-body {
     padding: 15px;
+    font-size: 14px;
   }
 </style>
 <script>
@@ -62,7 +63,9 @@
     methods: {
       renderMarkdown () {
         this.renderedMarkdown = ''
-        if (this.comment.body) {
+        if (this.comment.body_html) {
+          this.renderedMarkdown = this.comment.body_html
+        } else if (this.comment.body) {
           this.renderedMarkdown = this.$marked(this.comment.body)
         }
       },
