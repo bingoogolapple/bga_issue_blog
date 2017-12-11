@@ -4,7 +4,7 @@
       <span>名称</span>
       <span>创建时间</span>
     </div>
-    <ul v-if="issues && issues.length > 0" class="issue-list" ref="issueList">
+    <ul v-if="!isNoData" class="issue-list" ref="issueList">
       <li class="issue-item" v-for="issue in issues" :key="issue.id">
         <router-link tag="a" :to="{name: 'BlogDetail', params: {number: issue.number, issue: issue}}">
           {{issue.title}}
@@ -19,7 +19,7 @@
         </span>
       </li>
     </ul>
-    <div v-else class="no-data">
+    <div v-if="isNoData" class="no-data">
       <div></div>
       <span>该分类下还没有文章哦</span>
     </div>
@@ -149,7 +149,8 @@
         keyword: '',
         totalNum: 0,
         currentPage: 1,
-        issues: []
+        issues: [],
+        isNoData: false
       }
     },
     components: {Pagination},
@@ -183,6 +184,7 @@
         this.getIssues()
       },
       getIssues () {
+        this.isNoData = false
         this.$gitHubApi.getIssues(this, {
           label: this.activeLabel ? this.activeLabel.name : '',
           keyword: this.keyword,
@@ -195,6 +197,9 @@
           }
           this.totalNum = response.data.total_count
           this.issues = response.data.items
+          if (!this.issues || this.issues.length === 0) {
+            this.isNoData = true
+          }
         })
       }
     },
