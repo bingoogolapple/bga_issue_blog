@@ -17,7 +17,7 @@ const state = {
   },
   gitHubUser: null,  // 这个不要修改，这个不要修改，这个不要修改。
   gitHubUsername: 'bingoogolapple',  // 修改成你自己的 GitHub 账号
-  copyright: '2014 - 2017',  // 修改成你自己的
+  copyright: '2014 - 2018',  // 修改成你自己的
   recordNumber: '蜀ICP备17023604号',  // 修改成你自己的备案编号，如果没有备案的话就设置为 null
   repo: 'bingoogolapple/bingoogolapple.github.io',  // 记录 Issue 的仓库的全名「用户名/仓库名」
   pageSize: 10,  // 博客列表每页显示多少条博客

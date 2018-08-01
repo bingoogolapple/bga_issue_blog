@@ -21,7 +21,7 @@
         <span>开源库 QQ 群</span>
         <img src="static/img/qq-group.png">
       </div>
-      <div class="copyright">@ {{copyright}}</div>
+      <div class="copyright">© {{copyright}}</div>
       <div v-if="recordNumber" class="copyright">{{recordNumber}}</div>
       <div class="powered">
         主题 - <span
