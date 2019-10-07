@@ -1,7 +1,7 @@
 {
   "name": "bga-issue-blog",
   "version": "1.0.0",
-  "description": "BGAIssueBlog",
+  "description": "Vue 全家桶抓取 GitHub 上的 Issues，结合 GitHub Pages 搭建个人博客站点，支持 GitHub 登录和评论",
   "author": "bingoogolapple <bingoogolapple@gmail.com>",
   "private": true,
   "scripts": {

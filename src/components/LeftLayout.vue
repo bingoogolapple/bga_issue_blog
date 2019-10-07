@@ -25,7 +25,7 @@
       <div v-if="recordNumber" class="copyright">{{recordNumber}}</div>
       <div class="powered">
         主题 - <span
-        @click="openThirdPartySite('https://github.com/bingoogolapple/BGAIssueBlog')">BGAIssueBlog</span>
+        @click="openThirdPartySite('https://github.com/bingoogolapple/bga_issue_blog')">bga_issue_blog</span>
       </div>
     </div>
   </div>

@@ -1,7 +1,9 @@
-:running:BGAIssueBlog:running:
+:running:bga_issue_blog:running:
 ============
 
-### [使用了该博客系统的个人博客站点列表](https://github.com/bingoogolapple/BGAIssueBlog/issues/4)，如果你的个人博客站点也使用了该博客系统，希望你能追加你的个人博客站点链接到这里面
+* 当前为 Vue 全家桶版本，[查看 Flutter 版本](https://github.com/bingoogolapple/bga_issue_blog/tree/flutter)
+
+### [使用了该博客系统的个人博客站点列表](https://github.com/bingoogolapple/bga_issue_blog/issues/4)，如果你的个人博客站点也使用了该博客系统，希望你能追加你的个人博客站点链接到这里面
 
 ## 目录
 
@@ -56,7 +58,7 @@ npm run dev
 > 3.[创建 OAuth Application](https://github.com/settings/applications/new)
 
 ![OAuth Application](https://user-images.githubusercontent.com/8949716/29244726-34983f0c-7ff2-11e7-98a7-6435b419c8dd.png)
-> 4.个人配置 - 修改「BGAIssueBlog/src/store/account.js」文件中的「state」属性
+> 4.个人配置 - 修改「bga_issue_blog/src/store/account.js」文件中的「state」属性
 
 ```JavaScript
 const state = {
@@ -72,15 +74,11 @@ const state = {
   recordNumber: '蜀ICP备17023604号',  // 修改成你自己的备案编号，如果没有备案的话就设置为 null
   repo: 'bingoogolapple/bingoogolapple.github.io',  // 记录 Issue 的仓库的全名「用户名/仓库名」
   pageSize: 10,  // 博客列表每页显示多少条博客
-  showQQGroup: true,  // 如果要显示你自己的 QQ 群二维码图片的话这里配置成 true 并且替换「BGAIssueBlog-Web/static/img/qq-group.png」为你自己的 QQ 群二维码图片，否则配置成 false 即可
+  showQQGroup: true,  // 如果要显示你自己的 QQ 群二维码图片的话这里配置成 true 并且替换「bga_issue_blog/static/img/qq-group.png」为你自己的 QQ 群二维码图片，否则配置成 false 即可
   thirdPartySite: [  // 配置你想在左上角展示的第三方站点信息
     {
-      img: 'static/img/github.png',  // 第三方站点图标，存放在「BGAIssueBlog-Web/static/img」目录中
+      img: 'static/img/github.png',  // 第三方站点图标，存放在「bga_issue_blog/static/img」目录中
       url: 'https://github.com/bingoogolapple'  // 第三方站点的 url
-    },
-    {
-      img: 'static/img/weibo.png',
-      url: 'http://weibo.com/bingoogol'
     },
     {
       img: 'static/img/git.png',
@@ -93,12 +91,12 @@ const state = {
 > 5.个人配置 - 修改网站图标
 
 ```
-修改「BGAIssueBlog/static/img/favicon.ico」文件
+修改「bga_issue_blog/static/img/favicon.ico」文件
 ```
 > 6.个人配置 - 修改网站标题
 
 ```
-修改「BGAIssueBlog/index.html」文件里「<title>」标签里的内容
+修改「bga_issue_blog/index.html」文件里「<title>」标签里的内容
 ```
 
 #### 发布到 GitHub Pages
@@ -111,7 +109,7 @@ npm run build
 > 2.发布
 
 ```
-拷贝「BGAIssueBlog/docs」目录里的所有文件到「GitHub Pages」的根目录下
+拷贝「bga_issue_blog/docs」目录里的所有文件到「GitHub Pages」的根目录下
 并将「GitHub Pages」仓库 PUSH 到 GitHub 上
 ```
 

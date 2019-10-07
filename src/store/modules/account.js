@@ -21,15 +21,11 @@ const state = {
   recordNumber: '蜀ICP备17023604号',  // 修改成你自己的备案编号，如果没有备案的话就设置为 null
   repo: 'bingoogolapple/bingoogolapple.github.io',  // 记录 Issue 的仓库的全名「用户名/仓库名」
   pageSize: 10,  // 博客列表每页显示多少条博客
-  showQQGroup: true,  // 如果要显示你自己的 QQ 群二维码图片的话这里配置成 true 并且替换「BGAIssueBlog-Web/static/img/qq-group.png」为你自己的 QQ 群二维码图片，否则配置成 false 即可
+  showQQGroup: true,  // 如果要显示你自己的 QQ 群二维码图片的话这里配置成 true 并且替换「bga_issue_blog/static/img/qq-group.png」为你自己的 QQ 群二维码图片，否则配置成 false 即可
   thirdPartySite: [  // 配置你想在左上角展示的第三方站点信息
     {
-      img: 'static/img/github.png',  // 第三方站点图标，存放在「BGAIssueBlog-Web/static/img」目录中
+      img: 'static/img/github.png',  // 第三方站点图标，存放在「bga_issue_blog/static/img」目录中
       url: 'https://github.com/bingoogolapple'  // 第三方站点的 url
-    },
-    {
-      img: 'static/img/weibo.png',
-      url: 'http://weibo.com/bingoogol'
     },
     {
       img: 'static/img/git.png',
