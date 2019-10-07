@@ -1,16 +1,20 @@
 import 'package:dio/dio.dart';
 
 class NetworkManager {
+  // 保存单例
   static final NetworkManager _instance = new NetworkManager._();
+
+  // 工厂构造函数
+  factory NetworkManager() => _instance;
+
+  // 获取单例
   static NetworkManager get instance => _instance;
 
   final Dio _dio = Dio();
+
   Dio get dio => _dio;
 
-  factory NetworkManager() {
-    return _instance;
-  }
-
+  // 私有构造函数
   NetworkManager._() {
     _dio.options.baseUrl = 'https://api.github.com/';
     _dio.options.connectTimeout = 5000;

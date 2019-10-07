@@ -1,5 +1,5 @@
 import 'package:bga_issue_blog/dto/label.dart';
-import 'package:bga_issue_blog/utils/hexcolor.dart';
+import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:flutter/material.dart';
 
 class LabelItem extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:bga_issue_blog/dto/label.dart';
 import 'package:bga_issue_blog/dto/user_info.dart';
 import 'package:dio/dio.dart';
 import 'package:bga_issue_blog/net/network_manager.dart';
-import 'package:bga_issue_blog/constants.dart';
+import 'package:bga_issue_blog/utils/constants.dart';
 
 abstract class GitHubApi {
   // 获取个人信息 https://api.github.com/users/bingoogolapple

@@ -1,4 +1,4 @@
-import 'package:bga_issue_blog/constants.dart';
+import 'package:bga_issue_blog/utils/constants.dart';
 import 'package:bga_issue_blog/widget/issue_list.dart';
 import 'package:bga_issue_blog/widget/label_list.dart';
 import 'package:bga_issue_blog/widget/left_widget.dart';
@@ -13,8 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String _currentLabel;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +28,8 @@ class _HomePageState extends State<HomePage> {
               flex: 3,
               child: Column(
                 children: [
-                  LabelList(onLabelChanged: (label) => _currentLabel = label),
-                  Expanded(child: IssueList(currentLabel: _currentLabel)),
+                  LabelList(),
+                  Expanded(child: IssueList()),
                 ],
               ))
         ],

@@ -1,6 +1,6 @@
 import 'package:bga_issue_blog/dto/user_info.dart';
 import 'package:bga_issue_blog/net/github_api.dart';
-import 'package:bga_issue_blog/utils/hexcolor.dart';
+import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

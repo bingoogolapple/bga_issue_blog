@@ -2,7 +2,7 @@ import 'package:bga_issue_blog/page/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-//  setErrorPage();
+  setErrorPage();
   runApp(BlogApp());
 }
 

@@ -2,12 +2,11 @@ import 'package:bga_issue_blog/dto/label.dart';
 import 'package:bga_issue_blog/net/github_api.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
 import 'package:bga_issue_blog/widget/label_item.dart';
+import 'package:bga_issue_blog/utils/events.dart';
 import 'package:flutter/material.dart';
 
 class LabelList extends StatefulWidget {
-  const LabelList({Key key, @required this.onLabelChanged}) : super(key: key);
-
-  final ValueChanged<String> onLabelChanged;
+  const LabelList({Key key}) : super(key: key);
 
   @override
   _LabelListState createState() => _LabelListState();
@@ -47,15 +46,15 @@ class _LabelListState extends State<LabelList> {
         runSpacing: 4,
         children: _labelList.map((label) {
           return LabelItem(
-            label: label,
-            selected: label.name == _currentLabel,
-            onSelected: (selected) {
-              setState(() {
-                _currentLabel = selected ? label.name : null;
+              label: label,
+              selected: label.name == _currentLabel,
+              onSelected: (selected) {
+                setState(() {
+                  _currentLabel = selected ? label.name : null;
+                });
+//                callbackBus.emit(event_label_changed, _currentLabel);
+                streamBus.emit(LabelChangedEvent(_currentLabel));
               });
-              widget.onLabelChanged(_currentLabel);
-            },
-          );
         }).toList());
   }
 }
