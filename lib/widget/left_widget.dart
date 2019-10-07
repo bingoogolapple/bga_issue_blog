@@ -22,7 +22,7 @@ class _LeftWidgetState extends State<LeftWidget> {
     _fetchUserInfo();
   }
 
-  _fetchUserInfo() async {
+  _fetchUserInfo() {
     GitHubApi.getUserInfo().then((userInfo) {
       setState(() {
         _userInfo = userInfo;
@@ -100,9 +100,11 @@ class _LeftWidgetState extends State<LeftWidget> {
       widthFactor: 1.0,
       child: RawMaterialButton(
         hoverColor: HexColor('#e5f1fc'),
+        highlightColor: HexColor('#e5f1fc'),
         fillColor: checked ? HexColor('#e5f1fc') : Colors.transparent,
-        hoverElevation: 0,
         elevation: 0,
+        hoverElevation: 0,
+        highlightElevation: 0,
         padding: EdgeInsets.all(15),
         textStyle: TextStyle(
           color: checked ? HexColor('#3593f2') : HexColor('#4b595f'),

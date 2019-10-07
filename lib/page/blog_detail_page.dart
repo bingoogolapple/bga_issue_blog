@@ -21,7 +21,7 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
     _fetchIssue();
   }
 
-  _fetchIssue() async {
+  _fetchIssue() {
     GitHubApi.getIssue(widget.number).then((issue) {
       setState(() {
         _issue = issue;
@@ -32,7 +32,7 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
     });
   }
 
-  _fetchComments() async {
+  _fetchComments() {
     if (_issue != null && this._issue['comments'] > 0) {
       GitHubApi.getComments(_issue['comments_url']).then((comments) {
         setState(() {

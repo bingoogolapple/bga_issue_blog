@@ -14,6 +14,7 @@ class IssueList extends StatefulWidget {
 
 class _IssueListState extends State<IssueList> {
   List _issueList;
+  int _currentPage = 1;
 
   @override
   void initState() {
@@ -21,8 +22,8 @@ class _IssueListState extends State<IssueList> {
     _fetchIssueList();
   }
 
-  _fetchIssueList() async {
-    GitHubApi.getIssueList(widget.currentLabel, '', 1, 20).then((data) {
+  _fetchIssueList() {
+    return GitHubApi.getIssueList(widget.currentLabel, '', _currentPage, 20).then((data) {
       setState(() {
         _issueList = data;
       });
@@ -40,10 +41,19 @@ class _IssueListState extends State<IssueList> {
     if (_issueList.isEmpty) {
       return EmptyWidget('没有博客');
     }
-    return ListView.builder(
+    return RefreshIndicator(
+      child: ListView.builder(
         itemCount: _issueList.length,
         itemBuilder: (BuildContext context, int position) {
           return IssueItem(issue: _issueList[position]);
-        });
+        },
+      ),
+      onRefresh: _pullToRefresh,
+    );
+  }
+
+  Future<Null> _pullToRefresh() async {
+    _currentPage = 1;
+    return await _fetchIssueList();
   }
 }

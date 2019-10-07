@@ -23,7 +23,7 @@ class _LabelListState extends State<LabelList> {
     _fetchLabelList();
   }
 
-  _fetchLabelList() async {
+  _fetchLabelList() {
     GitHubApi.getLabelList().then((labelList) {
       setState(() {
         _labelList = labelList;

@@ -6,17 +6,17 @@ import 'package:bga_issue_blog/constants.dart';
 
 abstract class GitHubApi {
   // 获取个人信息 https://api.github.com/users/bingoogolapple
-  static Future<UserInfo> getUserInfo() async {
+  static Future<UserInfo> getUserInfo() {
     return NetworkManager.instance.dio.get('users/${Constants.gitHubUsername}').then((Response response) => UserInfo.fromJson(response.data));
   }
 
   // 获取标签列表 https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/labels
-  static Future<List<Label>> getLabelList() async {
+  static Future<List<Label>> getLabelList() {
     return NetworkManager.instance.dio.get('repos/${Constants.repo}/labels').then((Response response) => Label.fromJsonList(response.data));
   }
 
   // 分页获取 issue 列表 https://api.github.com/search/issues?q=+state:open+repo:bingoogolapple/bingoogolapple.github.io+label:%22Android%22&sort=created&order=desc&page=1&per_page=20
-  static Future<dynamic> getIssueList(String label, String keyword, int currentPage, int pageSize) async {
+  static Future<dynamic> getIssueList(String label, String keyword, int currentPage, int pageSize) {
     String labelStr = '';
     if (label != null && label.trim().length > 0) {
       labelStr = '+label:"$label"';
@@ -27,7 +27,7 @@ abstract class GitHubApi {
   }
 
   // 获取 issue 详情 https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/issues/209
-  static Future<dynamic> getIssue(int number) async {
+  static Future<dynamic> getIssue(int number) {
     return NetworkManager.instance.dio.get('repos/${Constants.repo}/issues/$number').then((Response response) => response.data);
   }
 
