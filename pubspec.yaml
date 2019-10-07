@@ -12,6 +12,10 @@ dependencies:
 
   cupertino_icons: ^0.1.2
 
+  json_annotation: ^3.0.0
+
+  transparent_image: ^1.0.0
+
   dio: ^3.0.3 # https://github.com/flutterchina/dio
 
   flutter_html: ^0.11.0 # https://github.com/Sub6Resources/flutter_html
@@ -20,8 +24,18 @@ dependencies:
   flutter_markdown: ^0.2.0 # https://github.com/flutter/flutter_markdown
 
 dev_dependencies:
+  build_runner: ^1.7.1
+  json_serializable: ^3.2.2 # 可以配置别名 alias genjson="flutter packages pub run build_runner build"
   flutter_test:
     sdk: flutter
 
+  http_server: ^0.9.8+3 # https://pub.flutter-io.cn/packages/http_server
+
 flutter:
   uses-material-design: true
+  assets:
+    - images/favicon.ico
+    - images/no-data.png
+    - images/git.png
+    - images/github.png
+    - images/qq-group.png

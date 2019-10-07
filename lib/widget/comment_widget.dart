@@ -1,5 +1,6 @@
 import 'package:bga_issue_blog/widget/markdown_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class CommentWidget extends StatelessWidget {
   const CommentWidget({Key key, @required this.comment}) : super(key: key);
@@ -15,9 +16,7 @@ class CommentWidget extends StatelessWidget {
         children: [
           Container(
             child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(comment['user']['avatar_url']),
-              ),
+              leading: ClipOval(child: FadeInImage.memoryNetwork(width: 50, placeholder: kTransparentImage, image: comment['user']['avatar_url'])),
               title: Text(comment['user']['login']),
               trailing: Text(DateTime.tryParse(comment['created_at']).toString().substring(0, "yyyy-MM-dd HH:mm".length)),
             ),

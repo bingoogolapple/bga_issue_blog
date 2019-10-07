@@ -1,20 +1,18 @@
+import 'package:bga_issue_blog/dto/label.dart';
+import 'package:bga_issue_blog/dto/user_info.dart';
 import 'package:dio/dio.dart';
 import 'package:bga_issue_blog/net/network_manager.dart';
 import 'package:bga_issue_blog/constants.dart';
 
 abstract class GitHubApi {
   // 获取个人信息 https://api.github.com/users/bingoogolapple
-  static Future<dynamic> getGitHubUser() async {
-    return NetworkManager.instance.dio.get('users/${Constants.gitHubUsername}').then((Response response) => response.data);
+  static Future<UserInfo> getUserInfo() async {
+    return NetworkManager.instance.dio.get('users/${Constants.gitHubUsername}').then((Response response) => UserInfo.fromJson(response.data));
   }
 
   // 获取标签列表 https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/labels
-  static Future<dynamic> getLabelList() async {
-    return NetworkManager.instance.dio.get('repos/${Constants.repo}/labels').then((Response response) => response.data);
-  }
-
-  static Future<dynamic> getUserInfo() async {
-    return await Future.wait([getGitHubUser(), getLabelList()]);
+  static Future<List<Label>> getLabelList() async {
+    return NetworkManager.instance.dio.get('repos/${Constants.repo}/labels').then((Response response) => Label.fromJsonList(response.data));
   }
 
   // 分页获取 issue 列表 https://api.github.com/search/issues?q=+state:open+repo:bingoogolapple/bingoogolapple.github.io+label:%22Android%22&sort=created&order=desc&page=1&per_page=20

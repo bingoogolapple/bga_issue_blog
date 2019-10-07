@@ -49,6 +49,7 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(_issue == null ? '博客详情' : _issue['title']),
+          backgroundColor: Colors.lightBlue,
         ),
         body: buildBodyWidget);
   }
