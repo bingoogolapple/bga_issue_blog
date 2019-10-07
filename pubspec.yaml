@@ -1,0 +1,27 @@
+name: bga_issue_blog
+description: Flutter 抓取 GitHub 上的 Issues，结合 GitHub Pages 搭建个人博客站点，支持 GitHub 登录和评论
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+
+  dio: ^3.0.3 # https://github.com/flutterchina/dio
+
+  flutter_html: ^0.11.0 # https://github.com/Sub6Resources/flutter_html
+  markdown: ^2.1.1 # https://github.com/dart-lang/markdown
+
+  flutter_markdown: ^0.2.0 # https://github.com/flutter/flutter_markdown
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
