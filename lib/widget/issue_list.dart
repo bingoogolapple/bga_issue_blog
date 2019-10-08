@@ -15,7 +15,8 @@ class IssueList extends StatefulWidget {
 
 class _IssueListState extends State<IssueList> {
   List _issueList;
-  int _currentPage = 1;
+  int _page = 1;
+  String _keyword = '';
   String _currentLabel;
   StreamSubscription _labelSubscription;
 
@@ -23,10 +24,13 @@ class _IssueListState extends State<IssueList> {
   void initState() {
     super.initState();
 
-//    callbackBus.on(event_label_changed, onLabelChanged);
+    callbackBus.on(event_keyword_changed, onKeywordChanged);
+    callbackBus.on(event_page_changed, onPageChanged);
 
     _labelSubscription = streamBus.on<LabelChangedEvent>().listen((event) {
       _currentLabel = event.label;
+      _keyword = '';
+      _page = 1;
       _fetchIssueList();
     });
 
@@ -35,7 +39,8 @@ class _IssueListState extends State<IssueList> {
 
   @override
   void dispose() {
-//    callbackBus.off(event_label_changed, onLabelChanged);
+    callbackBus.off(event_keyword_changed, onKeywordChanged);
+    callbackBus.off(event_page_changed, onPageChanged);
 
     if (_labelSubscription != null) {
       _labelSubscription.cancel();
@@ -43,13 +48,18 @@ class _IssueListState extends State<IssueList> {
     super.dispose();
   }
 
-  void onLabelChanged(newLabel) {
-    _currentLabel = newLabel;
+  void onKeywordChanged(newKeyword) {
+    _keyword = newKeyword;
+    _fetchIssueList();
+  }
+
+  void onPageChanged(newPage) {
+    _page = newPage;
     _fetchIssueList();
   }
 
   _fetchIssueList() {
-    return GitHubApi.getIssueList(_currentLabel, '', _currentPage, 20).then((data) {
+    return GitHubApi.getIssueList(_currentLabel, _keyword, _page, 20).then((data) {
       setState(() {
         _issueList = data;
       });
@@ -79,7 +89,7 @@ class _IssueListState extends State<IssueList> {
   }
 
   Future<Null> _pullToRefresh() async {
-    _currentPage = 1;
+    _page = 1;
     return await _fetchIssueList();
   }
 }

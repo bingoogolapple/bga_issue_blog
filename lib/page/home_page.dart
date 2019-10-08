@@ -2,6 +2,7 @@ import 'package:bga_issue_blog/utils/constants.dart';
 import 'package:bga_issue_blog/widget/issue_list.dart';
 import 'package:bga_issue_blog/widget/label_list.dart';
 import 'package:bga_issue_blog/widget/left_widget.dart';
+import 'package:bga_issue_blog/widget/search_layout.dart';
 
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   LabelList(),
                   Expanded(child: IssueList()),
+                  SearchLayout(),
                 ],
               ))
         ],

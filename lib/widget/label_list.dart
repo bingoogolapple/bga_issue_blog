@@ -52,7 +52,6 @@ class _LabelListState extends State<LabelList> {
                 setState(() {
                   _currentLabel = selected ? label.name : null;
                 });
-//                callbackBus.emit(event_label_changed, _currentLabel);
                 streamBus.emit(LabelChangedEvent(_currentLabel));
               });
         }).toList());
