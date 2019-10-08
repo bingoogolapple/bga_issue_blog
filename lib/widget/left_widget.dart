@@ -1,7 +1,9 @@
 import 'package:bga_issue_blog/dto/user_info.dart';
 import 'package:bga_issue_blog/net/github_api.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
+import 'package:bga_issue_blog/utils/open_url.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -51,19 +53,23 @@ class _LeftWidgetState extends State<LeftWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'images/github.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.cover,
-            ),
+            GestureDetector(
+                child: Image.asset(
+                  'images/github.png',
+                  width: 30,
+                  height: 30,
+                  fit: BoxFit.cover,
+                ),
+                onTap: () => launchURL(context, 'https://github.com/bingoogolapple')),
             SizedBox(width: 10),
-            Image.asset(
-              'images/git.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.cover,
-            )
+            GestureDetector(
+                child: Image.asset(
+                  'images/git.png',
+                  width: 30,
+                  height: 30,
+                  fit: BoxFit.cover,
+                ),
+                onTap: () => launchURL(context, 'https://bingoogolapple.gitbooks.io/bgalearningnotes-git')),
           ],
         ),
         SizedBox(height: 30),
@@ -89,7 +95,23 @@ class _LeftWidgetState extends State<LeftWidget> {
         SizedBox(height: 20),
         Text('©2014 - ${DateTime.now().year} bingoogolapple\n蜀ICP备17023604号', textAlign: TextAlign.center, style: TextStyle(color: HexColor('#849aa4'))),
         SizedBox(height: 10),
-        Text('主题 - bga_issue_blog', style: TextStyle(color: HexColor('#849aa4'))),
+        Text.rich(
+          TextSpan(
+            text: '主题 - ',
+            style: TextStyle(color: HexColor('#849aa4')),
+            children: [
+              TextSpan(
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    launchURL(context, 'https://github.com/bingoogolapple/bga_issue_blog');
+                  },
+                text: 'bga_issue_blog',
+                style: TextStyle(color: HexColor('#849aa4'), decoration: TextDecoration.underline),
+              )
+            ],
+          ),
+          textAlign: TextAlign.center,
+        ),
         SizedBox(height: 50),
       ],
     ));

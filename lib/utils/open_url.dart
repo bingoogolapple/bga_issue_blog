@@ -1,0 +1,1 @@
+export 'package:bga_issue_blog/utils/open_url_web.dart' if (dart.library.io) 'package:bga_issue_blog/utils/open_url_io.dart';
