@@ -1,5 +1,6 @@
 import 'package:bga_issue_blog/dto/user_info.dart';
 import 'package:bga_issue_blog/net/github_api.dart';
+import 'package:bga_issue_blog/utils/constants.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:bga_issue_blog/utils/open_url.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
@@ -52,25 +53,7 @@ class _LeftWidgetState extends State<LeftWidget> {
         SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-                child: Image.asset(
-                  'images/github.png',
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.cover,
-                ),
-                onTap: () => launchURL(context, 'https://github.com/bingoogolapple')),
-            SizedBox(width: 10),
-            GestureDetector(
-                child: Image.asset(
-                  'images/git.png',
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.cover,
-                ),
-                onTap: () => launchURL(context, 'https://bingoogolapple.gitbooks.io/bgalearningnotes-git')),
-          ],
+          children: Constants.personalLinkMap.keys.map((imagePath) => buildImageLink(imagePath, Constants.personalLinkMap[imagePath])).toList(),
         ),
         SizedBox(height: 30),
         buildMenuItem('个人博客', true),
@@ -115,6 +98,24 @@ class _LeftWidgetState extends State<LeftWidget> {
         SizedBox(height: 50),
       ],
     ));
+  }
+
+  Widget buildImageLink(imagePath, url) {
+    return SizedBox(
+      width: 40,
+      height: 40,
+      child: RawMaterialButton(
+          elevation: 0,
+          hoverElevation: 0,
+          highlightElevation: 0,
+          child: Image.asset(
+            imagePath,
+            width: 30,
+            height: 30,
+            fit: BoxFit.cover,
+          ),
+          onPressed: () => launchURL(context, url)),
+    );
   }
 
   Widget buildMenuItem(String title, bool checked) {

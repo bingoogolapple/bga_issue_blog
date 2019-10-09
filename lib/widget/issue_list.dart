@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bga_issue_blog/net/github_api.dart';
+import 'package:bga_issue_blog/utils/base_state.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
 import 'package:bga_issue_blog/widget/issue_item.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,11 @@ class IssueList extends StatefulWidget {
   _IssueListState createState() => _IssueListState();
 }
 
-class _IssueListState extends State<IssueList> {
+class _IssueListState extends BaseState<IssueList> {
   List _issueList;
   int _page = 1;
   String _keyword = '';
   String _currentLabel;
-  StreamSubscription _labelSubscription;
 
   @override
   void initState() {
@@ -27,12 +27,12 @@ class _IssueListState extends State<IssueList> {
     callbackBus.on(event_keyword_changed, onKeywordChanged);
     callbackBus.on(event_page_changed, onPageChanged);
 
-    _labelSubscription = streamBus.on<LabelChangedEvent>().listen((event) {
+    addSubscription(streamBus.on<LabelChangedEvent>().listen((event) {
       _currentLabel = event.label;
       _keyword = '';
       _page = 1;
       _fetchIssueList();
-    });
+    }));
 
     _fetchIssueList();
   }
@@ -41,10 +41,6 @@ class _IssueListState extends State<IssueList> {
   void dispose() {
     callbackBus.off(event_keyword_changed, onKeywordChanged);
     callbackBus.off(event_page_changed, onPageChanged);
-
-    if (_labelSubscription != null) {
-      _labelSubscription.cancel();
-    }
     super.dispose();
   }
 

@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   LabelList(),
+                  Divider(),
                   Expanded(child: IssueList()),
                   SearchLayout(),
                 ],

@@ -1,21 +1,23 @@
+import 'package:bga_issue_blog/utils/base_state.dart';
+import 'package:bga_issue_blog/utils/events.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:flutter/material.dart';
 
 class PageLayout extends StatefulWidget {
-  PageLayout({Key key, @required this.onPageChanged}) : super(key: key);
-
-  final ValueChanged onPageChanged;
+  PageLayout({Key key}) : super(key: key);
 
   _PageLayoutState createState() => _PageLayoutState();
 }
 
-class _PageLayoutState extends State<PageLayout> {
-  final _pageController = TextEditingController(text: '1');
+class _PageLayoutState extends BaseState<PageLayout> {
+  final _pageController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _pageController.addListener(() {});
+    addSubscription(streamBus.on<LabelChangedEvent>().listen((event) {
+      _pageController.text = '1';
+    }));
   }
 
   @override
@@ -41,7 +43,7 @@ class _PageLayoutState extends State<PageLayout> {
               }
               page--;
               _pageController.text = '$page';
-              widget.onPageChanged(page);
+              notifyPageChanged(page);
             }),
         SizedBox(width: 10),
         SizedBox(
@@ -50,14 +52,14 @@ class _PageLayoutState extends State<PageLayout> {
               controller: _pageController,
               textInputAction: TextInputAction.search,
               textAlign: TextAlign.center,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.number, // 在 Web 上不好使
               onSubmitted: (text) {
                 int page = int.tryParse(_pageController.text);
                 if (page == null || page <= 0) {
                   page = 1;
                   _pageController.text = '$page';
                 }
-                widget.onPageChanged(page);
+                notifyPageChanged(page);
               },
               style: TextStyle(fontSize: 14, color: HexColor('#4b595f')),
               decoration: InputDecoration(
@@ -79,9 +81,13 @@ class _PageLayoutState extends State<PageLayout> {
               }
               page++;
               _pageController.text = '$page';
-              widget.onPageChanged(page);
+              notifyPageChanged(page);
             }),
       ],
     );
+  }
+
+  void notifyPageChanged(page) {
+    callbackBus.emit(event_page_changed, page);
   }
 }

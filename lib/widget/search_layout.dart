@@ -1,10 +1,25 @@
+import 'package:bga_issue_blog/utils/base_state.dart';
 import 'package:bga_issue_blog/utils/events.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:bga_issue_blog/widget/page_layout.dart';
 import 'package:flutter/material.dart';
 
-class SearchLayout extends StatelessWidget {
+class SearchLayout extends StatefulWidget {
   SearchLayout({Key key}) : super(key: key);
+
+  _SearchLayoutState createState() => _SearchLayoutState();
+}
+
+class _SearchLayoutState extends BaseState<SearchLayout> {
+  final _keywordController = TextEditingController(text: '');
+
+  @override
+  void initState() {
+    super.initState();
+    addSubscription(streamBus.on<LabelChangedEvent>().listen((event) {
+      _keywordController.text = '';
+    }));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +34,7 @@ class SearchLayout extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
+                controller: _keywordController,
                 textInputAction: TextInputAction.search,
                 onSubmitted: (text) {
                   callbackBus.emit(event_keyword_changed, text);
@@ -36,9 +52,7 @@ class SearchLayout extends StatelessWidget {
               ),
             ),
             SizedBox(width: 10),
-            PageLayout(onPageChanged: (page) {
-              callbackBus.emit(event_page_changed, page);
-            }),
+            PageLayout(),
           ],
         ));
   }
