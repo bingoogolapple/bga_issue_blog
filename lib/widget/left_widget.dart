@@ -10,7 +10,10 @@ import 'package:flutter/widgets.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class LeftWidget extends StatefulWidget {
-  LeftWidget({Key key}) : super(key: key);
+  LeftWidget({Key key, this.isAboutMeChecked, this.onShowReadMeChanged}) : super(key: key);
+
+  final bool isAboutMeChecked;
+  final ValueChanged<bool> onShowReadMeChanged;
 
   @override
   _LeftWidgetState createState() => _LeftWidgetState();
@@ -56,9 +59,9 @@ class _LeftWidgetState extends State<LeftWidget> {
           children: Constants.personalLinkMap.keys.map((imagePath) => buildImageLink(imagePath, Constants.personalLinkMap[imagePath])).toList(),
         ),
         SizedBox(height: 30),
-        buildMenuItem('个人博客', true),
+        buildMenuItem('个人博客', false),
         SizedBox(height: 10),
-        buildMenuItem('关于我', false),
+        buildMenuItem('关于我', true),
         SizedBox(height: 30),
         Text.rich(
           TextSpan(
@@ -118,7 +121,8 @@ class _LeftWidgetState extends State<LeftWidget> {
     );
   }
 
-  Widget buildMenuItem(String title, bool checked) {
+  Widget buildMenuItem(String title, bool isAboutMe) {
+    bool checked = (widget.isAboutMeChecked && isAboutMe) || (!widget.isAboutMeChecked && !isAboutMe);
     return FractionallySizedBox(
       widthFactor: 1.0,
       child: RawMaterialButton(
@@ -137,7 +141,7 @@ class _LeftWidgetState extends State<LeftWidget> {
         shape: Border(left: BorderSide(color: HexColor('#3593f2'), width: 4)),
         child: Text(title),
         onPressed: () {
-          Scaffold.of(context).showSnackBar(new SnackBar(content: new Text('点击了$title')));
+          widget.onShowReadMeChanged(isAboutMe);
         },
       ),
     );

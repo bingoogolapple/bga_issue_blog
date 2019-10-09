@@ -1,4 +1,5 @@
 import 'package:bga_issue_blog/utils/constants.dart';
+import 'package:bga_issue_blog/widget/about_me_widget.dart';
 import 'package:bga_issue_blog/widget/issue_list.dart';
 import 'package:bga_issue_blog/widget/label_list.dart';
 import 'package:bga_issue_blog/widget/left_widget.dart';
@@ -14,8 +15,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool _isAboutMeChecked = false;
+
   @override
   Widget build(BuildContext context) {
+    Widget rightWidget;
+    if (_isAboutMeChecked) {
+      rightWidget = AboutMePage();
+    } else {
+      rightWidget = Column(
+        children: [
+          LabelList(),
+          Divider(),
+          Expanded(child: IssueList()),
+          SearchLayout(),
+        ],
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(Constants.gitHubUsername),
@@ -23,18 +39,17 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Row(
         children: <Widget>[
-          Expanded(flex: 1, child: LeftWidget()),
-          VerticalDivider(width: 1),
           Expanded(
-              flex: 3,
-              child: Column(
-                children: [
-                  LabelList(),
-                  Divider(),
-                  Expanded(child: IssueList()),
-                  SearchLayout(),
-                ],
-              ))
+              flex: 1,
+              child: LeftWidget(
+                  isAboutMeChecked: _isAboutMeChecked,
+                  onShowReadMeChanged: (isAboutMeChecked) {
+                    setState(() {
+                      _isAboutMeChecked = isAboutMeChecked;
+                    });
+                  })),
+          VerticalDivider(width: 1),
+          Expanded(flex: 3, child: rightWidget),
         ],
       ),
     );

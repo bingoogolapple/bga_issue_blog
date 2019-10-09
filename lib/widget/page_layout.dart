@@ -10,7 +10,7 @@ class PageLayout extends StatefulWidget {
 }
 
 class _PageLayoutState extends BaseState<PageLayout> {
-  final _pageController = TextEditingController();
+  final _pageController = TextEditingController(text: '1');
 
   @override
   void initState() {

@@ -38,4 +38,9 @@ abstract class GitHubApi {
       return response.data;
     });
   }
+
+  // 获取关于我信息 https://raw.githubusercontent.com/bingoogolapple/bingoogolapple.github.io/master/README.md
+  static Future<dynamic> getReadme() {
+    return NetworkManager.instance.dio.get('https://raw.githubusercontent.com/${Constants.repo}/master/README.md').then((Response response) => response.data);
+  }
 }
