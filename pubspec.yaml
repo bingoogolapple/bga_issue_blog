@@ -31,7 +31,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  http_server: ^0.9.8+3 # https://pub.flutter-io.cn/packages/http_server
+  shelf_static: ^0.2.8 # https://pub.flutter-io.cn/packages/shelf_static
 
 flutter:
   uses-material-design: true
