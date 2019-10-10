@@ -1,7 +1,8 @@
 :running:bga_issue_blog:running:
 ============
 
-* 当前为 Flutter 版本，[查看 Vue 版本](https://github.com/bingoogolapple/bga_issue_blog/tree/vue)
+* 当前为 Flutter 版本，[点击进行预览](http://issues.bingoogolapple.cn)
+* [查看 Vue 版本](https://github.com/bingoogolapple/bga_issue_blog/tree/vue)
 
 ### [使用了该博客系统的个人博客站点列表](https://github.com/bingoogolapple/bga_issue_blog/issues/4)，如果你的个人博客站点也使用了该博客系统，希望你能追加你的个人博客站点链接到这里面
 

@@ -15,6 +15,9 @@ void main() async {
   }
   Directory('build/web').renameSync('docs');
 
+  print('创建 GitHub Pages CNAME');
+  File('docs/CNAME').writeAsStringSync('issues.bingoogolapple.cn');
+
   print('启动静态服务..');
   await startStaticServer();
   print('打开浏览器进行预览..');
