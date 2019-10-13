@@ -74,13 +74,15 @@ class _IssueListState extends BaseState<IssueList> {
       return EmptyWidget('没有博客');
     }
     return RefreshIndicator(
-      child: ListView.builder(
-        itemCount: _issueList.length,
-        itemBuilder: (BuildContext context, int position) {
-          return IssueItem(issue: _issueList[position]);
-        },
-      ),
       onRefresh: _pullToRefresh,
+      child: Scrollbar(
+        child: ListView.builder(
+          itemCount: _issueList.length,
+          itemBuilder: (BuildContext context, int position) {
+            return IssueItem(issue: _issueList[position]);
+          },
+        ),
+      ),
     );
   }
 

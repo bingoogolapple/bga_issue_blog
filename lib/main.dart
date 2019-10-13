@@ -1,8 +1,9 @@
 import 'package:bga_issue_blog/page/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:bga_issue_blog/page/phone_home_page.dart';
 
 void main() {
-  setErrorPage();
+  // setErrorPage();
   runApp(BlogApp());
 }
 
@@ -18,7 +19,9 @@ void setErrorPage() {
 class BlogApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // 跳转到其他页面后如果不想展示返回按钮，可以把 MaterialApp 再作为他页面的根 Widget
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'bga_issue_blog',
       theme: ThemeData(
         primarySwatch: Colors.purple,
