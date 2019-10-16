@@ -10,10 +10,12 @@ import 'package:flutter/widgets.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class LeftWidget extends StatefulWidget {
-  LeftWidget({Key key, this.isAboutMeChecked, this.onShowReadMeChanged}) : super(key: key);
+  LeftWidget({Key key, this.userInfo, this.isAboutMeChecked, this.onShowReadMeChanged, this.onUserInfoChanged}) : super(key: key);
 
+  final UserInfo userInfo;
   final bool isAboutMeChecked;
   final ValueChanged<bool> onShowReadMeChanged;
+  final ValueChanged<UserInfo> onUserInfoChanged;
 
   @override
   _LeftWidgetState createState() => _LeftWidgetState();
@@ -25,14 +27,21 @@ class _LeftWidgetState extends State<LeftWidget> {
   @override
   void initState() {
     super.initState();
+    _userInfo = widget.userInfo;
     _fetchUserInfo();
   }
 
   _fetchUserInfo() {
+    if (_userInfo != null) {
+      return;
+    }
     GitHubApi.getUserInfo().then((userInfo) {
       setState(() {
         _userInfo = userInfo;
       });
+      if (widget.onUserInfoChanged != null) {
+        widget.onUserInfoChanged(userInfo);
+      }
     }).catchError((error) {
       print('获取个人信息失败 $error');
       Scaffold.of(context).showSnackBar(new SnackBar(content: new Text('获取个人信息失败')));
@@ -46,61 +55,69 @@ class _LeftWidgetState extends State<LeftWidget> {
     }
     return SingleChildScrollView(
         child: Column(
-      children: [
-        SizedBox(height: 10),
-        ClipOval(child: FadeInImage.memoryNetwork(width: 70, placeholder: kTransparentImage, image: _userInfo.avatarUrl)),
-        SizedBox(height: 10),
-        Text(_userInfo.login),
-        SizedBox(height: 10),
-        Text(_userInfo.bio),
-        SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: Constants.personalLinkMap.keys.map((imagePath) => buildImageLink(imagePath, Constants.personalLinkMap[imagePath])).toList(),
-        ),
-        SizedBox(height: 30),
-        buildMenuItem('个人博客', false),
-        SizedBox(height: 10),
-        buildMenuItem('关于我', true),
-        SizedBox(height: 30),
-        Text.rich(
-          TextSpan(
-            text: 'BGA 系列\n',
-            style: TextStyle(color: HexColor('#4b595f')),
-            children: [TextSpan(text: '开源库 QQ 群', style: TextStyle(color: HexColor('#849aa4')))],
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 5),
-        Image.asset(
-          'images/qq-group.png',
-          width: 80,
-          height: 80,
-          fit: BoxFit.cover,
-        ),
-        SizedBox(height: 20),
-        Text('©2014 - ${DateTime.now().year} bingoogolapple\n蜀ICP备17023604号', textAlign: TextAlign.center, style: TextStyle(color: HexColor('#849aa4'))),
-        SizedBox(height: 10),
-        Text.rich(
-          TextSpan(
-            text: '主题 - ',
-            style: TextStyle(color: HexColor('#849aa4')),
-            children: [
+          children: [
+            DrawerHeader(
+              child: Column(
+                children: [
+                  ClipOval(
+                    child: FadeInImage.memoryNetwork(width: 70, height: 70, placeholder: kTransparentImage, image: _userInfo.avatarUrl),
+                  ),
+                  SizedBox(height: 10),
+                  Text(_userInfo.login),
+                  SizedBox(height: 10),
+                  Text(_userInfo.bio),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: Constants.personalLinkMap.keys.map((imagePath) => buildImageLink(imagePath, Constants.personalLinkMap[imagePath])).toList(),
+            ),
+            SizedBox(height: 30),
+            buildMenuItem('个人博客', false),
+            SizedBox(height: 10),
+            buildMenuItem('关于我', true),
+            SizedBox(height: 30),
+            Text.rich(
               TextSpan(
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    launchURL(context, 'https://github.com/bingoogolapple/bga_issue_blog');
-                  },
-                text: 'bga_issue_blog',
-                style: TextStyle(color: HexColor('#849aa4'), decoration: TextDecoration.underline),
-              )
-            ],
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 50),
-      ],
-    ));
+                text: 'BGA 系列\n',
+                style: TextStyle(color: HexColor('#4b595f')),
+                children: [TextSpan(text: '开源库 QQ 群', style: TextStyle(color: HexColor('#849aa4')))],
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 5),
+            Image.asset(
+              'images/qq-group.png',
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: 20),
+            Text('©2014 - ${DateTime
+                .now()
+                .year} bingoogolapple\n蜀ICP备17023604号', textAlign: TextAlign.center, style: TextStyle(color: HexColor('#849aa4'))),
+            SizedBox(height: 10),
+            Text.rich(
+              TextSpan(
+                text: '主题 - ',
+                style: TextStyle(color: HexColor('#849aa4')),
+                children: [
+                  TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        launchURL(context, 'https://github.com/bingoogolapple/bga_issue_blog');
+                      },
+                    text: 'bga_issue_blog',
+                    style: TextStyle(color: HexColor('#849aa4'), decoration: TextDecoration.underline),
+                  )
+                ],
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 50),
+          ],
+        ));
   }
 
   Widget buildImageLink(imagePath, url) {

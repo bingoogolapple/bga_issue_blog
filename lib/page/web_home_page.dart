@@ -3,7 +3,8 @@ import 'package:bga_issue_blog/widget/about_me_widget.dart';
 import 'package:bga_issue_blog/widget/issue_list.dart';
 import 'package:bga_issue_blog/widget/label_list.dart';
 import 'package:bga_issue_blog/widget/left_widget.dart';
-import 'package:bga_issue_blog/widget/search_layout.dart';
+import 'package:bga_issue_blog/widget/page_widget.dart';
+import 'package:bga_issue_blog/widget/search_widget.dart';
 
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,19 @@ class _HomePageState extends State<HomePage> {
           LabelList(),
           Divider(),
           Expanded(child: IssueList()),
-          SearchLayout(),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: SearchWidget(),
+                ),
+                SizedBox(width: 20),
+                PageWidget(),
+              ],
+            ),
+          ),
         ],
       );
     }

@@ -721,7 +721,7 @@ file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/main.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/net/github_api.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/net/network_manager.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/blog_detail_page.dart
-file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/home_page.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/web_home_page.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/base_state.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/composite_subscription.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/constants.dart
@@ -741,5 +741,5 @@ file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/label_list
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/left_widget.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/markdown_widget.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/markdown_widget_web.dart
-file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/page_layout.dart
-file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/search_layout.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/page_widget.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/search_widget.dart

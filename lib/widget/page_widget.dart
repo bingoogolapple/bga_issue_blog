@@ -3,13 +3,13 @@ import 'package:bga_issue_blog/utils/events.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:flutter/material.dart';
 
-class PageLayout extends StatefulWidget {
-  PageLayout({Key key}) : super(key: key);
+class PageWidget extends StatefulWidget {
+  PageWidget({Key key}) : super(key: key);
 
-  _PageLayoutState createState() => _PageLayoutState();
+  _PageWidgetState createState() => _PageWidgetState();
 }
 
-class _PageLayoutState extends BaseState<PageLayout> {
+class _PageWidgetState extends BaseState<PageWidget> {
   final _pageController = TextEditingController(text: '1');
 
   @override

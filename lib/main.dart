@@ -1,6 +1,5 @@
-import 'package:bga_issue_blog/page/home_page.dart';
+import 'package:bga_issue_blog/page/web_home_page.dart' if (dart.library.io) 'package:bga_issue_blog/page/phone_home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:bga_issue_blog/page/phone_home_page.dart';
 
 void main() {
   // setErrorPage();
