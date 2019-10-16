@@ -1,3 +1,6 @@
+import 'package:bga_issue_blog/datatransfer/app_model.dart';
+import 'package:bga_issue_blog/datatransfer/app_model_change_notification.dart';
+import 'package:bga_issue_blog/datatransfer/app_provider.dart';
 import 'package:bga_issue_blog/utils/constants.dart';
 import 'package:bga_issue_blog/widget/about_me_widget.dart';
 import 'package:bga_issue_blog/widget/issue_list.dart';
@@ -16,12 +19,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _isAboutMeChecked = false;
+  AppModel _appModel = AppModel();
 
   @override
   Widget build(BuildContext context) {
     Widget rightWidget;
-    if (_isAboutMeChecked) {
+    if (_appModel.isAboutMeChecked) {
       rightWidget = AboutMePage();
     } else {
       rightWidget = Column(
@@ -45,25 +48,26 @@ class _HomePageState extends State<HomePage> {
         ],
       );
     }
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(Constants.gitHubUsername),
-        backgroundColor: Colors.lightGreen,
-      ),
-      body: Row(
-        children: <Widget>[
-          Expanded(
-              flex: 1,
-              child: LeftWidget(
-                  isAboutMeChecked: _isAboutMeChecked,
-                  onShowReadMeChanged: (isAboutMeChecked) {
-                    setState(() {
-                      _isAboutMeChecked = isAboutMeChecked;
-                    });
-                  })),
-          VerticalDivider(width: 1),
-          Expanded(flex: 3, child: rightWidget),
-        ],
+    return NotificationListener<AppModelChangedNotification>(
+      onNotification: (AppModelChangedNotification notification) {
+        setState(() {});
+        return false;
+      },
+      child: AppProvider(
+        model: _appModel,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(Constants.gitHubUsername),
+            backgroundColor: Colors.lightGreen,
+          ),
+          body: Row(
+            children: <Widget>[
+              Expanded(flex: 1, child: LeftWidget()),
+              VerticalDivider(width: 1),
+              Expanded(flex: 3, child: rightWidget),
+            ],
+          ),
+        ),
       ),
     );
   }

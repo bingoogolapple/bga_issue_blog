@@ -713,6 +713,9 @@ file:///Applications/develop/flutter/packages/flutter/lib/src/widgets/will_pop_s
 file:///Applications/develop/flutter/packages/flutter/lib/widgets.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/.dart_tool/flutter_build/41d274a81c1261296bb37c7d7ede0103/main.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/.packages
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/datatransfer/app_model.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/datatransfer/app_model_change_notification.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/datatransfer/app_provider.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/dto/label.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/dto/label.g.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/dto/user_info.dart
