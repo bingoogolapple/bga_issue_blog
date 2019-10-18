@@ -12,9 +12,11 @@ dependencies:
 
   cupertino_icons: ^0.1.2
 
-  json_annotation: ^3.0.0
+  json_annotation: ^3.0.0 # https://pub.flutter-io.cn/packages/json_annotation
 
-  transparent_image: ^1.0.0
+  transparent_image: ^1.0.0 # https://pub.flutter-io.cn/packages/transparent_image
+
+#  provider: ^3.1.0+1 # https://pub.flutter-io.cn/packages/provider
 
   url_launcher: ^5.1.4 # https://pub.flutter-io.cn/packages/url_launcher
 

@@ -18,11 +18,13 @@ class _PageWidgetState extends BaseState<PageWidget> {
     addSubscription(streamBus.on<LabelChangedEvent>().listen((event) {
       _pageController.text = '1';
     }));
+    callbackBus.on(event_page_changed, onPageChanged);
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    callbackBus.off(event_page_changed, onPageChanged);
     super.dispose();
   }
 
@@ -42,7 +44,7 @@ class _PageWidgetState extends BaseState<PageWidget> {
                 page = 2;
               }
               page--;
-              _pageController.text = '$page';
+              _pageController.text = page.toString();
               notifyPageChanged(page);
             }),
         SizedBox(width: 10),
@@ -52,12 +54,13 @@ class _PageWidgetState extends BaseState<PageWidget> {
               controller: _pageController,
               textInputAction: TextInputAction.search,
               textAlign: TextAlign.center,
-              keyboardType: TextInputType.number, // 在 Web 上不好使
+              keyboardType: TextInputType.number,
+              // 在 Web 上不好使
               onSubmitted: (text) {
                 int page = int.tryParse(_pageController.text);
                 if (page == null || page <= 0) {
                   page = 1;
-                  _pageController.text = '$page';
+                  _pageController.text = page.toString();
                 }
                 notifyPageChanged(page);
               },
@@ -80,11 +83,15 @@ class _PageWidgetState extends BaseState<PageWidget> {
                 page = 0;
               }
               page++;
-              _pageController.text = '$page';
+              _pageController.text = page.toString();
               notifyPageChanged(page);
             }),
       ],
     );
+  }
+
+  void onPageChanged(page) {
+    _pageController.text = page.toString();
   }
 
   void notifyPageChanged(page) {
