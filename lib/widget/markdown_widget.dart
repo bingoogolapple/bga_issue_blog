@@ -9,6 +9,6 @@ class MarkdownWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getMarkdownView(markdown);
+    return getMarkdownView(context, markdown);
   }
 }
