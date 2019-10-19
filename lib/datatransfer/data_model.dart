@@ -86,3 +86,14 @@ class IssueListModel with ChangeNotifier {
     notifyListeners();
   }
 }
+
+class AboutMeModel with ChangeNotifier {
+  String _aboutMe;
+
+  String get aboutMe => _aboutMe;
+
+  set aboutMe(aboutMe) {
+    _aboutMe = aboutMe;
+    notifyListeners();
+  }
+}

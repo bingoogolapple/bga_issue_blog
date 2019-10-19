@@ -1,6 +1,6 @@
 import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/utils/base_state.dart';
-import 'package:bga_issue_blog/utils/events.dart';
+import 'package:bga_issue_blog/datatransfer/events.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -99,7 +99,7 @@ class _PageWidgetState extends BaseState<PageWidget> {
   void notifyPageChanged(page) {
     // 保存 page
     _savePage();
-    callbackBus.emit(event_page_changed, page);
+    streamBus.emit(PageChangedEvent(page));
   }
 
   void _savePage() {

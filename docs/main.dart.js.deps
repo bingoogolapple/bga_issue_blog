@@ -724,6 +724,8 @@ file:///Applications/develop/flutter/packages/flutter/lib/widgets.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/.dart_tool/flutter_build/41d274a81c1261296bb37c7d7ede0103/main.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/.packages
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/datatransfer/data_model.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/datatransfer/event_bus.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/datatransfer/events.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/dto/label.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/dto/label.g.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/dto/user_info.dart
@@ -737,8 +739,6 @@ file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/web_home_pag
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/base_state.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/composite_subscription.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/constants.dart
-file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/event_bus.dart
-file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/events.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/hex_color.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/open_url.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/open_url_web.dart

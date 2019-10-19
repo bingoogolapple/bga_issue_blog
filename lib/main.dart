@@ -28,13 +28,14 @@ class BlogApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<PageModel>.value(value: PageModel()),
-        ChangeNotifierProvider<KeywordModel>.value(value: KeywordModel()),
-        ChangeNotifierProvider<UserInfoModel>.value(value: UserInfoModel()),
-        ChangeNotifierProvider<CheckedMenuModel>.value(value: CheckedMenuModel()),
-        ChangeNotifierProvider<CurrentLabelModel>.value(value: CurrentLabelModel()),
-        ChangeNotifierProvider<LabelListModel>.value(value: LabelListModel()),
-        ChangeNotifierProvider<IssueListModel>.value(value: IssueListModel())
+        ChangeNotifierProvider(builder: (_) => PageModel()),
+        ChangeNotifierProvider(builder: (_) => KeywordModel()),
+        ChangeNotifierProvider(builder: (_) => UserInfoModel()),
+        ChangeNotifierProvider(builder: (_) => CheckedMenuModel()),
+        ChangeNotifierProvider(builder: (_) => CurrentLabelModel()),
+        ChangeNotifierProvider(builder: (_) => LabelListModel()),
+        ChangeNotifierProvider(builder: (_) => IssueListModel()),
+        ChangeNotifierProvider(builder: (_) => AboutMeModel()),
       ],
       // 跳转到其他页面后如果不想展示返回按钮，可以把 MaterialApp 再作为他页面的根 Widget
       child: MaterialApp(

@@ -1,6 +1,6 @@
 import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/utils/base_state.dart';
-import 'package:bga_issue_blog/utils/events.dart';
+import 'package:bga_issue_blog/datatransfer/events.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +38,8 @@ class _SearchWidgetState extends BaseState<SearchWidget> {
       controller: _keywordController,
       textInputAction: TextInputAction.search,
       onSubmitted: (text) {
-        callbackBus.emit(event_keyword_changed, text);
+        _saveKeyword();
+        streamBus.emit(KeywordChangedEvent(text));
       },
       style: TextStyle(fontSize: 14, color: HexColor('#4b595f')),
       decoration: InputDecoration(
@@ -53,7 +54,7 @@ class _SearchWidgetState extends BaseState<SearchWidget> {
           onPressed: () {
             // 保存 keyword
             _saveKeyword();
-            callbackBus.emit(event_keyword_changed, _keywordController.text);
+            streamBus.emit(KeywordChangedEvent(_keywordController.text));
           },
         ),
       ),

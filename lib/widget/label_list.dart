@@ -2,7 +2,7 @@ import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/net/github_api.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
 import 'package:bga_issue_blog/widget/label_item.dart';
-import 'package:bga_issue_blog/utils/events.dart';
+import 'package:bga_issue_blog/datatransfer/events.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

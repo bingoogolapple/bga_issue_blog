@@ -6,7 +6,7 @@ import 'package:bga_issue_blog/utils/base_state.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
 import 'package:bga_issue_blog/widget/issue_item.dart';
 import 'package:flutter/material.dart';
-import 'package:bga_issue_blog/utils/events.dart';
+import 'package:bga_issue_blog/datatransfer/events.dart';
 import 'package:provider/provider.dart';
 
 class IssueList extends StatefulWidget {
@@ -34,8 +34,21 @@ class _IssueListState extends BaseState<IssueList> {
   void initState() {
     super.initState();
 
-    callbackBus.on(event_keyword_changed, onKeywordChanged);
-    callbackBus.on(event_page_changed, onPageChanged);
+    addSubscription(streamBus.on<PageChangedEvent>().listen((event) {
+      if (_page == event.page) {
+        return;
+      }
+      _page = event.page;
+      _fetchIssueList();
+    }));
+
+    addSubscription(streamBus.on<KeywordChangedEvent>().listen((event) {
+      if (_keyword == event.keyword) {
+        return;
+      }
+      _keyword = event.keyword;
+      _pullToRefresh();
+    }));
 
     addSubscription(streamBus.on<LabelChangedEvent>().listen((event) {
       _keyword = '';
@@ -73,26 +86,8 @@ class _IssueListState extends BaseState<IssueList> {
 
   @override
   void dispose() {
-    callbackBus.off(event_keyword_changed, onKeywordChanged);
-    callbackBus.off(event_page_changed, onPageChanged);
     _scrollController.dispose();
     super.dispose();
-  }
-
-  void onKeywordChanged(newKeyword) {
-    if (_keyword == newKeyword) {
-      return;
-    }
-    _keyword = newKeyword;
-    _pullToRefresh();
-  }
-
-  void onPageChanged(newPage) {
-    if (_page == newPage) {
-      return;
-    }
-    _page = newPage;
-    _fetchIssueList();
   }
 
   void _loadMore() {

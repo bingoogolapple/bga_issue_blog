@@ -3,7 +3,7 @@ import 'package:bga_issue_blog/utils/base_state.dart';
 import 'package:bga_issue_blog/widget/about_me_widget.dart';
 import 'package:bga_issue_blog/widget/issue_list.dart';
 import 'package:bga_issue_blog/widget/label_list.dart';
-import 'package:bga_issue_blog/utils/events.dart';
+import 'package:bga_issue_blog/datatransfer/events.dart';
 import 'package:bga_issue_blog/widget/left_widget.dart';
 import 'package:bga_issue_blog/widget/search_widget.dart';
 import 'package:flutter/material.dart';
