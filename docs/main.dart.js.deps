@@ -738,11 +738,12 @@ file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/phone_home_p
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/web_home_page.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/base_state.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/composite_subscription.dart
-file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/constants.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/config.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/hex_color.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/open_url.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/open_url_web.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/route_util.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/ui_util.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/about_me_widget.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/comment_widget.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/widget/common_widget.dart

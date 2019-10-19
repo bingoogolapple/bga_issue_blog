@@ -1,7 +1,8 @@
 import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/page/web_home_page.dart';
 import 'package:bga_issue_blog/page/phone_home_page.dart';
-import 'package:bga_issue_blog/utils/constants.dart';
+import 'package:bga_issue_blog/utils/config.dart';
+import 'package:bga_issue_blog/utils/ui_util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -50,7 +51,7 @@ class BlogApp extends StatelessWidget {
         // 获取屏幕方向-方式二 MediaQuery.of(context).orientation
         home: OrientationBuilder(
           builder: (context, orientation) {
-            if (MediaQuery.of(context).size.shortestSide < Constants.webStyleWidth) {
+            if (UIUtil.isPhoneStyle(context)) {
               return PhoneHomePage();
             } else {
               return WebHomePage();

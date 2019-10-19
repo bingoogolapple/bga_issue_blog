@@ -1,8 +1,9 @@
 import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/net/github_api.dart';
-import 'package:bga_issue_blog/utils/constants.dart';
+import 'package:bga_issue_blog/utils/config.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:bga_issue_blog/utils/open_url.dart';
+import 'package:bga_issue_blog/utils/ui_util.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,7 @@ class _LeftWidgetState extends State<LeftWidget> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: Constants.personalLinkMap.keys.map((imagePath) => buildImageLink(imagePath, Constants.personalLinkMap[imagePath])).toList(),
+            children: Config.personalLinkMap.keys.map((imagePath) => buildImageLink(imagePath, Config.personalLinkMap[imagePath])).toList(),
           ),
           SizedBox(height: 30),
           buildMenuItem('个人博客', false),
@@ -75,21 +76,21 @@ class _LeftWidgetState extends State<LeftWidget> {
           SizedBox(height: 30),
           Text.rich(
             TextSpan(
-              text: 'BGA 系列\n',
+              text: Config.qqTitle,
               style: TextStyle(color: HexColor('#4b595f')),
-              children: [TextSpan(text: '开源库 QQ 群', style: TextStyle(color: HexColor('#849aa4')))],
+              children: [TextSpan(text: Config.qqDesc, style: TextStyle(color: HexColor('#849aa4')))],
             ),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 5),
           Image.asset(
-            'images/qq-group.png',
+            Config.qqQrImg,
             width: 80,
             height: 80,
             fit: BoxFit.cover,
           ),
           SizedBox(height: 20),
-          Text('©2014 - ${DateTime.now().year} bingoogolapple\n蜀ICP备17023604号', textAlign: TextAlign.center, style: TextStyle(color: HexColor('#849aa4'))),
+          Text(Config.webSiteInfo, textAlign: TextAlign.center, style: TextStyle(color: HexColor('#849aa4'))),
           SizedBox(height: 10),
           Text.rich(
             TextSpan(
@@ -157,7 +158,7 @@ class _LeftWidgetState extends State<LeftWidget> {
             onPressed: () {
               checkMenuModel.isAboutMeChecked = isAboutMe;
               // 手机风格时关闭 Drawer
-              if (MediaQuery.of(context).size.shortestSide < Constants.webStyleWidth) {
+              if (UIUtil.isPhoneStyle(context)) {
                 Navigator.pop(context);
               }
             },

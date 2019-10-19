@@ -1,5 +1,5 @@
 import 'package:bga_issue_blog/datatransfer/data_model.dart';
-import 'package:bga_issue_blog/utils/constants.dart';
+import 'package:bga_issue_blog/utils/config.dart';
 import 'package:bga_issue_blog/widget/about_me_widget.dart';
 import 'package:bga_issue_blog/widget/issue_list.dart';
 import 'package:bga_issue_blog/widget/label_list.dart';
@@ -15,7 +15,7 @@ class WebHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Constants.gitHubUsername),
+        title: Text(Config.gitHubUsername),
         backgroundColor: Colors.lightGreen,
       ),
       body: Row(
