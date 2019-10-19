@@ -724,6 +724,7 @@ file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/main.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/net/github_api.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/net/network_manager.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/blog_detail_page.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/phone_home_page.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/web_home_page.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/base_state.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/composite_subscription.dart

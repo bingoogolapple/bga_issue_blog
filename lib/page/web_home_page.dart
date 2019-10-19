@@ -11,14 +11,14 @@ import 'package:bga_issue_blog/widget/search_widget.dart';
 
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+class WebHomePage extends StatefulWidget {
+  WebHomePage({Key key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _WebHomePageState createState() => _WebHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WebHomePageState extends State<WebHomePage> {
   AppModel _appModel = AppModel();
 
   @override

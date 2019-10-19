@@ -11,12 +11,12 @@ import 'package:bga_issue_blog/widget/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-class HomePage extends StatefulWidget {
+class PhoneHomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _PhoneHomePageState createState() => _PhoneHomePageState();
 }
 
-class _HomePageState extends BaseState<HomePage> with SingleTickerProviderStateMixin {
+class _PhoneHomePageState extends BaseState<PhoneHomePage> with SingleTickerProviderStateMixin {
   final GlobalKey _phoneHomeStackKey = GlobalKey(debugLabel: 'PhoneHomeStackKey');
   AnimationController _controller;
   String _currentLabel;
