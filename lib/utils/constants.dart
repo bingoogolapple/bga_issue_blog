@@ -1,4 +1,5 @@
 class Constants {
+  static final webStyleWidth = 768;
   static final gitHubUsername = 'bingoogolapple';
   static final repo = '$gitHubUsername/$gitHubUsername.github.io';
   static final personalLinkMap = {

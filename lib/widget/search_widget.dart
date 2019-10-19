@@ -1,7 +1,9 @@
+import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/utils/base_state.dart';
 import 'package:bga_issue_blog/utils/events.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchWidget extends StatefulWidget {
   SearchWidget({Key key}) : super(key: key);
@@ -15,8 +17,14 @@ class _SearchWidgetState extends BaseState<SearchWidget> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // 恢复 keyword 数据
+      _keywordController.text = Provider.of<KeywordModel>(context, listen: false).keyword;
+    });
     addSubscription(streamBus.on<LabelChangedEvent>().listen((event) {
       _keywordController.text = '';
+      // 保存 keyword
+      _saveKeyword();
     }));
   }
 
@@ -43,10 +51,16 @@ class _SearchWidgetState extends BaseState<SearchWidget> {
         suffixIcon: IconButton(
           icon: const Icon(Icons.search),
           onPressed: () {
+            // 保存 keyword
+            _saveKeyword();
             callbackBus.emit(event_keyword_changed, _keywordController.text);
           },
         ),
       ),
     );
+  }
+
+  void _saveKeyword() {
+    Provider.of<KeywordModel>(context, listen: false).keyword = _keywordController.text;
   }
 }

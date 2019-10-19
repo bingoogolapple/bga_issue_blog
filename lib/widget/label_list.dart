@@ -1,9 +1,10 @@
-import 'package:bga_issue_blog/dto/label.dart';
+import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/net/github_api.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
 import 'package:bga_issue_blog/widget/label_item.dart';
 import 'package:bga_issue_blog/utils/events.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LabelList extends StatefulWidget {
   const LabelList({Key key}) : super(key: key);
@@ -13,20 +14,21 @@ class LabelList extends StatefulWidget {
 }
 
 class _LabelListState extends State<LabelList> {
-  List<Label> _labelList;
-  String _currentLabel;
-
   @override
   void initState() {
     super.initState();
-    _fetchLabelList();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _fetchLabelList();
+    });
   }
 
   _fetchLabelList() {
+    LabelListModel labelListModel = Provider.of<LabelListModel>(context, listen: false);
+    if (labelListModel.labelList != null) {
+      return;
+    }
     GitHubApi.getLabelList().then((labelList) {
-      setState(() {
-        _labelList = labelList;
-      });
+      labelListModel.labelList = labelList;
     }).catchError((error) {
       print('获取标签列表失败 $error');
       Scaffold.of(context).showSnackBar(new SnackBar(content: new Text('获取标签列表失败')));
@@ -35,25 +37,27 @@ class _LabelListState extends State<LabelList> {
 
   @override
   Widget build(BuildContext context) {
-    if (_labelList == null) {
-      return LoadingWidget();
-    }
-    if (_labelList.isEmpty) {
-      return EmptyWidget('没有分类');
-    }
-    return Wrap(
-        spacing: 4,
-        runSpacing: 4,
-        children: _labelList.map((label) {
-          return LabelItem(
-              label: label,
-              selected: label.name == _currentLabel,
-              onSelected: (selected) {
-                setState(() {
-                  _currentLabel = selected ? label.name : null;
-                });
-                streamBus.emit(LabelChangedEvent(_currentLabel));
-              });
-        }).toList());
+    return Consumer<LabelListModel>(builder: (context, labelListModel, _) {
+      if (labelListModel.labelList == null) {
+        return LoadingWidget();
+      }
+      if (labelListModel.labelList.isEmpty) {
+        return EmptyWidget('没有分类');
+      }
+      return Wrap(
+          spacing: 4,
+          runSpacing: 4,
+          children: labelListModel.labelList.map((label) {
+            return Consumer<CurrentLabelModel>(builder: (context, currentLabelModel, _) {
+              return LabelItem(
+                  label: label,
+                  selected: label.name == currentLabelModel.currentLabel,
+                  onSelected: (selected) {
+                    currentLabelModel.currentLabel = selected ? label.name : null;
+                    streamBus.emit(LabelChangedEvent(currentLabelModel.currentLabel));
+                  });
+            });
+          }).toList());
+    });
   }
 }

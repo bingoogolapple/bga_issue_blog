@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/net/github_api.dart';
 import 'package:bga_issue_blog/utils/base_state.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
 import 'package:bga_issue_blog/widget/issue_item.dart';
 import 'package:flutter/material.dart';
 import 'package:bga_issue_blog/utils/events.dart';
+import 'package:provider/provider.dart';
 
 class IssueList extends StatefulWidget {
   const IssueList({Key key}) : super(key: key);
@@ -15,12 +17,18 @@ class IssueList extends StatefulWidget {
 }
 
 class _IssueListState extends BaseState<IssueList> {
-  List _issueList;
-  int _page = 1;
-  String _keyword = '';
-  String _currentLabel;
   ScrollController _scrollController = new ScrollController();
   bool _isLoadingMore = false;
+
+  PageModel _pageModel;
+  int _page = 1;
+
+  KeywordModel _keywordModel;
+  String _keyword = '';
+
+  CurrentLabelModel _currentLabelModel;
+
+  IssueListModel _issueListModel;
 
   @override
   void initState() {
@@ -30,7 +38,6 @@ class _IssueListState extends BaseState<IssueList> {
     callbackBus.on(event_page_changed, onPageChanged);
 
     addSubscription(streamBus.on<LabelChangedEvent>().listen((event) {
-      _currentLabel = event.label;
       _keyword = '';
       _page = 1;
       _fetchIssueList();
@@ -43,7 +50,25 @@ class _IssueListState extends BaseState<IssueList> {
       _loadMore();
     });
 
-    _fetchIssueList();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // 恢复 label 数据
+      _currentLabelModel = Provider.of<CurrentLabelModel>(context, listen: false);
+
+      // 恢复 keyword 数据
+      _keywordModel = Provider.of<KeywordModel>(context, listen: false);
+      _keyword = _keywordModel.keyword;
+
+      // 恢复 page 数据
+      _pageModel = Provider.of<PageModel>(context, listen: false);
+      _page = _pageModel.page;
+
+      // 恢复 issueList
+      _issueListModel = Provider.of<IssueListModel>(context, listen: false);
+      if (_issueListModel.issueList != null) {
+        return;
+      }
+      _fetchIssueList();
+    });
   }
 
   @override
@@ -55,8 +80,11 @@ class _IssueListState extends BaseState<IssueList> {
   }
 
   void onKeywordChanged(newKeyword) {
+    if (_keyword == newKeyword) {
+      return;
+    }
     _keyword = newKeyword;
-    _fetchIssueList();
+    _pullToRefresh();
   }
 
   void onPageChanged(newPage) {
@@ -70,17 +98,18 @@ class _IssueListState extends BaseState<IssueList> {
   void _loadMore() {
     _isLoadingMore = true;
     setState(() {});
+    // 加载更多更新页码
     _page++;
-    callbackBus.emit(event_page_changed, _page);
+    _pageModel.page = _page;
     _fetchIssueList();
   }
 
   Future<Null> _fetchIssueList() {
-    return GitHubApi.getIssueList(_currentLabel, _keyword, _page, 20).then((data) {
-      if (_isLoadingMore && _issueList.isNotEmpty) {
-        _issueList.addAll(data);
+    return GitHubApi.getIssueList(_currentLabelModel.currentLabel, _keyword, _page, 20).then((data) {
+      if (_isLoadingMore) {
+        _issueListModel.addMoreIssueList(data);
       } else {
-        _issueList = data;
+        _issueListModel.issueList = data;
       }
     }).catchError((error) {
       print('获取博客列表失败 $error');
@@ -93,27 +122,29 @@ class _IssueListState extends BaseState<IssueList> {
 
   @override
   Widget build(BuildContext context) {
-    if (_issueList == null) {
-      return LoadingWidget();
-    }
-    if (_issueList.isEmpty) {
-      return EmptyWidget('没有博客');
-    }
-    return RefreshIndicator(
-      onRefresh: _pullToRefresh,
-      child: Scrollbar(
-        child: ListView.builder(
-          controller: _scrollController,
-          itemCount: _issueList.length + 1,
-          itemBuilder: (BuildContext context, int position) {
-            if (position == _issueList.length) {
-              return _buildLoadMoreWidget();
-            }
-            return IssueItem(issue: _issueList[position]);
-          },
+    return Consumer<IssueListModel>(builder: (context, issueListModel, _) {
+      if (issueListModel.issueList == null) {
+        return LoadingWidget();
+      }
+      if (issueListModel.issueList.isEmpty) {
+        return EmptyWidget('没有博客');
+      }
+      return RefreshIndicator(
+        onRefresh: _pullToRefresh,
+        child: Scrollbar(
+          child: ListView.builder(
+            controller: _scrollController,
+            itemCount: issueListModel.issueList.length + 1,
+            itemBuilder: (BuildContext context, int position) {
+              if (position == issueListModel.issueList.length) {
+                return _buildLoadMoreWidget();
+              }
+              return IssueItem(issue: issueListModel.issueList[position]);
+            },
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _buildLoadMoreWidget() {
@@ -129,8 +160,9 @@ class _IssueListState extends BaseState<IssueList> {
   }
 
   Future<Null> _pullToRefresh() async {
+    // 下拉刷新时更新当前页码
     _page = 1;
-    callbackBus.emit(event_page_changed, _page);
+    _pageModel.page = _page;
     return await _fetchIssueList();
   }
 }

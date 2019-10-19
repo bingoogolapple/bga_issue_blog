@@ -1,6 +1,4 @@
-import 'package:bga_issue_blog/datatransfer/app_model.dart';
-import 'package:bga_issue_blog/datatransfer/app_model_change_notification.dart';
-import 'package:bga_issue_blog/datatransfer/app_provider.dart';
+import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/utils/base_state.dart';
 import 'package:bga_issue_blog/widget/about_me_widget.dart';
 import 'package:bga_issue_blog/widget/issue_list.dart';
@@ -11,6 +9,8 @@ import 'package:bga_issue_blog/widget/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:provider/provider.dart';
+
 class PhoneHomePage extends StatefulWidget {
   @override
   _PhoneHomePageState createState() => _PhoneHomePageState();
@@ -19,15 +19,12 @@ class PhoneHomePage extends StatefulWidget {
 class _PhoneHomePageState extends BaseState<PhoneHomePage> with SingleTickerProviderStateMixin {
   final GlobalKey _phoneHomeStackKey = GlobalKey(debugLabel: 'PhoneHomeStackKey');
   AnimationController _controller;
-  String _currentLabel;
-  AppModel _appModel = AppModel();
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(duration: const Duration(milliseconds: 5000), vsync: this);
     addSubscription(streamBus.on<LabelChangedEvent>().listen((event) {
-      _currentLabel = event.label;
       _controller.fling(velocity: -2);
     }));
   }
@@ -78,60 +75,51 @@ class _PhoneHomePageState extends BaseState<PhoneHomePage> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    return NotificationListener<AppModelChangedNotification>(
-      onNotification: (AppModelChangedNotification notification) {
-        Navigator.pop(context);
-        setState(() {
-        });
-        return false;
-      },
-      child: AppProvider(
-        model: _appModel,
-        child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.lightBlue,
-            title: _buildTitle(),
-            actions: _buildActions(),
-          ),
-          drawer: _buildDrawerWidget(context),
-          body: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-              if (_appModel.isAboutMeChecked) {
-                return AboutMePage();
-              }
-              return Stack(key: _phoneHomeStackKey, children: [
-                _buildBottomPanelWidget(context),
-                _buildTopPanelWidget(context, constraints),
-              ]);
-            },
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.lightBlue,
+        title: _buildTitle(),
+        actions: _buildActions(),
       ),
+      drawer: Drawer(child: LeftWidget()),
+      body: Consumer<CheckedMenuModel>(builder: (context, checkedMenuModel, _) {
+        if (checkedMenuModel.isAboutMeChecked) {
+          return AboutMePage();
+        }
+        return LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return Stack(key: _phoneHomeStackKey, children: [
+              _buildBottomPanelWidget(context),
+              _buildTopPanelWidget(context, constraints),
+            ]);
+          },
+        );
+      }),
     );
   }
 
   List<Widget> _buildActions() {
-    if (_appModel.isAboutMeChecked) {
-      return null;
-    }
     return [
-      IconButton(
-        onPressed: _toggleBottomPanelVisibility,
-        icon: AnimatedIcon(icon: AnimatedIcons.ellipsis_search, semanticLabel: 'search', progress: ReverseAnimation(_controller.view)),
-      )
+      Consumer<CheckedMenuModel>(builder: (context, checkedMenuModel, _) {
+        if (checkedMenuModel.isAboutMeChecked) {
+          return SizedBox();
+        }
+        return IconButton(
+          onPressed: _toggleBottomPanelVisibility,
+          icon: AnimatedIcon(icon: AnimatedIcons.ellipsis_search, semanticLabel: 'search', progress: ReverseAnimation(_controller.view)),
+        );
+      })
     ];
   }
 
   Widget _buildTitle() {
-    if (_appModel.isAboutMeChecked) {
-      return Text('关于我');
-    }
-    return BackdropTitle(listenable: _controller.view);
-  }
-
-  Widget _buildDrawerWidget(BuildContext context) {
-    return Drawer(child: LeftWidget());
+    return Consumer<CheckedMenuModel>(builder: (context, checkedMenuModel, _) {
+      if (checkedMenuModel.isAboutMeChecked) {
+        return Text('关于我');
+      }
+      return BackdropTitle(listenable: _controller.view);
+    });
   }
 
   Widget _buildBottomPanelWidget(BuildContext context) {
@@ -180,7 +168,11 @@ class _PhoneHomePageState extends BaseState<PhoneHomePage> with SingleTickerProv
                   style: Theme.of(context).textTheme.subhead,
                   child: Tooltip(
                     message: _bottomPanelVisible ? '点击关闭过滤面板' : '点击打开过滤面板',
-                    child: Text(_currentLabel == null ? '全部博客' : _currentLabel),
+                    child: Consumer<CurrentLabelModel>(
+                      builder: (context, currentLabelModel, _) {
+                        return Text(currentLabelModel.currentLabel ?? '全部博客');
+                      },
+                    ),
                   ),
                 ),
               ),

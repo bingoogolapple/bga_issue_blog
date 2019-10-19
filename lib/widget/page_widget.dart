@@ -1,7 +1,9 @@
+import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/utils/base_state.dart';
 import 'package:bga_issue_blog/utils/events.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PageWidget extends StatefulWidget {
   PageWidget({Key key}) : super(key: key);
@@ -17,14 +19,14 @@ class _PageWidgetState extends BaseState<PageWidget> {
     super.initState();
     addSubscription(streamBus.on<LabelChangedEvent>().listen((event) {
       _pageController.text = '1';
+      // 保存 page
+      _savePage();
     }));
-    callbackBus.on(event_page_changed, onPageChanged);
   }
 
   @override
   void dispose() {
     _pageController.dispose();
-    callbackBus.off(event_page_changed, onPageChanged);
     super.dispose();
   }
 
@@ -49,8 +51,10 @@ class _PageWidgetState extends BaseState<PageWidget> {
             }),
         SizedBox(width: 10),
         SizedBox(
-            width: 60,
-            child: TextField(
+          width: 60,
+          child: Consumer<PageModel>(builder: (context, pageModel, _) {
+            _pageController.text = pageModel.page.toString();
+            return TextField(
               controller: _pageController,
               textInputAction: TextInputAction.search,
               textAlign: TextAlign.center,
@@ -73,7 +77,9 @@ class _PageWidgetState extends BaseState<PageWidget> {
                 enabledBorder: border,
                 focusedBorder: border,
               ),
-            )),
+            );
+          }),
+        ),
         SizedBox(width: 10),
         GestureDetector(
             child: Image.asset('images/next-page-hover.png'),
@@ -90,11 +96,13 @@ class _PageWidgetState extends BaseState<PageWidget> {
     );
   }
 
-  void onPageChanged(page) {
-    _pageController.text = page.toString();
+  void notifyPageChanged(page) {
+    // 保存 page
+    _savePage();
+    callbackBus.emit(event_page_changed, page);
   }
 
-  void notifyPageChanged(page) {
-    callbackBus.emit(event_page_changed, page);
+  void _savePage() {
+    Provider.of<PageModel>(context, listen: false).page = int.tryParse(_pageController.text);
   }
 }

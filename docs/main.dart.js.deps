@@ -114,6 +114,16 @@ file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/path-1.
 file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/path-1.6.4/lib/src/style/url.dart
 file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/path-1.6.4/lib/src/style/windows.dart
 file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/path-1.6.4/lib/src/utils.dart
+file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-3.1.0+1/lib/provider.dart
+file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-3.1.0+1/lib/src/async_provider.dart
+file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-3.1.0+1/lib/src/change_notifier_provider.dart
+file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-3.1.0+1/lib/src/consumer.dart
+file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-3.1.0+1/lib/src/delegate_widget.dart
+file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-3.1.0+1/lib/src/listenable_provider.dart
+file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-3.1.0+1/lib/src/provider.dart
+file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-3.1.0+1/lib/src/proxy_provider.dart
+file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-3.1.0+1/lib/src/selector.dart
+file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-3.1.0+1/lib/src/value_listenable_provider.dart
 file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_span-1.5.5/lib/source_span.dart
 file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_span-1.5.5/lib/src/colors.dart
 file:///Applications/develop/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_span-1.5.5/lib/src/file.dart
@@ -713,9 +723,7 @@ file:///Applications/develop/flutter/packages/flutter/lib/src/widgets/will_pop_s
 file:///Applications/develop/flutter/packages/flutter/lib/widgets.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/.dart_tool/flutter_build/41d274a81c1261296bb37c7d7ede0103/main.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/.packages
-file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/datatransfer/app_model.dart
-file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/datatransfer/app_model_change_notification.dart
-file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/datatransfer/app_provider.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/datatransfer/data_model.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/dto/label.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/dto/label.g.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/dto/user_info.dart
