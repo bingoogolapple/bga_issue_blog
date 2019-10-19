@@ -1,7 +1,7 @@
 :running:bga_issue_blog:running:
 ============
 
-* 当前为 Flutter 版本，[点击进行预览](http://issues.bingoogolapple.cn)
+* 当前为 Flutter 版本，一套代码支持 Android、iOS、Web，[点击进行预览](http://issues.bingoogolapple.cn)
 * [查看 Vue 版本](https://github.com/bingoogolapple/bga_issue_blog/tree/vue)
 
 ### [使用了该博客系统的个人博客站点列表](https://github.com/bingoogolapple/bga_issue_blog/issues/4)，如果你的个人博客站点也使用了该博客系统，希望你能追加你的个人博客站点链接到这里面
@@ -29,17 +29,17 @@
 
 ## 效果图
 
-> 列表界面
+| Web - PC |
+| ------------ |
+| ![web-pc](https://user-images.githubusercontent.com/8949716/67147757-5d0d9e80-f2ca-11e9-9092-457a507d7386.png) |
 
-![列表界面](https://user-images.githubusercontent.com/8949716/29306642-28079ec8-81d1-11e7-959f-4da1e0dc488a.png)
+| Web - Phone | Web - Phone | Web - Phone |
+| ------------ | ------------- | ------------- |
+| ![web-phone1](https://user-images.githubusercontent.com/8949716/67147761-6b5bba80-f2ca-11e9-9839-92225c06a3f9.jpeg) | ![web-phone2](https://user-images.githubusercontent.com/8949716/67147762-6f87d800-f2ca-11e9-9dcf-5ec8a32dab4a.jpeg) | ![web-phone3](https://user-images.githubusercontent.com/8949716/67147763-73b3f580-f2ca-11e9-8b52-e51cc10397c5.jpeg) |
 
-> 详情界面
-
-![详情界面](https://user-images.githubusercontent.com/8949716/29306679-4bb2d824-81d1-11e7-9e9b-d792f17aaf89.png)
-
-> 关于我界面
-
-![关于我界面](https://user-images.githubusercontent.com/8949716/29306836-d88c4c12-81d1-11e7-80c6-d461c05abeca.png)
+| Phone | Phone | Phone |
+| ------------ | ------------- | ------------- |
+| ![phone1](https://user-images.githubusercontent.com/8949716/67147776-a4942a80-f2ca-11e9-9b3f-6f768a978a8f.jpeg) | ![phone2](https://user-images.githubusercontent.com/8949716/67147777-a52cc100-f2ca-11e9-815b-0f342b912133.jpeg) | ![phone3](https://user-images.githubusercontent.com/8949716/67147778-a65dee00-f2ca-11e9-9cb4-7941f1838316.jpeg) |
 
 ## 使用方法
 
