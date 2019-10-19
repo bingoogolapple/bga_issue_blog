@@ -78,7 +78,6 @@ class _PhoneHomePageState extends BaseState<PhoneHomePage> with SingleTickerProv
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.lightBlue,
         title: _buildTitle(),
         actions: _buildActions(),
       ),

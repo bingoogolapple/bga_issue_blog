@@ -48,8 +48,8 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          elevation: 0,
           title: Text(_issue == null ? '博客详情' : _issue['title']),
-          backgroundColor: Colors.lightBlue,
         ),
         body: buildBodyWidget);
   }

@@ -43,7 +43,7 @@ class BlogApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'bga_issue_blog',
         theme: ThemeData(
-          primarySwatch: Colors.purple,
+          primarySwatch: Colors.blue,
         ),
         // Flutter 默认支持横屏和竖屏，可以通过 SystemChrome.setPreferredOrientations 设置支持的屏幕方向，不能再 main 方法中设置
         // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
