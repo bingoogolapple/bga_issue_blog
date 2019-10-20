@@ -737,6 +737,7 @@ file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/blog_detail_
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/phone_home_page.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/page/web_home_page.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/base_state.dart
+file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/composite_change_notifier.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/composite_subscription.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/config.dart
 file:///Users/wanghao/git/AndroidStudio/BGA/bga_issue_blog/lib/utils/hex_color.dart

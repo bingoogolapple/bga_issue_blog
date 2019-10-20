@@ -1,4 +1,5 @@
 import 'package:bga_issue_blog/net/github_api.dart';
+import 'package:bga_issue_blog/utils/base_state.dart';
 import 'package:bga_issue_blog/widget/comment_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class BlogDetailPage extends StatefulWidget {
   _BlogDetailPageState createState() => _BlogDetailPageState();
 }
 
-class _BlogDetailPageState extends State<BlogDetailPage> {
+class _BlogDetailPageState extends BaseState<BlogDetailPage> {
   Map _issue;
   List _comments;
 

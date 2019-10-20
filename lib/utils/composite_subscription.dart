@@ -1,19 +1,17 @@
 import 'dart:async';
 
 class CompositeSubscription {
-  Set<StreamSubscription> subscriptions = Set<StreamSubscription>();
-  bool unsubscribed = false;
+  Set<StreamSubscription> _subscriptionSet = Set<StreamSubscription>();
+  bool _unsubscribed = false;
 
-  bool isUnsubscribed() {
-    return unsubscribed;
-  }
+  bool get isUnsubscribed => _unsubscribed;
 
   void add(final StreamSubscription subscription) {
-    if (unsubscribed) {
+    if (_unsubscribed) {
       subscription.cancel();
       return;
     }
-    subscriptions.add(subscription);
+    _subscriptionSet.add(subscription);
   }
 
   void remove(final StreamSubscription subscription) {
@@ -21,19 +19,19 @@ class CompositeSubscription {
       return;
     }
 
-    if (subscriptions.remove(subscription)) {
+    if (_subscriptionSet.remove(subscription)) {
       subscription.cancel();
     }
   }
 
   void cancel() {
-    unsubscribed = true;
+    _unsubscribed = true;
     if (!hasSubscriptions()) {
       return;
     }
 
     List exceptionList = [];
-    for (StreamSubscription subscription in subscriptions) {
+    for (StreamSubscription subscription in _subscriptionSet) {
       try {
         subscription.cancel();
       } catch (e) {
@@ -51,9 +49,9 @@ class CompositeSubscription {
   }
 
   bool hasSubscriptions() {
-    if (unsubscribed) {
+    if (_unsubscribed) {
       return false;
     }
-    return subscriptions.isNotEmpty;
+    return _subscriptionSet.isNotEmpty;
   }
 }

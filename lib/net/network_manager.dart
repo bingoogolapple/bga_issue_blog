@@ -24,6 +24,6 @@ class NetworkManager {
     // 默认会将响应体转换为 json 对象（Map），不用再手动 json.decode
     _dio.options.responseType = ResponseType.json;
     // 添加日志拦截器
-    _dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
+//    _dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
   }
 }

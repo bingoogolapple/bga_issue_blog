@@ -3,6 +3,7 @@ import 'package:bga_issue_blog/utils/base_state.dart';
 import 'package:bga_issue_blog/datatransfer/events.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class PageWidget extends StatefulWidget {
@@ -12,7 +13,13 @@ class PageWidget extends StatefulWidget {
 }
 
 class _PageWidgetState extends BaseState<PageWidget> {
-  final _pageController = TextEditingController(text: '1');
+  TextEditingController _pageController;
+  FocusNode _focusNode;
+
+  _PageWidgetState() {
+    _pageController = addAndGetChangeNotifier(TextEditingController(text: '1'));
+    _focusNode = addAndGetChangeNotifier(FocusNode());
+  }
 
   @override
   void initState() {
@@ -22,12 +29,6 @@ class _PageWidgetState extends BaseState<PageWidget> {
       // 保存 page
       _savePage();
     }));
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
   }
 
   @override
@@ -54,28 +55,30 @@ class _PageWidgetState extends BaseState<PageWidget> {
           width: 60,
           child: Consumer<PageModel>(builder: (context, pageModel, _) {
             _pageController.text = pageModel.page.toString();
-            return TextField(
-              controller: _pageController,
-              textInputAction: TextInputAction.search,
-              textAlign: TextAlign.center,
-              keyboardType: TextInputType.number,
-              // 在 Web 上不好使
-              onSubmitted: (text) {
-                int page = int.tryParse(_pageController.text);
-                if (page == null || page <= 0) {
-                  page = 1;
-                  _pageController.text = page.toString();
+            return RawKeyboardListener(
+              focusNode: _focusNode,
+              onKey: (RawKeyEvent event) {
+                if (event is RawKeyUpEvent && event.data.logicalKey == LogicalKeyboardKey.enter && event.data is RawKeyEventDataWeb) {
+                  _handleClickEnter();
                 }
-                notifyPageChanged(page);
               },
-              style: TextStyle(fontSize: 14, color: HexColor('#4b595f')),
-              decoration: InputDecoration(
-                hintText: '页码',
-                hintStyle: TextStyle(fontSize: 14, color: HexColor('#849aa4')),
-                contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                border: border,
-                enabledBorder: border,
-                focusedBorder: border,
+              child: TextField(
+                controller: _pageController,
+                textInputAction: TextInputAction.search,
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.number,
+                onSubmitted: (text) {
+                  _handleClickEnter();
+                },
+                style: TextStyle(fontSize: 14, color: HexColor('#4b595f')),
+                decoration: InputDecoration(
+                  hintText: '页码',
+                  hintStyle: TextStyle(fontSize: 14, color: HexColor('#849aa4')),
+                  contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  border: border,
+                  enabledBorder: border,
+                  focusedBorder: border,
+                ),
               ),
             );
           }),
@@ -94,6 +97,16 @@ class _PageWidgetState extends BaseState<PageWidget> {
             }),
       ],
     );
+  }
+
+  void _handleClickEnter() {
+    int page = int.tryParse(_pageController.text);
+    if (page == null || page <= 0) {
+      page = 1;
+      _pageController.text = page.toString();
+    }
+    _focusNode.unfocus();
+    notifyPageChanged(page);
   }
 
   void notifyPageChanged(page) {
