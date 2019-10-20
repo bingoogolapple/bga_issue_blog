@@ -13,7 +13,9 @@ class IssueItem extends StatelessWidget {
       child: ListTile(
         title: GestureDetector(
           child: Text(issue['title']),
-          onTap: () => RouteUtil.routeWithFadeTransition(context, BlogDetailPage(number: issue['number'])),
+//          onTap: () => RouteUtil.pushWithSwipeBackTransition(context, BlogDetailPage(number: issue['number'])),
+          onTap: () => RouteUtil.routeToBlogDetail(context, issue['number']),
+//          onTap: () => Navigator.pushNamed(context, '/blog', arguments: issue['number']),
         ),
         trailing: Text(DateTime.tryParse(issue['created_at']).toString().substring(0, "yyyy-MM-dd HH:mm".length)),
       ),

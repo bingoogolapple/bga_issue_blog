@@ -34,7 +34,6 @@ abstract class GitHubApi {
   // 获取指定 issue 的 comment 列表 https://api.github.com/repos/bingoogolapple/bingoogolapple.github.io/issues/209/comments
   static Future<dynamic> getComments(String url) {
     return NetworkManager.instance.dio.get(url).then((Response response) {
-      print(response.data);
       return response.data;
     });
   }

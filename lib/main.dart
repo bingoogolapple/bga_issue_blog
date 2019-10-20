@@ -1,7 +1,8 @@
 import 'package:bga_issue_blog/datatransfer/data_model.dart';
+import 'package:bga_issue_blog/page/blog_detail_page.dart';
 import 'package:bga_issue_blog/page/web_home_page.dart';
 import 'package:bga_issue_blog/page/phone_home_page.dart';
-import 'package:bga_issue_blog/utils/config.dart';
+import 'package:bga_issue_blog/utils/route_util.dart';
 import 'package:bga_issue_blog/utils/ui_util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,8 @@ void main() {
 }
 
 void init() {
-  setErrorPage();
+  RouteUtil.init();
+//  setErrorPage();
 }
 
 void setErrorPage() {
@@ -24,7 +26,12 @@ void setErrorPage() {
   };
 }
 
-class BlogApp extends StatelessWidget {
+class BlogApp extends StatefulWidget {
+  @override
+  _BlogAppState createState() => _BlogAppState();
+}
+
+class _BlogAppState extends State<BlogApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -40,6 +47,10 @@ class BlogApp extends StatelessWidget {
       ],
       // 跳转到其他页面后如果不想展示返回按钮，可以把 MaterialApp 再作为他页面的根 Widget
       child: MaterialApp(
+        initialRoute: '/',
+//        routes: {
+//          '/blog':(context) => BlogDetailPage(),
+//        },
         debugShowCheckedModeBanner: false,
         title: 'bga_issue_blog',
         theme: ThemeData(
@@ -49,15 +60,18 @@ class BlogApp extends StatelessWidget {
         // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
         // 获取屏幕方向-方式一 OrientationBuilder 感知屏幕旋转
         // 获取屏幕方向-方式二 MediaQuery.of(context).orientation
-        home: OrientationBuilder(
-          builder: (context, orientation) {
-            if (UIUtil.isPhoneStyle(context)) {
-              return PhoneHomePage();
-            } else {
-              return WebHomePage();
-            }
-          },
-        ),
+        home: Stack(children: [
+          AdaptiveWebInitHashWidget(),
+          OrientationBuilder(
+            builder: (context, orientation) {
+              if (UIUtil.isPhoneStyle(context)) {
+                return PhoneHomePage();
+              } else {
+                return WebHomePage();
+              }
+            },
+          )
+        ]),
       ),
     );
   }

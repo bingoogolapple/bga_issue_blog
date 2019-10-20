@@ -6,24 +6,31 @@ import 'package:flutter/material.dart';
 
 class BlogDetailPage extends StatefulWidget {
   BlogDetailPage({Key key, this.number}) : super(key: key);
-  final int number;
+  final String number;
 
   @override
-  _BlogDetailPageState createState() => _BlogDetailPageState();
+  _BlogDetailPageState createState() => _BlogDetailPageState().._number = number;
 }
 
 class _BlogDetailPageState extends BaseState<BlogDetailPage> {
   Map _issue;
   List _comments;
+  String _number;
 
   @override
   void initState() {
     super.initState();
     _fetchIssue();
+
+//    WidgetsBinding.instance.addPostFrameCallback((_) {
+//      _number = ModalRoute.of(context).settings.arguments;
+//      print('动态路由 ${ModalRoute.of(context).settings.name}');
+//      _fetchIssue();
+//    });
   }
 
   _fetchIssue() {
-    GitHubApi.getIssue(widget.number).then((issue) {
+    GitHubApi.getIssue(int.tryParse(_number)).then((issue) {
       setState(() {
         _issue = issue;
         _fetchComments();

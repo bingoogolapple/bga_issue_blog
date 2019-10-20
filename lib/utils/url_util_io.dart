@@ -8,3 +8,11 @@ launchURL(context, url) async {
     Scaffold.of(context).showSnackBar(new SnackBar(content: new Text('链接无效 $url')));
   }
 }
+
+getUrl() {
+  return null;
+}
+
+getUrlHash() {
+  return null;
+}

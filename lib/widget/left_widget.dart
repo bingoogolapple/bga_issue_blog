@@ -2,7 +2,7 @@ import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/net/github_api.dart';
 import 'package:bga_issue_blog/utils/config.dart';
 import 'package:bga_issue_blog/utils/hex_color.dart';
-import 'package:bga_issue_blog/utils/open_url.dart';
+import 'package:bga_issue_blog/utils/url_util.dart';
 import 'package:bga_issue_blog/utils/ui_util.dart';
 import 'package:bga_issue_blog/widget/common_widget.dart';
 import 'package:flutter/gestures.dart';
