@@ -128,6 +128,8 @@ class _IssueListState extends BaseState<IssueList> {
         onRefresh: _pullToRefresh,
         child: Scrollbar(
           child: ListView.builder(
+            // RefreshIndicator 是根据下拉时的偏移量触发刷新，当条目较少时(未占满一个屏幕)，ListView 不能滚动，所以无法触发下拉刷新，需要配置 AlwaysScrollableScrollPhysics
+            physics: AlwaysScrollableScrollPhysics(),
             controller: _scrollController,
             itemCount: issueListModel.issueList.length + 1,
             itemBuilder: (BuildContext context, int position) {
