@@ -1,7 +1,7 @@
 :running:bga_issue_blog:running:
 ============
 
-* 当前为 Flutter 版本，一套代码支持 Android、iOS、Web，[点击进行预览](http://issues.bingoogolapple.cn)
+* 当前为 Flutter 版本，一套代码支持 Android、iOS、Web、Desktop，[点击进行预览](http://issues.bingoogolapple.cn)
 * [查看 Vue 版本](https://github.com/bingoogolapple/bga_issue_blog/tree/vue)
 
 ### [使用了该博客系统的个人博客站点列表](https://github.com/bingoogolapple/bga_issue_blog/issues/4)，如果你的个人博客站点也使用了该博客系统，希望你能追加你的个人博客站点链接到这里面
@@ -29,9 +29,9 @@
 
 ## 效果图
 
-| Web - PC |
-| ------------ |
-| ![web-pc](https://user-images.githubusercontent.com/8949716/67147757-5d0d9e80-f2ca-11e9-9092-457a507d7386.png) |
+Web - PC | Desktop |
+| ------------ | ------------ |
+| ![web-pc](https://user-images.githubusercontent.com/8949716/67616787-8de05d00-f80f-11e9-9ddf-e75c2f3d619d.png) | ![desktop](https://user-images.githubusercontent.com/8949716/67616799-a5b7e100-f80f-11e9-8079-2d9139fa9689.png) |
 
 | Web - Phone | Web - Phone | Web - Phone |
 | ------------ | ------------- | ------------- |

@@ -1,6 +1,7 @@
 import 'package:bga_issue_blog/datatransfer/data_model.dart';
 import 'package:bga_issue_blog/page/web_home_page.dart';
 import 'package:bga_issue_blog/page/phone_home_page.dart';
+import 'package:bga_issue_blog/utils/platform_util.dart';
 import 'package:bga_issue_blog/utils/route_util.dart';
 import 'package:bga_issue_blog/utils/ui_util.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ void main() {
 }
 
 void init() {
+  initTargetPlatform();
   RouteUtil.init();
 //  setErrorPage();
 }
