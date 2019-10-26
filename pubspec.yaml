@@ -18,7 +18,7 @@ dependencies:
 
   provider: ^3.1.0+1 # https://pub.flutter-io.cn/packages/provider
 
-  url_launcher: ^5.1.4 # https://pub.flutter-io.cn/packages/url_launcher
+  url_launcher: ^5.2.5 # https://pub.flutter-io.cn/packages/url_launcher
 
   dio: ^3.0.3 # https://github.com/flutterchina/dio
 
