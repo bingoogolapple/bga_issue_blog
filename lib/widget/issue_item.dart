@@ -23,14 +23,14 @@ class IssueItem extends StatelessWidget {
 
   Widget _buildTitle(BuildContext context) {
     // Web 还不支持选择复制，Android、iOS 可以，但点击空白区域时，拷贝、全选浮窗不会自动消失
-    if (kIsWeb) {
-      return GestureDetector(
-        child: Text(issue['title']),
-//        onTap: () => RouteUtil.pushWithSwipeBackTransition(context, BlogDetailPage(number: issue['number'])),
-//        onTap: () => Navigator.pushNamed(context, '/blog', arguments: issue['number']),
-        onTap: () => RouteUtil.routeToBlogDetail(context, issue['number']),
-      );
-    }
+//    if (kIsWeb) {
+//      return GestureDetector(
+//        child: Text(issue['title']),
+////        onTap: () => RouteUtil.pushWithSwipeBackTransition(context, BlogDetailPage(number: issue['number'])),
+////        onTap: () => Navigator.pushNamed(context, '/blog', arguments: issue['number']),
+//        onTap: () => RouteUtil.routeToBlogDetail(context, issue['number']),
+//      );
+//    }
     return GestureDetector(
       child: SelectableText(
         issue['title'],

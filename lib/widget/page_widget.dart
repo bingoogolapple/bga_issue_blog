@@ -38,18 +38,20 @@ class _PageWidgetState extends BaseState<PageWidget> {
       borderSide: BorderSide(color: HexColor('#eeeeee')),
     );
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        GestureDetector(
-            child: Image.asset('images/pre-page-hover.png'),
-            onTap: () {
-              int page = int.tryParse(_pageController.text);
-              if (page == null || page <= 1) {
-                page = 2;
-              }
-              page--;
-              _pageController.text = page.toString();
-              notifyPageChanged(page);
-            }),
+        IconButton(
+          icon: Image.asset('images/pre-page-hover.png'),
+          onPressed: () {
+            int page = int.tryParse(_pageController.text);
+            if (page == null || page <= 1) {
+              page = 2;
+            }
+            page--;
+            _pageController.text = page.toString();
+            notifyPageChanged(page);
+          },
+        ),
         SizedBox(width: 10),
         SizedBox(
           width: 60,
@@ -66,10 +68,12 @@ class _PageWidgetState extends BaseState<PageWidget> {
                 controller: _pageController,
                 textInputAction: TextInputAction.search,
                 textAlign: TextAlign.center,
+                textAlignVertical: TextAlignVertical.center,
                 keyboardType: TextInputType.number,
                 onSubmitted: (text) {
                   _handleClickEnter();
                 },
+                cursorColor: Colors.lightBlue,
                 style: TextStyle(fontSize: 14, color: HexColor('#4b595f')),
                 decoration: InputDecoration(
                   hintText: '页码',
@@ -84,17 +88,18 @@ class _PageWidgetState extends BaseState<PageWidget> {
           }),
         ),
         SizedBox(width: 10),
-        GestureDetector(
-            child: Image.asset('images/next-page-hover.png'),
-            onTap: () {
-              int page = int.tryParse(_pageController.text);
-              if (page == null || page < 0) {
-                page = 0;
-              }
-              page++;
-              _pageController.text = page.toString();
-              notifyPageChanged(page);
-            }),
+        IconButton(
+          icon: Image.asset('images/next-page-hover.png'),
+          onPressed: () {
+            int page = int.tryParse(_pageController.text);
+            if (page == null || page < 0) {
+              page = 0;
+            }
+            page++;
+            _pageController.text = page.toString();
+            notifyPageChanged(page);
+          },
+        ),
       ],
     );
   }

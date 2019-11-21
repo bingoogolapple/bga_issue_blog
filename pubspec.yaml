@@ -30,8 +30,8 @@ dependencies:
   fluro: ^1.5.1 # https://pub.dev/packages/fluro
 
 dev_dependencies:
-  build_runner: ^1.7.1
-  json_serializable: ^3.2.3 # 可以配置别名 alias genjson="flutter packages pub run build_runner build --delete-conflicting-outputs"
+  build_runner: ^1.7.2 # https://pub.flutter-io.cn/packages/build_runner
+  json_serializable: ^3.2.3 # 可以配置别名 alias genjson="flutter packages pub run build_runner build --delete-conflicting-outputs" https://pub.flutter-io.cn/packages/json_serializable
   flutter_test:
     sdk: flutter
 
